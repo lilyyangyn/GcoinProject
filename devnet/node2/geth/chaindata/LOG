@@ -138,3 +138,6 @@
 19:46:29.291763 version@stat F·[2 1] S·125KiB[30KiB 94KiB] Sc·[0.50 0.00]
 19:46:29.301328 db@janitor F·5 G·0
 19:46:29.301346 db@open done T·24.319037ms
+=============== Oct 2, 2020 (HKT) ===============
+10:39:40.439864 db@close closing
+10:39:40.440054 db@close done T·191.563µs

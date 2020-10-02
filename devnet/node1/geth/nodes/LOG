@@ -173,3 +173,6 @@
 19:52:19.327223 version@stat F·[0 1] S·150KiB[0B 150KiB] Sc·[0.00 0.00]
 19:52:19.329197 table@compaction committed F-1 S-2KiB Ke·0 D·28 T·21.489943ms
 19:52:19.329460 table@remove removed @38
+=============== Oct 2, 2020 (HKT) ===============
+10:39:47.697346 db@close closing
+10:39:47.795680 db@close done T·98.329919ms
