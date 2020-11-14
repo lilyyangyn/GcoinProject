@@ -27,7 +27,7 @@
 </template>
 
 <script>
-	import '../../app/gcoin.js'
+	import '../../js/gcoin.js'
 	export default {
 		name: 'tranfer',
 	}
