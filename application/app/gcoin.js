@@ -28,28 +28,28 @@ const Gcoin {
 
 	name: async function() {
 		const { name } = this.meta.methods;
-		contractName = await name().call();
+		const contractName = await name().call();
 		
 		// update page
 	}
 
 	symbol: async function() {
 		const { symbol } = this.meta.methods;
-		contractSymbol = await name().call();
+		const contractSymbol = await name().call();
 		
 		// update page
 	}
 
 	decimals: async funcntion() {
 		const { decimals } = this.meta.methods;
-		contractDecimals = await decimals().call();
+		const contractDecimals = await decimals().call();
 		
 		// update page
 	}
 
 	totalSupply: async function() {
 		const { totalSupply } = this.meta.methods;
-		supply = await totalSupply().call();
+		const supply = await totalSupply().call();
 		
 		// update page
 	}
@@ -57,7 +57,7 @@ const Gcoin {
 	balanceOf: async function() {
 		const owner = document.getElementById("balance-owner").value;
 		const { balanceOf } = this.meta.methods;
-		balance = await balanceOf(owner).call();
+		const balance = await balanceOf(owner).call();
 		
 		// update page
 	}
@@ -111,7 +111,7 @@ const Gcoin {
 
 	refreshBalance: async function() {
 		const { balanceOf } = this.meta.methods;
-		balance = await balanceOf(this.account).call();
+		const balance = await balanceOf(this.account).call();
 
 		// update page
 		const balanceElements = document.getElementsById("balance");
