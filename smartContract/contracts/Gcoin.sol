@@ -15,7 +15,7 @@ contract ERC20Interface {
   event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 }
 
-contract ERC20 is ERC20Interface {
+contract Gcoin is ERC20Interface {
     using SafeMath for uint256;
 
     // Determined in compile-time, not take up state variable storage space 
