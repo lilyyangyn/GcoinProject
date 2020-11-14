@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import GcoinArtifact from "../build/contracts/Gcoin.json";
+import GcoinArtifact from "../../build/contracts/Gcoin.json";
 
 const Gcoin = {
 	web3: null,

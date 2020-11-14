@@ -1,5 +1,5 @@
 import Web3 from "web3";
-import NodeRegistrationArtifact from "../build/contracts/NodeRegistration.json";
+import NodeRegistrationArtifact from "../../build/contracts/NodeRegistration.json";
 
 const NodeRegistration = {
 	web3: null,
