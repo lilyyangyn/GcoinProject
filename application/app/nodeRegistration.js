@@ -86,7 +86,7 @@ const NodeRegistration {
 		const addr = document.getElementById("addrState-addr").value;
 
 		this.setStatus("Processing... (please wait)");
-		
+
 		const { addressNetworkState } = this.meta.methods;
 		await addressNetworkState(addr).call();
 
