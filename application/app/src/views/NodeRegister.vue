@@ -1,18 +1,15 @@
 <template>
-  <div class="home">
-    
-    <NodeRegister msg="NodeRegister Page"/>
-  </div>
+<div class="home">
+
+
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import NodeRegister from '@/components/NodeRegister.vue'
+
+import '../../js/nodeRegistration.js'
 
 export default {
-  name: 'Register',
-  components: {
-    NodeRegister
-  }
+	name: 'Register',
 }
 </script>

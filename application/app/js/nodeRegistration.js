@@ -3,7 +3,7 @@ import NodeRegistrationArtifact from "../../build/contracts/NodeRegistration.jso
 
 const NodeRegistration = {
 	web3: null,
-	account: null
+	account: null,
 	meta: null,
 
 	start: async function() {
