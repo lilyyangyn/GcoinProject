@@ -26,6 +26,7 @@ const Gcoin = {
 		}
 	},
 
+/*
 	name: async function() {
 		const { name } = this.meta.methods;
 		const contractName = await name().call();
@@ -62,6 +63,7 @@ const Gcoin = {
 		
 		// update page
 	},
+*/
 
 	transfer: async function() {
 		const to = document.getElementById("tranfer-to").value;
@@ -120,6 +122,8 @@ const Gcoin = {
 	},
 
 	setAccount: async function(idx) {
+		const { web3 } = this;
+		
 		const accounts = await web3.eth.getAccounts();
 		if (idx <= accounts.length && idx >= 0) {
 			this.account = accounts[idx];
