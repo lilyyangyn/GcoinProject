@@ -1,9 +1,9 @@
 import Web3 from "web3";
 import GcoinArtifact from "../build/contracts/Gcoin.json";
 
-const Gcoin {
+const Gcoin = {
 	web3: null,
-	account: null
+	account: null,
 	meta: null,
 
 	start: async function() {
@@ -31,36 +31,36 @@ const Gcoin {
 		contractName = await name().call();
 		
 		// update page
-	}
+	},
 
 	symbol: async function() {
 		const { symbol } = this.meta.methods;
 		contractSymbol = await name().call();
 		
 		// update page
-	}
+	},
 
-	decimals: async funcntion() {
+	decimals: async function() {
 		const { decimals } = this.meta.methods;
 		contractDecimals = await decimals().call();
 		
 		// update page
-	}
+	},
 
 	totalSupply: async function() {
 		const { totalSupply } = this.meta.methods;
 		supply = await totalSupply().call();
 		
 		// update page
-	}
+	},
 
 	balanceOf: async function() {
 		const owner = document.getElementById("balance-owner").value;
 		const { balanceOf } = this.meta.methods;
-		balance = await balanceOf(owner).call();
+		balance = await balanceOf(owner).constall();
 		
 		// update page
-	}
+	},
 
 	transfer: async function() {
 		const to = document.getElementById("tranfer-to").value;
@@ -73,7 +73,7 @@ const Gcoin {
 
 		this.setStatus("Transaction complete!");
 		this.refreshBalance();
-	}
+	},
 
 	transferFrom: async function() {
 		const from = document.getElementById("delegate-from").value;
@@ -87,11 +87,11 @@ const Gcoin {
 
 		this.setStatus("Transaction complete!");
 		this.refreshBalance();
-	}
+	},
 
 	approve: async function() {
 		const spender = document.getElementById("approve-spender").value;
-		const value = parseInt(document.getElementById("approve-alue").value);
+		const value = parseInt(document.getElementById("approve-value").value);
 
 		this.setStatus("Processing... (please wait)");
 
@@ -99,15 +99,15 @@ const Gcoin {
 		await approve(spender, value).call();
 
 		this.setStatus("Complete!");
-	}
+	},
 
-	allowance: async funcntion() {
+	allowance: async function() {
 		const spender = document.getElementById("allowance-spender").value;
 		const owner = document.getElementById("allowance-owner").value;
 
 		const { allowance } = this.meta.methods;
 		await allowance(owner, spender).call();
-	}
+	},
 
 	refreshBalance: async function() {
 		const { balanceOf } = this.meta.methods;
@@ -115,8 +115,8 @@ const Gcoin {
 
 		// update page
 		const balanceElements = document.getElementsById("balance");
-    	balanceElements.innerHTML = balance;
-	}
+		balanceElements.innerHTML = balance;
+	},
 
 	setAccount: async function(idx) {
 		const accounts = await web3.eth.getAccounts();
@@ -125,13 +125,13 @@ const Gcoin {
 		} else {
 			this.account = accounts[0];
 		}
-	}
+	},
 
 	setStatus: function(message) {
 		// update page
 		const status = document.getElementById("status");
 		status.innerHTML = message;
-	}
+	},
 
 }
 
@@ -142,3 +142,5 @@ window.addEventListner("load", function() {
 
 	Gcoin.start();
 })
+
+
