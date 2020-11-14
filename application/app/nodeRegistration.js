@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import NodeRegistrationArtifact from "../build/contracts/NodeRegistration.json";
 
-const NodeRegistration {
+const NodeRegistration = {
 	web3: null,
 	account: null
 	meta: null,
@@ -35,7 +35,7 @@ const NodeRegistration {
 		await verifyOtp(otp).call();
 
 		this.setStatus("Complete!");
-	}
+	},
 
 	settingOtpHashValue: async function() {
 		const applicant = document.getElementById("setOtp-applicant").value;
@@ -47,9 +47,9 @@ const NodeRegistration {
 		await settingOtpHashValue(applicant, hashedOpt).call();
 		
 		this.setStatus("Complete!");
-	}
+	},
 
-	addingPeer: async funcntion() {
+	addingPeer: async function() {
 		const applicant = document.getElementById("addPeer-applicant").value;
 
 		this.setStatus("Processing... (please wait)");
@@ -58,7 +58,7 @@ const NodeRegistration {
 		await addingPeer(applicant).call();
 
 		this.setStatus("Complete!");
-	}
+	},
 
 	setHashedAdminPW: async function() {
 		const hashedPw = document.getElementById("setHashedAdminPW-hashedPw").value;
@@ -69,7 +69,7 @@ const NodeRegistration {
 		await setHashedAdminPW(hashedPw).call();
 		
 		this.setStatus("Complete!");
-	}
+	},
 
 	deleteMappingElement: async function() {
 		const addr = document.getElementById("deleteEle-addr").value;
@@ -80,7 +80,7 @@ const NodeRegistration {
 		await deleteMappingElement(addr).call();
 		
 		this.setStatus("Complete!");
-	}
+	},
 
 	addressNetworkState: async function() {
 		const addr = document.getElementById("addrState-addr").value;
@@ -91,7 +91,7 @@ const NodeRegistration {
 		await addressNetworkState(addr).call();
 
 		this.setStatus("Complete!");
-	}
+	},
 
 	addressOtphashedValue: async function() {
 		const addr = document.getElementById("addrOpt-addr").value;
@@ -102,7 +102,7 @@ const NodeRegistration {
 		await transferFrom(addr).call();
 
 		this.setStatus("Complete!");
-	}
+	},
 
 	setAccount: async function(idx) {
 		const accounts = await web3.eth.getAccounts();
@@ -111,13 +111,13 @@ const NodeRegistration {
 		} else {
 			this.account = accounts[0];
 		}
-	}
+	},
 
 	setStatus: function(message) {
 		// update page
 		const status = document.getElementById("status");
 		status.innerHTML = message;
-	}
+	},
 
 }
 
