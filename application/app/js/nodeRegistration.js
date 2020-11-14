@@ -99,12 +99,14 @@ const NodeRegistration = {
 		this.setStatus("Processing... (please wait)");
 
 		const { addressOtphashedValue } = this.meta.methods;
-		await transferFrom(addr).call();
+		await addressOtphashedValue(addr).call();
 
 		this.setStatus("Complete!");
 	},
 
 	setAccount: async function(idx) {
+		const { web3 } = this;
+		
 		const accounts = await web3.eth.getAccounts();
 		if (idx <= accounts.length && idx >= 0) {
 			this.account = accounts[idx];
@@ -121,7 +123,7 @@ const NodeRegistration = {
 
 }
 
-window.addEventListner("load", function() {
+window.addEventListener("load", function() {
 	NodeRegistration.web3 = new Web3(
 		new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
 	);
