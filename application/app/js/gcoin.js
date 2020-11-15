@@ -66,8 +66,8 @@ const Gcoin = {
 */
 
 	transfer: async function() {
-		const to = document.getElementById("tranfer-to").value;
-		const value =  parseInt(document.getElementById("tranfer-value").value);
+		const to = document.getElementById("transfer-to").value;
+		const value =  parseInt(document.getElementById("transfer-value").value);
 
 		this.setStatus("Initiating transaction... (please wait)");
 
@@ -147,5 +147,6 @@ window.addEventListener("load", function() {
 
 	Gcoin.start();
 })
+
 
 
