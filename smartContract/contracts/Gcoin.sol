@@ -17,6 +17,8 @@ interface ERC20Interface {
 }
 
 contract Gcoin is ERC20Interface {
+    //coin operation
+    
     using SafeMath for uint256;
 
     // Determined in compile-time, not take up state variable storage space 
@@ -73,5 +75,42 @@ contract Gcoin is ERC20Interface {
 
     function allowance(address _owner, address _spender) public override view returns (uint256 remaining) {
         return allowed[_owner][_spender];
+    }
+    
+    //refund code
+    
+    mapping (address => settlementInfo) settlement; 
+    mapping (address => string) acctMapping;                 //mapping eth and gcoin account
+    
+    struct settlementInfo {
+        uint amount;
+        uint index;
+    }
+    
+    function settingAcctMapping(string memory s) public {
+        acctMapping[msg.sender] = s;
+    }
+    
+    function refund(uint256 _value, uint i) public {
+        
+        require(_value <= balances[msg.sender]);
+        require(balances[address(this)] + _value >= balances[address(this)]);
+        //index i should be a uint with value 1/2, the index value should different to last time input
+        require(settlement[msg.sender].index != i);         
+        require(i > 0);
+        require(i < 3);
+        
+        balances[msg.sender] -= _value;
+        balances[address(this)] += _value;
+        settlement[msg.sender].amount = _value;
+        settlement[msg.sender].index = i;
+    }
+    
+    function getacctsettlement(address a) public view returns(uint,uint){
+        return (settlement[a].amount, settlement[a].index);
+    }
+    
+    function getAcctMapping(address a) public view returns(string memory){
+        return acctMapping[a];
     }
 }
