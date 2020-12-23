@@ -1,10 +1,11 @@
 import Web3 from "web3";
 import NodeRegistrationArtifact from "../../build/contracts/NodeRegistration.json";
 
-const NodeRegistration = {
+export const NodeRegistration = {
 	web3: null,
 	account: null,
 	meta: null,
+	version: "1.0.0",
 
 	start: async function() {
 		const { web3 } = this;
@@ -123,10 +124,13 @@ const NodeRegistration = {
 
 }
 
-window.addEventListener("load", function() {
+export function handler(){
+	console.log("window.addEventListener");
 	NodeRegistration.web3 = new Web3(
 		new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
 	);
 
 	NodeRegistration.start();
-})
+}
+
+
