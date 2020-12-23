@@ -18,3 +18,15 @@ Ethereum Private Chain setup:
     $ kill <process id> 
   
   Ethereum Private Chain setup reference material: https://www.c-sharpcorner.com/article/setup-your-private-ethereum-network-with-geth2/
+  
+  
+Run electron:
+
+  $ cd application
+  $ cd app
+  $ npm run electron:serve
+  
+  if not on electron:
+  
+  $ npm run serve
+  
