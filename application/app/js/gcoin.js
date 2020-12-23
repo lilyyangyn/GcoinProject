@@ -1,10 +1,12 @@
 import Web3 from "web3";
 import GcoinArtifact from "../../build/contracts/Gcoin.json";
 
-const Gcoin = {
+export const Gcoin = {
 	web3: null,
 	account: null,
 	meta: null,
+
+	version: "1.0.0",
 
 	start: async function() {
 		const { web3 } = this;
@@ -63,19 +65,25 @@ const Gcoin = {
 		
 		// update page
 	},
+
 */
 
-	transfer: async function() {
+
+	transfer: function() {
 		const to = document.getElementById("transfer-to").value;
 		const value =  parseInt(document.getElementById("transfer-value").value);
 
 		this.setStatus("Initiating transaction... (please wait)");
 
 		const { transfer } = this.meta.methods;
-		await transfer(to, value).call();
-
-		this.setStatus("Transaction complete!");
-		this.refreshBalance();
+		transfer(to, value).send({from:this.account}).then(() => {
+				this.setStatus("Transaction complete!");
+				this.refreshBalance();
+			}).catch((error) => {
+				this.setStatus(error.message.substring(66));
+				this.refreshBalance();
+			});
+		
 	},
 
 	transferFrom: async function() {
@@ -114,10 +122,10 @@ const Gcoin = {
 
 	refreshBalance: async function() {
 		const { balanceOf } = this.meta.methods;
-		const balance = await balanceOf(this.account).call();
+		var balance = await balanceOf(this.account).call();
 
 		// update page
-		const balanceElements = document.getElementsById("balance");
+		const balanceElements = document.getElementById("balance");
 		balanceElements.innerHTML = balance;
 	},
 
@@ -141,13 +149,15 @@ const Gcoin = {
 }
 
 
-window.addEventListener("load", function() {
+export function handler(){
+	console.log("window.addEventListener");
 	Gcoin.web3 = new Web3(
 		new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
 	);
 
 	Gcoin.start();
-})
+}
+
 
 
 
