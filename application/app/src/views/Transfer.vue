@@ -5,6 +5,7 @@
 		<div class="transfer">
 			<input type="text" placeholder="transfer to" id="transfer-to" v-model="transferTo">
 			<input type="text" placeholder="transfer-value" id="transfer-value">
+
 			<button class="button" @click="transfer()">submit</button>
 		</div>
 
@@ -12,12 +13,16 @@
 			<input type="text" placeholder="delegate-from" id="delegate-from">
 			<input type="text" placeholder="delegate-to" id="delegate-to">
 			<input type="text" placeholder="delegate-value" id="delegate-value">
+
 			<button class="button" @click="transferFrom()">submit</button>
 		</div>
 
 		<div class="approve">
-			<p id="approve-spender">2</p>
-			<p id="approve-value">2</p>
+			<input type="text" placeholder="approve-spender" id="approve-spender">
+			<input type="text" placeholder="approve-value" id="approve-value">
+
+			<button class="button" @click="approve()">submit</button>
+
 		</div>
 
 		<div class="allownce">
@@ -38,9 +43,24 @@
 </template>
 
 <script>
-	import '../../js/gcoin.js'
+	import Gcoin from '../../js/gcoin.js'
 
 	export default {
+		name: 'transfer',
+		data() {
+			return{
+				transferTo: "",
+				transferFrom: ""
+			}
+			
+		},
+		method:{
+			transfer:() =>{
+				return Gcoin.transfer();
+			}
+		}
+	}
+	/*export default {
 		name: 'transfer',
 		data() {
 			return{
@@ -65,5 +85,5 @@
 		}
 		
 		
-	}
+	}*/
 </script>

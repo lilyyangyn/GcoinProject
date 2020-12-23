@@ -140,6 +140,7 @@ const Gcoin = {
 
 }
 
+
 window.addEventListener("load", function() {
 	Gcoin.web3 = new Web3(
 		new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
