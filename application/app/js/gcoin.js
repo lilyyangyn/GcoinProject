@@ -82,8 +82,7 @@ export const Gcoin = {
 			}).catch((error) => {
 				this.setStatus(error.message.substring(66));
 				this.refreshBalance();
-			});
-		
+			});	
 	},
 
 	transferFrom: async function() {
@@ -94,10 +93,13 @@ export const Gcoin = {
 		this.setStatus("Initiating transaction... (please wait)");
 
 		const { transferFrom } = this.meta.methods;
-		await transferFrom(from, to, value).call();
-
-		this.setStatus("Transaction complete!");
-		this.refreshBalance();
+		transferFrom(from, to, value).send({from:this.account}).then(() => {
+				this.setStatus("Transaction complete!");
+				this.refreshBalance();
+			}).catch((error) => {
+				this.setStatus(error.message.substring(66));
+				this.refreshBalance();
+			});
 	},
 
 	approve: async function() {
@@ -107,26 +109,43 @@ export const Gcoin = {
 		this.setStatus("Processing... (please wait)");
 
 		const { approve } = this.meta.methods;
-		await approve(spender, value).call();
-
-		this.setStatus("Complete!");
+		approve(spender, value).send({from:this.account}).then(() => {
+				this.setStatus("Approved!");
+			}).catch((error) => {
+				this.setStatus(error.message.substring(66));
+			});
 	},
 
-	allowance: async function() {
+	getAllowanceTo: async function() {
 		const spender = document.getElementById("allowance-spender").value;
+
+		this.allowance(this.account, spender);
+	},
+
+	getAllowanceFrom: async function() {
 		const owner = document.getElementById("allowance-owner").value;
 
+		this.allowance(owner, this.account);
+	},
+
+	allowance: async function(spender, owner) {
 		const { allowance } = this.meta.methods;
-		await allowance(owner, spender).call();
+		allowance(owner, spender).call().then((allowed) => {
+			const allowedElement = document.getElementById("allowed");
+			allowedElement.innerHTML = allowed;
+		}).catch((error) => {
+			this.popMsg("Fail to get allowance amount.", error);
+		});
 	},
 
 	refreshBalance: async function() {
 		const { balanceOf } = this.meta.methods;
-		var balance = await balanceOf(this.account).call();
-
-		// update page
-		const balanceElements = document.getElementById("balance");
-		balanceElements.innerHTML = balance;
+		balanceOf(this.account).call().then((balance) => {
+			const balanceElement = document.getElementById("balance");
+			balanceElement.innerHTML = balance;
+		}).catch((error) => {
+			this.popMsg("Fail to get balance.", error);
+		});
 	},
 
 	setAccount: async function(idx) {
@@ -143,8 +162,23 @@ export const Gcoin = {
 	setStatus: function(message) {
 		// update page
 		const status = document.getElementById("status");
-		status.innerHTML = message;
+		if (status) {
+			status.innerHTML = message;
+		}
 	},
+
+	popMsg: function(message, error) {
+		// TODO
+		const popTitle = document.getElementById("popTitle");
+		if (popTitle) {
+			popTitle.innerHTML = message;
+		}
+		
+		const popDetail = document.getElementById("popDetail");
+		if (popDetail) {
+			popDetail.innerHTML = error;
+		}
+	}
 
 }
 
