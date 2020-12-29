@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcoin.platform.dao.CryptoKeySetDoMapper">
+  <resultMap id="BaseResultMap" type="com.gcoin.platform.dataobject.CryptoKeySetDo">
+    <id column="cryto_key_set_id" jdbcType="INTEGER" property="crytoKeySetId" />
+    <result column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="public_key" jdbcType="VARCHAR" property="publicKey" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cryto_key_set_id, account_id, public_key
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from crypto_key_set
+    where cryto_key_set_id = #{crytoKeySetId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from crypto_key_set
+    where cryto_key_set_id = #{crytoKeySetId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gcoin.platform.dataobject.CryptoKeySetDo">
+    insert into crypto_key_set (cryto_key_set_id, account_id, public_key
+      )
+    values (#{crytoKeySetId,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, #{publicKey,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gcoin.platform.dataobject.CryptoKeySetDo">
+    insert into crypto_key_set
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="crytoKeySetId != null">
+        cryto_key_set_id,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="publicKey != null">
+        public_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="crytoKeySetId != null">
+        #{crytoKeySetId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="publicKey != null">
+        #{publicKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gcoin.platform.dataobject.CryptoKeySetDo">
+    update crypto_key_set
+    <set>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="publicKey != null">
+        public_key = #{publicKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cryto_key_set_id = #{crytoKeySetId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gcoin.platform.dataobject.CryptoKeySetDo">
+    update crypto_key_set
+    set account_id = #{accountId,jdbcType=INTEGER},
+      public_key = #{publicKey,jdbcType=VARCHAR}
+    where cryto_key_set_id = #{crytoKeySetId,jdbcType=INTEGER}
+  </update>
+</mapper>
