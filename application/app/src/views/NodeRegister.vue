@@ -69,24 +69,17 @@
 </template>
 
 <script>
-
-	import * as Register from '../scripts/nodeRegistration.js';
+	import { vm } from "../main.js";
+	import { NodeRegister } from '../scripts/NodeRegister.js';
 
 	export default {
 		name: 'Register',
-
-		data() {
-			return{
-				//transferTo: "",
-				//transferFrom: ""
-			}
-			
-		},
 		created(){
-			this.register = Register.NodeRegistration;
+			this.register = NodeRegister
 		},
 		mounted(){
-			window.addEventListener('load', Register.handler);
+			NodeRegister.web3 = vm.web3;
+			NodeRegister.start();
 		}
 	}
 </script>

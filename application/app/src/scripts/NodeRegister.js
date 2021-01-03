@@ -1,7 +1,6 @@
-import Web3 from "web3";
 import NodeRegistrationArtifact from "../../../build/contracts/NodeRegistration.json";
 
-export const NodeRegistration = {
+const NodeRegister = {
 	web3: null,
 	account: null,
 	meta: null,
@@ -22,6 +21,7 @@ export const NodeRegistration = {
 			// get account
 			this.setAccount(0);
 			
+			console.log("Connected to contract 'NodeRegistration' successfully.");
 		} catch (error) {
 			console.error("Could not connect to contract or chain.");
 		}
@@ -124,13 +124,7 @@ export const NodeRegistration = {
 
 }
 
-export function handler(){
-	console.log("window.addEventListener");
-	NodeRegistration.web3 = new Web3(
-		new Web3.providers.HttpProvider("http://127.0.0.1:7545"),
-	);
+export { NodeRegister }
 
-	NodeRegistration.start();
-}
 
 
