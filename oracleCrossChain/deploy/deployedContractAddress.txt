@@ -1,0 +1,31 @@
+[   Home  ] Bridge Mediator: 0x68a6fDC3a75d8Bb23b2F789b53A84e0C4f3Cd277
+[   Home  ] ERC677 Bridgeable Token: 0x5AF5075a6c13978f88659a27E8ED1B0A04bd0912
+[ Foreign ] Bridge Mediator: 0xdD164EB1C1fF78f12368Db1F7EC7EF2844D22221
+[ Foreign ] ERC677 Token: 0x8aDB64316718c7e529cd811021019a92aa7Fabb4
+
+[   Home  ] HomeBridge: 0x099D6fC1bF6C537715c8537864b287F0af0b92B8
+[ Foreign ] ForeignBridge: 0x68a3AB8a85505A203E95F0dBE3E6b02a440F6C31
+
+Ropsten USDT Simulate: 0x908524e904D49378B4FC186c843D2E4CB9F27990
+USDT_Exchcoin_Exchange: 0xe6A52DCC81b22A8e62271B8aae63628dD14d7eEB
+
+
+
+0x60Fc1c7347b7D52aB28401311e49e22845C6706E
+----------------------------------------------------------------------------------
+latest
+----------------------------------------------------------------------------------
+[   Home  ] Bridge Mediator: 0xBCB79D7169caDd5f6E5d6E440e3Fd139ba61E822
+[   Home  ] ERC677 Bridgeable Token: 0x9d7eD9f0aE9f3D8AddFD3348F3e6304B275dcdCb
+[ Foreign ] Bridge Mediator: 0xB6b13A14AC6D16b879A6C2B1eDE5B4668F564668
+[ Foreign ] ERC677 Token: 0x60Fc1c7347b7D52aB28401311e49e22845C6706E
+
+[   Home  ] HomeBridge: 0x099D6fC1bF6C537715c8537864b287F0af0b92B8
+[ Foreign ] ForeignBridge: 0x68a3AB8a85505A203E95F0dBE3E6b02a440F6C31
+
+//Ropsten USDT Simulate: 0x670a449753a7756d7042842ed183Dcbb1ABb20fc
+//USDT_Exchcoin_Exchange: 0x759D788544045E7E9e9621B306E06b7a361Cd2c4
+
+Ropsten USDT Simulate: 0xB41E4f5aDA401A732e7faE1392a338c242E86936
+USDT_Exchcoin_Exchange: 0xb9Ed6B7c16E4300BB8793daDD632dc39eD2Db119
+

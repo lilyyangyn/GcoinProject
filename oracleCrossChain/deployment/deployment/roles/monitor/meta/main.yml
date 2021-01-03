@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: common, skip_repo: true, check_deployed: true, component: 'monitor' }
