@@ -4,7 +4,7 @@
 
 	<p>Version: {{ gcoin.version }}</p>
 		<div class="transfer">
-			<input type="text" placeholder="transfer to" id="transfer-to" v-model="transferTo">
+			<input type="text" placeholder="transfer to" id="transfer-to">
 			<input type="text" placeholder="transfer-value" id="transfer-value">
 
 			<button class="button" @click="gcoin.transfer()">submit</button>
@@ -50,41 +50,15 @@
 </template>
 
 <script>
-	import * as Gcoin from '../../js/gcoin.js';
-	//const gcoin;
+	import { vm } from "../main.js";
+	import { Gcoin } from '../scripts/gcoin.js';
 	export default {
-		name: 'transfer',
-		data() {
-			return{
-				transferTo: "",
-				transferFrom: ""
-			}
-			
-		},
 		created(){
-			this.gcoin = Gcoin.Gcoin;
+			this.gcoin = Gcoin;
 		},
 		mounted(){
-			window.addEventListener('load', Gcoin.handler);
+			Gcoin.web3 = vm.web3;
+			Gcoin.start();
 		}
 	}
-	/*export default {
-		method: {
-			transfer(){
-				
-				const to = document.getElementById("transfer-to").value;
-				const value =  parseInt(document.getElementById("transfer-value").value);
-
-				this.setStatus("Initiating transaction... (please wait)");
-
-				const { transfer } = this.meta.methods;
-				transfer(to, value).call();
-
-				this.setStatus("Transaction complete!");
-				this.refreshBalance();
-			}
-		}
-		
-		
-	}*/
 </script>

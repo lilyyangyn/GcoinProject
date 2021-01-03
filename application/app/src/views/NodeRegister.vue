@@ -70,7 +70,7 @@
 
 <script>
 
-	import * as Register from '../../js/nodeRegistration.js';
+	import * as Register from '../scripts/nodeRegistration.js';
 
 	export default {
 		name: 'Register',

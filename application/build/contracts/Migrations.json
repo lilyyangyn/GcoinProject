@@ -844,12 +844,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x46be5F5C084E4B3fCfaaCbC04cdd9Dc6e0091b90",
-      "transactionHash": "0x6d7b0dce7ba6b598c3653682e9c1b9cdd5074287ecbf8931a6aa425dacc1713a"
+      "address": "0xC05fD1A42e3DAFF0FC48f1D2963413867EfDBa7e",
+      "transactionHash": "0x6f3379964c07ecc5e18359f5e18835e2a8ed81f5ff36f5d61548dc456a9c85a8"
     }
   },
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-12-29T08:22:58.570Z",
+  "updatedAt": "2021-01-03T08:03:09.109Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
