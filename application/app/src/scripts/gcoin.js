@@ -69,83 +69,51 @@ const Gcoin = {
 */
 
 
-	transfer: async function() {
+	transfer: async function(callback) {
 		const to = document.getElementById("transfer-to").value;
 		const value =  parseInt(document.getElementById("transfer-value").value);
 
-		this.setStatus("Initiating transaction... (please wait)");
-
 		const { transfer } = this.meta.methods;
-		transfer(to, value).send({from:this.account}).then(() => {
-				this.setStatus("Transaction complete!");
-				this.refreshBalance();
-			}).catch((error) => {
-				this.setStatus(error.message.substring(66));
-				this.refreshBalance();
-			});	
+		transfer(to, value).send({from:this.account}, callback);
 	},
 
-	transferFrom: async function() {
+	transferFrom: async function(callback) {
 		const from = document.getElementById("delegate-from").value;
 		const to = document.getElementById("delegate-to").value;
 		const value = parseInt(document.getElementById("delegate-value").value);
 
-		this.setStatus("Initiating transaction... (please wait)");
-
 		const { transferFrom } = this.meta.methods;
-		transferFrom(from, to, value).send({from:this.account}).then(() => {
-				this.setStatus("Transaction complete!");
-				this.refreshBalance();
-			}).catch((error) => {
-				this.setStatus(error.message.substring(66));
-				this.refreshBalance();
-			});
+		transferFrom(from, to, value).send({from:this.account}, callback);
 	},
 
-	approve: async function() {
+	approve: async function(callback) {
 		const spender = document.getElementById("approve-spender").value;
 		const value = parseInt(document.getElementById("approve-value").value);
 
-		this.setStatus("Processing... (please wait)");
-
 		const { approve } = this.meta.methods;
-		approve(spender, value).send({from:this.account}).then(() => {
-				this.setStatus("Approved!");
-			}).catch((error) => {
-				this.setStatus(error.message.substring(66));
-			});
+		approve(spender, value).send({from:this.account}, callback);
 	},
 
-	getAllowanceTo: async function() {
+	getAllowanceTo: async function(callback) {
 		const spender = document.getElementById("allowance-spender").value;
 
-		this.allowance(this.account, spender);
+		this.refreshAllowance(this.account, spender, callback);
 	},
 
-	getAllowanceFrom: async function() {
+	getAllowanceFrom: async function(callback) {
 		const owner = document.getElementById("allowance-owner").value;
 
-		this.allowance(owner, this.account);
+		this.refreshAllowance(owner, this.account, callback);
 	},
 
-	allowance: async function(spender, owner) {
+	refreshAllowance: async function(spender, owner, callback) {
 		const { allowance } = this.meta.methods;
-		allowance(owner, spender).call().then((allowed) => {
-			const allowedElement = document.getElementById("allowed");
-			allowedElement.innerHTML = allowed;
-		}).catch((error) => {
-			this.popMsg("Fail to get allowance amount.", error);
-		});
+		allowance(owner, spender).call(callback);
 	},
 
-	refreshBalance: async function() {
+	refreshBalance: async function(callback) {
 		const { balanceOf } = this.meta.methods;
-		balanceOf(this.account).call().then((balance) => {
-			const balanceElement = document.getElementById("balance");
-			balanceElement.innerHTML = balance;
-		}).catch((error) => {
-			this.popMsg("Fail to get balance.", error);
-		});
+		balanceOf(this.account).call(callback);
 	},
 
 	setAccount: async function(idx) {
@@ -158,28 +126,6 @@ const Gcoin = {
 			this.account = accounts[0];
 		}
 	},
-
-	setStatus: function(message) {
-		// update page
-		const status = document.getElementById("status");
-		if (status) {
-			status.innerHTML = message;
-		}
-	},
-
-	popMsg: function(message, error) {
-		// TODO
-		const popTitle = document.getElementById("popTitle");
-		if (popTitle) {
-			popTitle.innerHTML = message;
-		}
-		
-		const popDetail = document.getElementById("popDetail");
-		if (popDetail) {
-			popDetail.innerHTML = error;
-		}
-	}
-
 }
 
 export { Gcoin }
