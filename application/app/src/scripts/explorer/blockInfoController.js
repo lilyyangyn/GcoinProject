@@ -2,20 +2,28 @@ import { Block } from "../basics/block.js";
 
 const BlockInfoCtrl = {
 	web3 : null,
+	cache : new Map(),
 
 	getBlock: async function(bid, success, failure) {
-		const {web3} = this;
+		const { web3 } = this;
 
-		var block = null;
-		web3.eth.getBlock(bid, function(error, result) {
-			if (!error) {
-				block = new Block(result);
-				success(block);
-			} else {
-				console.error(error);
-				failure(error);
-			}
-		});
+		var block = cache.get(bid);
+		if (!block) {
+			web3.eth.getBlock(bid, function(error, result) {
+				if (!error) {
+					block = new Block(result);
+					cache.set(block.height, block);
+					cache.set(block.hash, block);
+					success(block);
+				} else {
+					console.error(error);
+					failure(error);
+				}
+			});
+		} else {
+			success(block);
+		}
+		
 	}
 
 	getLastNBlocks: async function(n, success, failure) {
@@ -25,6 +33,9 @@ const BlockInfoCtrl = {
 		var errors = [];
 		const storeLocalCopy = function(error, result) {
 			if (!error) {
+				var block = new Block(result);
+				cache.set(block.height, block);
+				cache.set(block.hash, block);
 				blocks.push(new Block(result));
 			} else {
 				console.error(error);
@@ -38,9 +49,15 @@ const BlockInfoCtrl = {
 			if (latest < i) {
 				break;
 			}
-			batch.add(
-				web3.eth.getBlock.request(latest - i, storeLocalCopy)
-			)
+			var block = cache.get(latest - i);
+			if (!block) {
+				batch.add(
+					web3.eth.getBlock.request(latest - i, storeLocalCopy)
+				)
+			} else {
+				blocks.push(block);
+			}
+			
 		}
 		batch.execute();
 
