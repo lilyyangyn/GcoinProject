@@ -28,15 +28,15 @@ const BlockInfoCtrl = {
 		}
 
 		const latest = await web3.eth.getBlockNumber();
-		const blockNumbers = _range(latest - n, latest + 1, 1);
 		const batch = new web3.eth.BatchRequest();
-
-		blockNumbers.forEach((blockNumber) => {
+		for (var i = 0; i < n; i++) {
+			if (latest < i) {
+				break;
+			}
 			batch.add(
-				web3.eth.getBlock.request(blockNumber, storeLocalCopy)
+				web3.eth.getBlock.request(latest - i, storeLocalCopy)
 			)
-		});
-
+		}
 		batch.execute();
 
 		return blocks;
