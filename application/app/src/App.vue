@@ -30,10 +30,14 @@
         </Menu>
         <br/>
       </Header>
+      <Layout>
+        <Sider id="sider">
+        </Sider>
 
         <Content id="main">
           <router-view/>
         </Content>
+      </Layout>
       <Footer id="foot">
         foot
       </Footer>
