@@ -1,11 +1,8 @@
 <template>
 	<Layout>
 
-		<Sider id="sider">
-		</Sider>
-		<Layout>
-			<Header class="sub_header">
-			</Header>
+		
+			
 			<Content id="content">
 
 	<div class="nodeRegistration">
@@ -76,7 +73,6 @@
 
 	</div>
 			</Content>
-		</Layout>
 	</Layout>
 </template>
 

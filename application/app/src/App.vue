@@ -58,6 +58,9 @@
 #nav
   background-color white
 
+#sider
+  margin-top 74 px
+
 #main
   padding-top 74px
 

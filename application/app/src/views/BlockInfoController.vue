@@ -23,7 +23,7 @@
 </template>
 
 <script>
-	import { vm } from "../../main.js";
+	import { vm } from "../main.js";
 	import { BlockInfoCtrl } from '../scripts/explorer/blockInfoController.js';
 	export default {
 		name: 'BlockInfoCtrl',
