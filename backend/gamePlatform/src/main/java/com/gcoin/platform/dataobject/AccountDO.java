@@ -1,8 +1,12 @@
 package com.gcoin.platform.dataobject;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.Date;
 
+@RequiredArgsConstructor
 public class AccountDO {
+
     private Integer accountId;
 
     private Date registrationDate;
