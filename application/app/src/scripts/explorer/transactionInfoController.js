@@ -7,13 +7,14 @@ const TransactionInfoCtrl = {
 
 	getTransaction: async function(thash, success, failure) {
 		const { web3 } = this;
+		var self = this;
 
 		var transaction = this.cache.get(thash);
 		if (!transaction) {
 			web3.eth.getTransaction(thash, function(error, result) {
 				if (!error) {
 					transaction = new Transaction(result);
-					cache.set(thash, transaction);
+					self.cache.set(thash, transaction);
 					success(transaction);
 				} else {
 					console.error(error);

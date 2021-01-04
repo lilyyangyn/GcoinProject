@@ -23,16 +23,35 @@
 </template>
 
 <script>
-	import { vm } from "../main.js";
-	import { BlockInfoCtrl } from '../scripts/explorer/blockInfoController.js';
+	import { vm } from "../../main.js";
+	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
 	export default {
 		name: 'BlockInfoCtrl',
+		methods: {
+			getBlock() {
+				const bid = document.getElementById("bid").value;
+
+				this.blockInfoController.getBlock(bid, this.displayBlockDetails, this.failureCallback);
+			},
+
+			displayBlockDetails(block) {
+				//TODO
+				console.log(block);
+			},
+
+
+			failureCallback(errors) {
+				//TODO
+				console.log(errors);
+			}
+
+		},
+
 		created(){
 			this.blockInfoController = BlockInfoCtrl;
 		},
 		mounted(){
-			BlockInfoCtrl.web3 = vm.web3;
-			BlockInfoCtrl.start();
+			this.blockInfoController.web3 = vm.web3;
 		}
 	}
 </script>
