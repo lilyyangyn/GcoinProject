@@ -1,5 +1,14 @@
 <template>
-	<div class="home">
+	<Layout>
+
+		<Sider id="sider">
+		</Sider>
+		<Layout>
+			<Header class="sub_header">
+			</Header>
+			<Content id="content">
+
+	<div class="nodeRegistration">
 		<h1>This is the Node Registration page</h1>
 		<p>Version: {{ register.version }}</p>
 
@@ -29,7 +38,7 @@
 		<br>
 
 		<div class="setHashedAdminPW">
-			<input type="text" placeholder="setHashedAdminPW hashedPw" id="setHashedAdminPW-hashedPw">
+			<input type="text" placeholder="setHashedAdminPW" id="setHashedAdminPW-hashedPw">
 
 			<button class="button" @click="register.setHashedAdminPW()">submit</button>
 			
@@ -37,7 +46,7 @@
 		<br>
 
 		<div class="deleteMappingElement">
-			<input type="text" placeholder="deleteEle-addr" id="deleteEle-addr">
+			<input type="text" placeholder="deleteEle addr" id="deleteEle-addr">
 
 			<button class="button" @click="register.deleteMappingElement()">submit</button>
 			
@@ -45,7 +54,7 @@
 		<br>
 
 		<div class="addressNetworkState">
-			<input type="text" placeholder="addrState-addr" id="addrState-addr">
+			<input type="text" placeholder="addrState" id="addrState-addr">
 
 			<button class="button" @click="register.addressNetworkState()">submit</button>
 			
@@ -53,7 +62,7 @@
 		<br>
 
 		<div class="addressOtphashedValue">
-			<input type="text" placeholder="addrOpt-addr" id="addrOpt-addr">
+			<input type="text" placeholder="addrOpt addr" id="addrOpt-addr">
 
 			<button class="button" @click="register.addressOtphashedValue()">submit</button>
 			
@@ -66,7 +75,15 @@
 
 
 	</div>
+			</Content>
+		</Layout>
+	</Layout>
 </template>
+
+<style lang="stylus">
+#content
+	min-height 100%
+</style>
 
 <script>
 	import { vm } from "../main.js";

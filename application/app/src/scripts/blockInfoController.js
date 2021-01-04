@@ -13,7 +13,7 @@ const BlockInfoCtrl = {
 			console.error(error);
 		})
 		return block;
-	}
+	},
 
 	getLastNBlocks: async function(n) {
 		const {web3} = this;

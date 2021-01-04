@@ -5,7 +5,8 @@
 	<p>Version: {{ gcoin.version }}</p>
 		<div class="transfer">
 			<input type="text" placeholder="transfer to" id="transfer-to">
-			<input type="text" placeholder="transfer-value" id="transfer-value">
+
+			<input type="text" placeholder="transfer value" id="transfer-value">
 
 			<button class="button" @click="gcoin.transfer()">submit</button>
 			
@@ -13,17 +14,17 @@
 		<br>
 
 		<div class="delegate">
-			<input type="text" placeholder="delegate-from" id="delegate-from">
-			<input type="text" placeholder="delegate-to" id="delegate-to">
-			<input type="text" placeholder="delegate-value" id="delegate-value">
+			<input type="text" placeholder="delegate from" id="delegate-from">
+			<input type="text" placeholder="delegate to" id="delegate-to">
+			<input type="text" placeholder="delegate value" id="delegate-value">
 
 			<button class="button" @click="gcoin.transferFrom()">submit</button>
 		</div>
 		<br>
 
 		<div class="approve">
-			<input type="text" placeholder="approve-spender" id="approve-spender">
-			<input type="text" placeholder="approve-value" id="approve-value">
+			<input type="text" placeholder="approve spender" id="approve-spender">
+			<input type="text" placeholder="approve value" id="approve-value">
 
 			<button class="button" @click="gcoin.approve()">submit</button>
 
@@ -31,8 +32,8 @@
 		<br>
 
 		<div class="allownce">
-			<input type="text" placeholder="allowance-spender" id="allowance-spender">
-			<input type="text" placeholder="allowance-owner" id="allowance-owner">
+			<input type="text" placeholder="allowance spender" id="allowance-spender">
+			<input type="text" placeholder="allowance owner" id="allowance-owner">
 
 			<button class="button" @click="gcoin.allowance()">submit</button>
 		</div>
@@ -53,6 +54,7 @@
 	import { vm } from "../main.js";
 	import { Gcoin } from '../scripts/gcoin.js';
 	export default {
+		name: 'Gcoin',
 		created(){
 			this.gcoin = Gcoin;
 		},
