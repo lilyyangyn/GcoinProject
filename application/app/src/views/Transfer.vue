@@ -7,7 +7,7 @@
 			<input type="text" placeholder="transfer to" id="transfer-to">
 			<input type="text" placeholder="transfer-value" id="transfer-value">
 
-			<button class="button" @click="gcoin.transfer()">submit</button>
+			<button class="button" @click="initiateTx(gcoin.transfer(callbackUpdateStatus))">submit</button>
 			
 		</div>
 		<br>
@@ -17,7 +17,7 @@
 			<input type="text" placeholder="delegate-to" id="delegate-to">
 			<input type="text" placeholder="delegate-value" id="delegate-value">
 
-			<button class="button" @click="gcoin.transferFrom()">submit</button>
+			<button class="button" @click="initiateTx(gcoin.transferFrom(callbackUpdateStatus))">submit</button>
 		</div>
 		<br>
 
@@ -25,7 +25,7 @@
 			<input type="text" placeholder="approve-spender" id="approve-spender">
 			<input type="text" placeholder="approve-value" id="approve-value">
 
-			<button class="button" @click="gcoin.approve()">submit</button>
+			<button class="button" @click="initiateTx(gcoin.approve(callbackShowResult))">submit</button>
 
 		</div>
 		<br>
@@ -34,7 +34,7 @@
 			<input type="text" placeholder="allowance-spender" id="allowance-spender">
 			<input type="text" placeholder="allowance-owner" id="allowance-owner">
 
-			<button class="button" @click="gcoin.allowance()">submit</button>
+			<button class="button" @click="gcoin.refreshAllowance(callbackRefreshAllowence)">submit</button>
 		</div>
 
 		<div class="balance">
@@ -42,7 +42,7 @@
 		</div>
 
 		<div class="status">
-			<p id="status">status</p>
+			<p id="status" style="visibility:hidden">status</p>
 		</div>
 
 
@@ -53,12 +53,80 @@
 	import { vm } from "../main.js";
 	import { Gcoin } from '../scripts/gcoin.js';
 	export default {
+		methods: {
+			setStatus: function(message) {
+				const status = document.getElementById("status");
+				if (status) {
+					status.innerHTML = message;
+					if (status.style['visibility'] != 'visible') {
+						status.style.visibility = 'visible';
+					}
+				}
+			},
+			popMsg: function(message, error) {
+				// TODO
+				const popTitle = document.getElementById("popTitle");
+				if (popTitle) {
+					popTitle.innerHTML = message;
+				}
+				
+				const popDetail = document.getElementById("popDetail");
+				if (popDetail) {
+					popDetail.innerHTML = error;
+				}
+			},
+
+			initiateTx: function(transaction) {
+				this.setStatus("Initiate Transaction. Please wait...");
+				transaction;
+			},
+
+			callbackUpdateStatus(error) {
+				if (!error) {
+					this.setStatus("Transaction complete!");
+					this.gcoin.refreshBalance(this.callbackRefreshBalance);
+				} else {
+					this.setStatus(error.message.substring(66));
+					this.gcoin.refreshBalance(this.callbackRefreshBalance);
+				}
+			},
+			callbackShowResult(error) {
+				if (!error) {
+					this.setStatus("Approved!");
+				} else {
+					this.setStatus(error.message.substring(66));
+				}
+			},
+			callbackRefreshBalance(error, result) {
+				if (!error) {
+					const balanceElement = document.getElementById("balance");
+					balanceElement.innerHTML = result;
+				} else {
+					this.popMsg("Fail to get balance.", error);
+				}
+				
+			},
+			callbackRefreshAllowence(error, result) {
+				if (!error) {
+					const balanceElement = document.getElementById("allowed");
+					balanceElement.innerHTML = result;
+				} else {
+					this.popMsg("Fail to get balance.", error);
+				}
+				
+			}
+
+		},
 		created(){
 			this.gcoin = Gcoin;
 		},
 		mounted(){
 			Gcoin.web3 = vm.web3;
 			Gcoin.start();
-		}
+
+			window.addEventListener('load', () => {
+				this.gcoin.refreshBalance(this.callbackRefreshBalance);
+			});
+		},
 	}
 </script>
