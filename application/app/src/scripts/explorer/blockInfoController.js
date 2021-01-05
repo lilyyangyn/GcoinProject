@@ -1,7 +1,8 @@
 import { Block } from "../basics/block.js";
+import { vm } from "../../main.js";
 
 const BlockInfoCtrl = {
-	web3 : null,
+	web3 : vm.web3,
 	cache : new Map(),
 
 	getBlock: async function(bid, success, failure) {
@@ -11,6 +12,7 @@ const BlockInfoCtrl = {
 
 		var block = this.cache.get(bid);
 		if (!block) {
+			console.log("Create request, block id: " + bid);
 			web3.eth.getBlock(bid, function(error, result) {
 				if (!error) {
 					block = new Block(result);
@@ -23,6 +25,7 @@ const BlockInfoCtrl = {
 				}
 			});
 		} else {
+			console.log("Use cache, block id: " + bid);
 			success(block);
 		}
 		
@@ -52,12 +55,12 @@ const BlockInfoCtrl = {
 			}
 			var block = this.cache.get(latest - i);
 			if (!block) {
-				console.log("request, block id: " + (latest - i));
+				console.log("Create request, block id: " + (latest - i));
 				batch.add(
 					web3.eth.getBlock.request(latest - i, storeLocalCopy)
 				);
 			} else {
-				console.log("use cache, block id: " + (latest - i));
+				console.log("Use cache, block id: " + (latest - i));
 				success(block, latest - block.height);
 			}
 		}

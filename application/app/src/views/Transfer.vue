@@ -51,7 +51,7 @@
 </template>
 
 <script>
-	import { vm } from "../main.js";
+	//import { vm } from "../main.js";
 	import { Gcoin } from '../scripts/gcoin.js';
 	export default {
 
@@ -132,9 +132,8 @@
 		created(){
 			this.gcoin = Gcoin;
 		},
-		
+
 		mounted(){
-			Gcoin.web3 = vm.web3;
 			Gcoin.start();
 
 			window.addEventListener('load', () => {

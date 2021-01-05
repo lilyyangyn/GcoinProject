@@ -28,6 +28,7 @@ export class Transaction {
 	}
 
 	setReceipt(result) {
+		this.hasReceipt = true;
 		this.status = result.status;
 		this.contractAddress = result.contractAddress;
 	}

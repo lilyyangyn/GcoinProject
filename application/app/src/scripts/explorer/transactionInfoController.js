@@ -1,8 +1,9 @@
 import { Transaction } from "../basics/transaction.js";
 import { BlockInfoCtrl } from "./blockInfoCtrl.js";
+import { vm } from "../../main.js";
 
 const TransactionInfoCtrl = {
-	web3 : null,
+	web3 : vm.web3,
 	cache : new Map(),
 
 	getTransaction: async function(thash, success, failure) {
@@ -11,6 +12,7 @@ const TransactionInfoCtrl = {
 
 		var transaction = this.cache.get(thash);
 		if (!transaction) {
+			console.log("Create request, tx hash: " + thash);
 			web3.eth.getTransaction(thash, function(error, result) {
 				if (!error) {
 					transaction = new Transaction(result);
@@ -21,6 +23,9 @@ const TransactionInfoCtrl = {
 					failure(error);
 				}
 			});
+		} else {
+			console.log("Use cache, tx hash: " + thash);
+			success(transaction);
 		}
 	}
 
@@ -36,27 +41,35 @@ const TransactionInfoCtrl = {
 			failure(error);
 		})
 
-		if (!isSuccess) {
+		if (!transaction) {
 			return;
 		}
 
-		web3.eth.getTransactionReceipt(thash, function(error, result) {
-			if (!error) {
-				transaction.setReceipt(result);
-			} else {
-				console.error(error);
+		if (!transaction.hasReceipt) {
+			console.log("Create request for tx receipt, tx hash: " + thash);
+
+			web3.eth.getTransactionReceipt(thash, function(error, result) {
+				if (!error) {
+					transaction.setReceipt(result);
+				} else {
+					console.error(error);
+					isSuccess = false;
+					failure(error);
+				}
+			});
+		}
+		
+		if (!transaction.block) {
+			console.log("Create request for tx block, tx hash: " + thash);
+
+			BlockInfoCtrl.getBlock(transaction.blockNumber, function(block) {
+			transaction.block = block;
+			}, function(error) {
 				isSuccess = false;
 				failure(error);
-			}
-		});
-
-		BlockInfoCtrl.getBlock(transaction.blockNumber, function(block) {
-			transaction.block = block;
-		}, function(error) {
-			isSuccess = false;
-			failure(error);
-		})
-
+			})
+		}
+		
 		if (isSuccess) {
 			success(transaction);
 		}

@@ -38,7 +38,6 @@
 </template>
 
 <script>
-	import { vm } from "../../main.js";
 	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
 	export default {
 		name: 'BlockInfoCtrl',
@@ -68,9 +67,9 @@
 		created(){
 			this.blockInfoController = BlockInfoCtrl;
 		},
-		
+
 		mounted(){
-			this.blockInfoController.web3 = vm.web3;
+			this.blockInfoController.getBlock(0, this.displayBlockDetails, this.failureCallback);
 		}
 	}
 </script>
