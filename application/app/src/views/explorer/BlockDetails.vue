@@ -38,16 +38,18 @@
 </template>
 
 <script>
-	import { vm } from "../../main.js";
 	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
 	export default {
 		name: 'BlockInfoCtrl',
 		methods: {
+
 			getBlock() {
 				const bid = document.getElementById("bid").value;
 
 				this.blockInfoController.getBlock(bid, this.displayBlockDetails, this.failureCallback);
 			},
+
+			/* UI Callback  */
 
 			displayBlockDetails(block) {
 				//TODO
@@ -65,8 +67,9 @@
 		created(){
 			this.blockInfoController = BlockInfoCtrl;
 		},
+
 		mounted(){
-			this.blockInfoController.web3 = vm.web3;
+			this.blockInfoController.getBlock(0, this.displayBlockDetails, this.failureCallback);
 		}
 	}
 </script>

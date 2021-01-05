@@ -1,7 +1,8 @@
 import NodeRegistrationArtifact from "../../../build/contracts/NodeRegistration.json";
+import { vm } from "../main.js";
 
 const NodeRegister = {
-	web3: null,
+	web3: vm.web3,
 	account: null,
 	meta: null,
 	version: "1.0.0",

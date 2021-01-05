@@ -82,7 +82,6 @@
 </style>
 
 <script>
-	import { vm } from "../main.js";
 	import { NodeRegister } from '../scripts/NodeRegister.js';
 
 	export default {
@@ -91,7 +90,6 @@
 			this.register = NodeRegister
 		},
 		mounted(){
-			NodeRegister.web3 = vm.web3;
 			NodeRegister.start();
 		}
 	}

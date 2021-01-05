@@ -46,7 +46,6 @@
 </template>
 
 <script>
-	import { vm } from "../../main.js";
 	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
 	export default {
 		name: 'ExplorerHome',
@@ -56,9 +55,12 @@
 			}
 		},
 		methods: {
+
 			getLatestBlocks() {
 				this.blockInfoController.getLastestNBlocks(10, this.displayBlockWithIdx, this.failureCallback);
 			},
+
+			/* UI Callback  */
 
 			displayBlockWithIdx(block, idx) {
 				//TODO
@@ -75,9 +77,8 @@
 		created(){
 			this.blockInfoController = BlockInfoCtrl;
 		},
-		mounted(){
-			this.blockInfoController.web3 = vm.web3;
 
+		mounted(){
 			window.addEventListener('load', () => {
 				this.getLatestBlocks();
 			});

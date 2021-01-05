@@ -51,11 +51,19 @@
 </template>
 
 <script>
-	import { vm } from "../main.js";
+	//import { vm } from "../main.js";
 	import { Gcoin } from '../scripts/gcoin.js';
 	export default {
 
 		methods: {
+
+			initiateTx: function(transaction) {
+				this.setStatus("Initiate Transaction. Please wait...");
+				transaction;
+			},
+
+			/* UI Methods */
+
 			setStatus: function(message) {
 				const status = document.getElementById("status");
 				if (status) {
@@ -65,6 +73,7 @@
 					}
 				}
 			},
+
 			popMsg: function(message, error) {
 				// TODO
 				const popTitle = document.getElementById("popTitle");
@@ -78,10 +87,7 @@
 				}
 			},
 
-			initiateTx: function(transaction) {
-				this.setStatus("Initiate Transaction. Please wait...");
-				transaction;
-			},
+			/* UI Callback  */
 
 			callbackUpdateStatus(error) {
 				if (!error) {
@@ -92,6 +98,7 @@
 					this.gcoin.refreshBalance(this.callbackRefreshBalance);
 				}
 			},
+
 			callbackShowResult(error) {
 				if (!error) {
 					this.setStatus("Approved!");
@@ -99,6 +106,7 @@
 					this.setStatus(error.message.substring(66));
 				}
 			},
+
 			callbackRefreshBalance(error, result) {
 				if (!error) {
 					const balanceElement = document.getElementById("balance");
@@ -108,6 +116,7 @@
 				}
 				
 			},
+
 			callbackRefreshAllowence(error, result) {
 				if (!error) {
 					const balanceElement = document.getElementById("allowed");
@@ -119,11 +128,12 @@
 			}
 
 		},
+
 		created(){
 			this.gcoin = Gcoin;
 		},
+
 		mounted(){
-			Gcoin.web3 = vm.web3;
 			Gcoin.start();
 
 			window.addEventListener('load', () => {

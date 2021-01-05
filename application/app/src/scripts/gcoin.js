@@ -1,13 +1,14 @@
 import GcoinArtifact from "../../../build/contracts/Gcoin.json";
+import { vm } from "../main.js";
 
 const Gcoin = {
-	web3: null,
+	web3: vm.web3,
 	account: null,
 	meta: null,
 
 	version: "1.0.0",
 
-	start: async function() {
+	start: async function() {		
 		const { web3 } = this;
 
 		try {
