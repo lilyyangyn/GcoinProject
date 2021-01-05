@@ -29,18 +29,18 @@
 		name: 'ExplorerHome',
 		methods: {
 			getLatestBlocks() {
-				this.blockInfoController.getLastestNBlocks(10, this.displayLatestBlocks, this.failureCallback);
+				this.blockInfoController.getLastestNBlocks(10, this.displayBlockWithIdx, this.failureCallback);
 			},
 
-			displayLatestBlocks(blocks) {
+			displayBlockWithIdx(block, idx) {
 				//TODO
-				console.log(blocks);
+				console.log(idx);
 			},
 
-			failureCallback(errors) {
+			failureCallback(error) {
 				//TODO
-				console.log(errors);
-			}
+				console.log(error);
+			},
 
 		},
 

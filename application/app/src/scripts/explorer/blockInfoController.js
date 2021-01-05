@@ -33,21 +33,18 @@ const BlockInfoCtrl = {
 		const { web3 } = this;
 		var self = this;
 
-		var blocks = [];
-		var errors = [];
+		const latest = await web3.eth.getBlockNumber();
 		const storeLocalCopy = function(error, result) {
 			if (!error) {
 				var block = new Block(result);
 				self.cache.set(block.height, block);
 				self.cache.set(block.hash, block);
-				blocks.push(new Block(result));
+				success(block, latest - block.height);
 			} else {
-				console.error(error);
-				errors.push(error);
+				failure(error);
 			}
 		}
 
-		const latest = await web3.eth.getBlockNumber();
 		const batch = new web3.eth.BatchRequest();
 		for (var i = 0; i < n; i++) {
 			if (latest < i) {
@@ -55,21 +52,17 @@ const BlockInfoCtrl = {
 			}
 			var block = this.cache.get(latest - i);
 			if (!block) {
+				console.log("request, block id: " + (latest - i));
 				batch.add(
 					web3.eth.getBlock.request(latest - i, storeLocalCopy)
-				)
+				);
 			} else {
-				blocks.push(block);
+				console.log("use cache, block id: " + (latest - i));
+				success(block, latest - block.height);
 			}
-			
 		}
 		batch.execute();
 
-		if (blocks.length) {
-			success(blocks);
-		} else {
-			failure(errors);
-		}
 	}
 }
 
