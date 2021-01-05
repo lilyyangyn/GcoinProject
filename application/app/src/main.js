@@ -14,15 +14,6 @@ var vm = new Vue({
 	store,
 	render: h => h(App),
 
-	data() {
-		return {
-			web3: null,
-		}
-	},
-
-	mounted() {
-		
-	}
 }).$mount('#app')
 
 if (window.ethereum) {
