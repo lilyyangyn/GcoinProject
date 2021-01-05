@@ -146,6 +146,6 @@
 </style>
 <script>
   window.onload=function(){document.getElementById("content").style.height = document.documentElement.clientHeight-document.getElementById("foot").offsetHeight+ "px"; }
-   
+  
     
 </script>
