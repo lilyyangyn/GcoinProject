@@ -25,7 +25,7 @@ const Gcoin = {
 			
 			console.log("Connected to contract 'Gcoin' successfully.");
 		} catch (error) {
-			console.error("Could not connect to contract.");
+			console.error("Could not connect to contract 'Gcoin'.");
 		}
 	},
 

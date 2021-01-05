@@ -24,7 +24,7 @@ const NodeRegister = {
 			
 			console.log("Connected to contract 'NodeRegistration' successfully.");
 		} catch (error) {
-			console.error("Could not connect to contract or chain.");
+			console.error("Could not connect to contract 'NodeRegistration'.");
 		}
 	},
 
