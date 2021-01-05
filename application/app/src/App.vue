@@ -1,17 +1,20 @@
 <template>
-  <div>
   <div id="app">
     <Layout :style="{height: '90%'}">
-      <Header id="nav" :style="{width: '100%'}">
+      <Header id="nav" >
         <Menu mode="horizontal">
           <div class="layout-logo"></div>
           <div class=layout-nav>
             
 
             <MenuItem name="Home" to="/">
-                  <Icon type="md-home" />
-                  Logout
-              </MenuItem>
+                <Icon type="md-home" />
+                Logout
+            </MenuItem>
+            <MenuItem name="Home" to="/login">
+                <Icon type="md-home" />
+                Login
+            </MenuItem>
 
           </div>
         </Menu>
@@ -73,7 +76,6 @@
     </Layout>
       
   </div>
-  </div>
 </template>
 
 
@@ -82,8 +84,7 @@
   font-family Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
+
 #nav
   background-color white
 
@@ -93,11 +94,15 @@
 
   min-height 700px
 
+  margin-left 50px
+  margin-top 20px
+  color #2c3e50
+
 
 .layout-nav{
-    width: 120px;
+    width: 220px;
     margin: 0 auto;
-    margin-right: 20px;
+    margin-right: 0px;
 }
 .layout-logo{
     width: 100px;
@@ -111,6 +116,31 @@
 }
 #foot
   text-align center
+
+.table {
+  border-top: @table-border;
+}
+.table-header {
+  .table-row {
+    background-color: #f9f9f9;
+    &:hover {
+      background-color: #f9f9f9;
+    }
+  }
+}
+.table-row {
+  display: flex;
+  border-bottom: @table-border;
+  padding: 12px;
+  &:hover {
+    background-color: #f2f2f2;
+  }
+}
+.table-column {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 
 </style>

@@ -10,12 +10,27 @@
 		</div>
 		<br>
 
-		<div class="delegate">
-			<input type="text" placeholder="delegate from" id="delegate-from">
-			<input type="text" placeholder="delegate to" id="delegate-to">
-			<input type="text" placeholder="delegate value" id="delegate-value">
-
-			<button class="button" @click="gcoin.transferFrom()">submit</button>
+		<div class="table blocks">
+			<div class="table-header">
+				<div class="table-row">
+					<div class="table-column">Block</div>
+					<div class="table-column">Age</div>
+					<div class="table-column">Txn</div>
+					<div class="table-column">Uncles</div>
+					<div class="table-column">Miner</div>
+					<div class="table-column">Gas Used</div>
+					<div class="table-column">Gas Limit</div>
+					<div class="table-column">Avg.Gas Price</div>
+					<div class="table-column">Reward</div>
+					
+				</div>
+			</div>
+			<div class="table-body">
+				<div class="table-row">
+			
+				</div>
+			</div>
+			
 		</div>
 
 
