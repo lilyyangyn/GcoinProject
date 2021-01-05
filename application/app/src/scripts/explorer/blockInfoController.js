@@ -15,6 +15,10 @@ const BlockInfoCtrl = {
 			console.log("Create request, block id: " + bid);
 			web3.eth.getBlock(bid, function(error, result) {
 				if (!error) {
+					if (!result) {
+						failure("No block found.");
+						return;
+					}
 					block = new Block(result);
 					self.cache.set(block.height, block);
 					self.cache.set(block.hash, block);

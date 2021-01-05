@@ -3,16 +3,16 @@
 		<h1>This is the explorer page</h1>
 
 		<div class="getBlock">
-			<input type="text" placeholder="bid" id="bid">
+			<input type="text" placeholder="bid" id="bid" v-model="bid">
 
-			<button class="button" @click="blockInfoController.getBlocks(n, displayBlockWithIdx, failureCallback)">submit</button>
+			<button class="button" @click="getOneBlock(bid)">submit</button>
 			
 		</div>
 		<br>
 		<div class="getLatestNBlocks">
 			<input type="text" placeholder="n" id="n" v-model = "n">
 
-			<button class="button" @click="blockInfoController.getLastestNBlocks(n, displayBlockWithIdx, failureCallback)">submit</button>
+			<button class="button" @click="getNBlocks(n)">submit</button>
 			
 		</div>
 		<br>
@@ -41,6 +41,14 @@
 				
 				</div>
 			</div>
+			<div v-if="error">
+			<Alert type="error" show-icon>
+				An error prompt
+				<span slot="desc">
+					{{errorInfo}}
+				</span>
+			</Alert>
+			</div>
 			
 		</div>
 
@@ -55,10 +63,23 @@
 		data(){
 			return {
 				n: 10,
-				blocks: []
+				bid: "",
+				blocks: [],
+				error: false,
+				errorInfo: "",
 			}
 		},
 		methods: {
+			getNBlocks(n) {
+				this.blocks =[];
+				this.blockInfoController.getLastestNBlocks(n, this.displayBlockWithIdx, this.failureCallback);
+
+			},
+
+			getOneBlock (bid) {
+				this.blocks =[];
+				this.blockInfoController.getBlock(bid, this.displayBlockWithIdx, this.failureCallback);
+			},
 
 			getLatestBlocks() {
 				this.blockInfoController.getLastestNBlocks(10, this.displayBlockWithIdx, this.failureCallback);
@@ -67,12 +88,14 @@
 			/* UI Callback  */
 
 			displayBlockWithIdx(block, idx) {
+				this.error=false;
 				this.blocks.push(block);
 				console.log(idx);
 			},
 
 			failureCallback(error) {
-				//TODO
+				this.error = true;
+				this.errorInfo = error;
 				console.log(error);
 			},
 
@@ -82,10 +105,8 @@
 			this.blockInfoController = BlockInfoCtrl;
 		},
 
-		mounted(){
-			window.addEventListener('load', () => {
-				this.getLatestBlocks();
-			});
+		mounted: function(){
+			this.getLatestBlocks();
 		},
 
 		

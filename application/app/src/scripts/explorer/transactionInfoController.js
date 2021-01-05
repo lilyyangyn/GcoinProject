@@ -15,6 +15,10 @@ const TransactionInfoCtrl = {
 			console.log("Create request, tx hash: " + thash);
 			web3.eth.getTransaction(thash, function(error, result) {
 				if (!error) {
+					if (!result) {
+						failure("No transaction found.");
+						return;
+					}
 					transaction = new Transaction(result);
 					self.cache.set(thash, transaction);
 					success(transaction);
