@@ -24,18 +24,21 @@
 					<div class="table-column">Block</div>
 					<div class="table-column">Age</div>
 					<div class="table-column">Txn</div>
-					<div class="table-column">Uncles</div>
 					<div class="table-column">Miner</div>
 					<div class="table-column">Gas Used</div>
 					<div class="table-column">Gas Limit</div>
-					<div class="table-column">Avg.Gas Price</div>
-					<div class="table-column">Reward</div>
 					
 				</div>
 			</div>
 			<div class="table-body">
-				<div class="table-row">
-			
+				<div class="table-row" v-for="block in blocks" :key="block.height">
+					<div class="table-column" v-text="block.height"></div>
+					<div class="table-column" v-text="block.timestamp"></div>
+					<div class="table-column" v-text="block.transactions"></div>
+					<div class="table-column" v-text="block.miner"></div>
+					<div class="table-column" v-text="block.gasUsed"></div>
+					<div class="table-column" v-text="block.gasLimit"></div>
+				
 				</div>
 			</div>
 			
@@ -52,6 +55,7 @@
 		data(){
 			return {
 				n: 10,
+				blocks: []
 			}
 		},
 		methods: {
@@ -63,7 +67,7 @@
 			/* UI Callback  */
 
 			displayBlockWithIdx(block, idx) {
-				//TODO
+				this.blocks.push(block);
 				console.log(idx);
 			},
 
