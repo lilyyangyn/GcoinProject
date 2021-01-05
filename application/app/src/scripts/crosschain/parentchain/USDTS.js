@@ -1,4 +1,4 @@
-import USDTSArtifact from "../../../build/imported_contracts/USDTS.json";
+import USDTSArtifact from "../../../parentchain/imported_abi/USDTS.json";
 import { vm } from "../main.js";
 
 const USDTS = {

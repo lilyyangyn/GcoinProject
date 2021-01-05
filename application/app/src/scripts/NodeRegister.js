@@ -1,4 +1,4 @@
-import NodeRegistrationArtifact from "../../../build/contracts/NodeRegistration.json";
+import NodeRegistrationArtifact from "../../../childchain/build/contracts/NodeRegistration.json";
 import { vm } from "../main.js";
 
 const NodeRegister = {

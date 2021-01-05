@@ -1,4 +1,4 @@
-import GcoinArtifact from "../../../build/contracts/Gcoin.json";
+import GcoinArtifact from "../../../childchain/build/contracts/Gcoin.json";
 import { vm } from "../main.js";
 
 const Gcoin = {
