@@ -1,6 +1,6 @@
 <template>
-	<div class="transfer">
-		<h1>This is the explorer page</h1>
+	<div class="block">
+		<h1>This is the block page</h1>
 
 		<div class="getBlock">
 			<input type="text" placeholder="bid" id="bid">
