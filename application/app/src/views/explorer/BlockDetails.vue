@@ -10,6 +10,7 @@
 		</div>
 		<br>
 
+<!-- 
 		<div class="table blocks">
 			<div class="table-header">
 				<div class="table-row">
@@ -30,8 +31,10 @@
 			
 				</div>
 			</div>
-			
-		</div>
+ -->
+			<div>
+			</div>
+		
 
 
 	</div>
@@ -41,6 +44,11 @@
 	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
 	export default {
 		name: 'BlockInfoCtrl',
+		data() {
+			return{
+				block: null,
+			}
+		},
 		methods: {
 
 			getBlock() {
@@ -51,8 +59,8 @@
 
 			/* UI Callback  */
 
-			displayBlockDetails(block) {
-				//TODO
+			displayBlockDetails(block){
+				this.block=block;
 				console.log(block);
 			},
 
@@ -68,8 +76,8 @@
 			this.blockInfoController = BlockInfoCtrl;
 		},
 
-		mounted(){
-			this.blockInfoController.getBlock(0, this.displayBlockDetails, this.failureCallback);
+		mounted: function(){
+			this.blockInfoController.getBlock(this.$route.params.id, this.displayBlockDetails, this.failureCallback);
 		}
 	}
 </script>

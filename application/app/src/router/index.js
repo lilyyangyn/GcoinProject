@@ -33,6 +33,11 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import('../views/explorer/Home.vue')
+      },
+      {
+        path: '/block',
+        name: 'BlockPage',
+        component: () => import('../views/explorer/BlockDetails.vue')
       }
     ]
   },

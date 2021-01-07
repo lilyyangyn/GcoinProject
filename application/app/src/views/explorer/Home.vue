@@ -32,7 +32,7 @@
 			</div>
 			<div class="table-body">
 				<div class="table-row" v-for="block in blocks" :key="block.height">
-					<div class="table-column" v-text="block.height"></div>
+					<a class="table-column" v-text="block.height" @click="getInfo(block.height)"> </a>
 					<div class="table-column" v-text="block.timestamp"></div>
 					<div class="table-column" v-text="block.transactions"></div>
 					<div class="table-column" v-text="block.miner"></div>
@@ -98,6 +98,15 @@
 				this.errorInfo = error;
 				console.log(error);
 			},
+
+			getInfo(height) {
+				this.$router.push({
+					name: 'BlockPage',
+					params: {
+						id: height,
+					}
+				});
+			}
 
 		},
 
