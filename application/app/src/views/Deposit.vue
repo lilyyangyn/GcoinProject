@@ -8,9 +8,9 @@
 <script>
 	import Web3 from "web3";
  
-	import { USDTS } from '../scripts/crosschain/parentchain/usdts.js';
-	import { USDTExchcoinExchange } from '../scripts/crosschain/parentchain/usdtExchcoinExchange.js';
-	import { BridgeableToken } from '../scripts/crosschain/parentchain/bridgeableToken.js';
+	import { USDTS } from '../scripts/crosschain/parentchain/USDTS.js';
+	import { USDTExchcoinExchange } from '../scripts/crosschain/parentchain/USDTExchcoinExchange.js';
+	import { BridgeableToken } from '../scripts/crosschain/parentchain/BridgeableToken.js';
 	export default {
 		name: 'CrossChainDeposit',
 		methods: {
