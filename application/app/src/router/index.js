@@ -38,6 +38,11 @@ const routes = [
         path: '/block',
         name: 'BlockPage',
         component: () => import('../views/explorer/BlockDetails.vue')
+      },
+      {
+        path: '/deposit',
+        name: 'DepositPage',
+        component: () => import('../views/Deposit.vue')
       }
     ]
   },

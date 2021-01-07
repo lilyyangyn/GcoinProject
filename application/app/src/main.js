@@ -28,7 +28,7 @@ if (window.ethereum) {
 			new Web3.providers.HttpProvider("http://127.0.0.1:8545"),
 		);
 }
-console.log("Connedcted to the chain successfully")
+console.log("Connedcted to Platform Permissioned Chain successfully")
 
 
 export { vm }

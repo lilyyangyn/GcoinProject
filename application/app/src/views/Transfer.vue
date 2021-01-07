@@ -57,14 +57,14 @@
 
 		methods: {
 
-			initiateTx: function(transaction) {
+			initiateTx(transaction) {
 				this.setStatus("Initiate Transaction. Please wait...");
 				transaction;
 			},
 
 			/* UI Methods */
 
-			setStatus: function(message) {
+			setStatus(message) {
 				const status = document.getElementById("status");
 				if (status) {
 					status.innerHTML = message;
@@ -74,7 +74,7 @@
 				}
 			},
 
-			popMsg: function(message, error) {
+			popMsg(message, error) {
 				// TODO
 				const popTitle = document.getElementById("popTitle");
 				if (popTitle) {

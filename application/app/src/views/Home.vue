@@ -58,10 +58,13 @@
                   <MenuItem name="2-1">Option 1</MenuItem>
                   <MenuItem name="2-2">Option 2</MenuItem>
               </Submenu>
-              <MenuItem name="Wallet" to="/">
-                  <Icon type="" />
-                  Wallet
-              </MenuItem>
+              <Submenu name="Wallet" to="/">
+                  <template slot="title">
+                      <Icon type="" />
+                      Wallet
+                  </template>
+                  <MenuItem name="Deposit" to="/deposit">Deposit</MenuItem>
+              </Submenu>
           </Menu>
 
         </Sider>

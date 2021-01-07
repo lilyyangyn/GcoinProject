@@ -90,5 +90,13 @@ contract USDTExchcoinExchange {
     function checkExchcoinBalance() public view returns (uint256) {
         return exchcoin.balanceOf(msg.sender);
     }
+
+    function checkSCUSDTLeger() public view returns (uint256) {
+        return USDT_Ledger[msg.sender];
+    }
+
+    function checkSCExchcoinLeger() public view returns (uint256) {
+        return Exchcoin_Ledger[msg.sender];
+    }
     
 }

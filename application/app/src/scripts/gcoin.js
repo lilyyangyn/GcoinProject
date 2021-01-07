@@ -8,7 +8,7 @@ const Gcoin = {
 
 	version: "1.0.0",
 
-	start: async function() {		
+	start: async function(callback) {		
 		const { web3 } = this;
 
 		try {
@@ -22,6 +22,8 @@ const Gcoin = {
 
 			// get account
 			this.setAccount(0);
+
+			callback;
 			
 			console.log("Connected to contract 'Gcoin' successfully.");
 		} catch (error) {

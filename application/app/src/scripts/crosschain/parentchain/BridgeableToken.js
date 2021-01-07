@@ -1,6 +1,6 @@
-import BridgealeTokenArtifact from "../../../parentchain/imported_abi/BridgealeToken.json";
+import BridgeableTokenArtifact from "../../../../../parentchain/imported_abi/BridgeableToken.json";
 
-const BridgealeToken = {
+const BridgeableToken = {
 	web3: null,
 	account: null,
 	bridgeMediator: null,
@@ -8,31 +8,19 @@ const BridgealeToken = {
 
 	version: "1.0.0",
 
-	connectToWeb3: function() {
-		this.web3 = new Web3(
-			new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/7abfcd3ee73b406ea84fd1bb5f10a45d"),
-		);
-		console.log("Connedcted to Ropsten successfully")
-	}
-
 	start: async function() {		
 		const { web3 } = this;
 
 		try {
-			// get contract instance
-			const networkId = await web3.eth.net.getId();
-			const deployedNetwork = BridgealeTokenArtifact.networks[networkId];
 			this.meta = new web3.eth.Contract(
-				BridgealeTokenArtifact.abi, 
-				deployedNetwork.address,
-			);
+				BridgeableTokenArtifact			);
 
 			// get account
 			this.setAccount(0);
 			
-			console.log("Connected to contract 'BridgealeToken' successfully.");
+			console.log("Connected to contract 'BridgeableToken' successfully.");
 		} catch (error) {
-			console.error("Could not connect to contract 'BridgealeToken'.");
+			console.error("Could not connect to contract 'BridgeableToken'.");
 		}
 	},
 
@@ -53,7 +41,7 @@ const BridgealeToken = {
 	},
 }
 
-export { BridgealeToken }
+export { BridgeableToken }
 
 
 

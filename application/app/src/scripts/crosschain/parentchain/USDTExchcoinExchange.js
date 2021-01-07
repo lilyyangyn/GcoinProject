@@ -1,4 +1,4 @@
-import USDTExchcoinExchangeArtifact from "../../../parentchain/build/contracts/USDTExchcoinExchange.json";
+import USDTExchcoinExchangeArtifact from "../../../../../parentchain/build/contracts/USDTExchcoinExchange.json";
 
 const USDTExchcoinExchange = {
 	web3: null,
@@ -7,23 +7,13 @@ const USDTExchcoinExchange = {
 
 	version: "1.0.0",
 
-	connectToWeb3: function() {
-		this.web3 = new Web3(
-			new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/7abfcd3ee73b406ea84fd1bb5f10a45d"),
-		);
-		console.log("Connedcted to Ropsten successfully")
-	}
-
 	start: async function() {		
 		const { web3 } = this;
 
 		try {
 			// get contract instance
-			const networkId = await web3.eth.net.getId();
-			const deployedNetwork = USDTExchcoinExchangeArtifact.networks[networkId];
 			this.meta = new web3.eth.Contract(
 				USDTExchcoinExchangeArtifact.abi, 
-				deployedNetwork.address,
 			);
 
 			// get account
@@ -68,6 +58,16 @@ const USDTExchcoinExchange = {
 	refreshExchcoinBalance: async function(callback) {
 		const { checkExchcoinBalance } = this.meta.methods;
 		checkExchcoinBalance().call({from: this.account}, callback);
+	},
+
+	refreshSCUSDTLedgerBalance: async function(callback) {
+		const { checkSCUSDTLeger } = this.meta.methods;
+		checkSCUSDTLeger().call({from: this.account}, callback);
+	},
+
+	refreshSCExchcoinLedgerBalance: async function(callback) {
+		const { checkSCExchcoinLeger } = this.meta.methods;
+		checkSCExchcoinLeger().call({from: this.account}, callback);
 	},
 
 	setAccount: async function(idx) {
