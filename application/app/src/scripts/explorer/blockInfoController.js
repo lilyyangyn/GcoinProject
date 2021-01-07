@@ -3,7 +3,7 @@ import { vm } from "../../main.js";
 
 const BlockInfoCtrl = {
 	web3 : vm.web3,
-	cache : vm.$cookie.get('block'),
+	cache : new Map(),
 
 	getBlock: async function(bid, success, failure) {
 		const { web3 } = this;
