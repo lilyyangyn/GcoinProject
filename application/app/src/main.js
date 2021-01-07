@@ -3,11 +3,13 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 import ViewUI from 'view-design';
+import VueCookie from 'vue-cookie'
 import 'view-design/dist/styles/iview.css';
 import Web3 from "web3";
 
 Vue.config.productionTip = false;
 Vue.use(ViewUI);
+Vue.use(VueCookie);
 
 var vm = new Vue({
 	router,
