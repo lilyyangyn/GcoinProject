@@ -45,6 +45,8 @@
 					<div class="table-column" v-text="block.miner"></div>
 					<div class="table-column" v-text="block.gasUsed"></div>
 					<div class="table-column" v-text="block.gasLimit"></div>
+
+
 				
 				</div>
 			</div>
@@ -100,8 +102,8 @@
 			displayBlockWithIdx(block, idx) {
 				this.error=false;
 				this.showBlocks=true;
-				this.blocks.push(block);
-				console.log(idx);
+				this.blocks.splice(idx, 0, block);
+				
 			},
 
 			failureCallback(error) {
