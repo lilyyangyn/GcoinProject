@@ -33,21 +33,14 @@ const TransactionInfoCtrl = {
 		}
 	}
 
-	getDetailedTransaction: async function(thash, success, failure) {
-		const { web3 } = this;
-
-		var transaction;
-		var isSuccess = true;
-		this.getTransaction(thash, function(tx) {
-			transaction = tx;
-		}, function(error) {
-			isSuccess = false;
-			failure(error);
-		})
-
+	getDetailedTransaction: async function(transaction, success, failure) {
 		if (!transaction) {
 			return;
 		}
+
+		const { web3 } = this;
+
+		var thash = transaction.hash;
 
 		if (!transaction.hasReceipt) {
 			console.log("Create request for tx receipt, tx hash: " + thash);
