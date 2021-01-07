@@ -1,16 +1,15 @@
 import USDTSArtifact from "../../../parentchain/imported_abi/USDTS.json";
-import { vm } from "../main.js";
 
 const USDTS = {
 	web3: null,
 	account: null,
-	spenderSC: null,
+	spenderAddr: null,
 	meta: null,
 
 	version: "1.0.0",
 
 	connectToWeb3: function() {
-		vm.web3 = new Web3(
+		this.web3 = new Web3(
 			new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/7abfcd3ee73b406ea84fd1bb5f10a45d"),
 		);
 		console.log("Connedcted to Ropsten successfully")
@@ -37,24 +36,21 @@ const USDTS = {
 		}
 	},
 
-	deposit: async function(callback) {
-		const sponsor = document.getElementById("transfer-from").value;
-		const value =  parseInt(document.getElementById("transfer-value").value);
-
+	deposit: async function(sponsor, value, callback) {
 		const { transfer } = this.meta.methods;
 		transfer(account_parent, value).send({from:sponsor}, callback);
 	},
 
-	approve: async function(callback) {
+	approve: async function(value, callback) {
 		const value = parseInt(document.getElementById("approve-value").value);
 
 		const { approve } = this.meta.methods;
-		approve(this.spenderSC, value).send({from:this.account}, callback);
+		approve(this.spenderAddr, value).send({from:this.account}, callback);
 	},
 
 	refreshAllowance: async function(callback) {
 		const { allowance } = this.meta.methods;
-		allowance(this.account, this.spenderSC).call(callback);
+		allowance(this.account, this.spenderAddr).call(callback);
 	},
 
 	refreshBalance: async function(callback) {
