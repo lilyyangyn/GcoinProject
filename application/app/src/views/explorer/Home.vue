@@ -9,7 +9,14 @@
 			
 		</div>
 		<br>
-		<div class="getLatestNBlocks">
+		<div class="getTransaction">
+			<input type="text" placeholder="thash" id="thash" v-model = "thash">
+
+			<button class="button" @click="getTransaction(thash)">submit</button>
+			
+		</div>
+		<br>
+		<div class="getLatestNTransactions">
 			<input type="text" placeholder="n" id="n" v-model = "n">
 
 			<button class="button" @click="getNBlocks(n)">submit</button>
@@ -18,7 +25,7 @@
 		<br>
 
 
-		<div class="table blocks">
+		<div v-if="showBlocks" class="table blocks">
 			<div class="table-header">
 				<div class="table-row">
 					<div class="table-column">Block</div>
@@ -34,14 +41,17 @@
 				<div class="table-row" v-for="block in blocks" :key="block.height">
 					<a class="table-column" v-text="block.height" @click="getInfo(block.height)"> </a>
 					<div class="table-column" v-text="block.timestamp"></div>
-					<div class="table-column" v-text="block.transactions"></div>
+					<div class="table-column" v-text="block.transactions.length"></div>
 					<div class="table-column" v-text="block.miner"></div>
 					<div class="table-column" v-text="block.gasUsed"></div>
 					<div class="table-column" v-text="block.gasLimit"></div>
 				
 				</div>
 			</div>
-			<div v-if="error">
+			
+			
+		</div>
+		<div v-if="error">
 			<Alert type="error" show-icon>
 				An error prompt
 				<span slot="desc">
@@ -49,8 +59,6 @@
 				</span>
 			</Alert>
 			</div>
-			
-		</div>
 
 
 	</div>
@@ -67,18 +75,20 @@
 				blocks: [],
 				error: false,
 				errorInfo: "",
+				showBlocks: true,
+				thash: "",
 			}
 		},
 		methods: {
+			getOneBlock (bid) {
+				this.blocks =[];
+				this.blockInfoController.getBlock(bid, this.displayBlockWithIdx, this.failureCallback);
+			},
+
 			getNBlocks(n) {
 				this.blocks =[];
 				this.blockInfoController.getLastestNBlocks(n, this.displayBlockWithIdx, this.failureCallback);
 
-			},
-
-			getOneBlock (bid) {
-				this.blocks =[];
-				this.blockInfoController.getBlock(bid, this.displayBlockWithIdx, this.failureCallback);
 			},
 
 			getLatestBlocks() {
@@ -89,12 +99,14 @@
 
 			displayBlockWithIdx(block, idx) {
 				this.error=false;
+				this.showBlocks=true;
 				this.blocks.push(block);
 				console.log(idx);
 			},
 
 			failureCallback(error) {
 				this.error = true;
+				this.showBlocks = false;
 				this.errorInfo = error;
 				console.log(error);
 			},
@@ -106,7 +118,16 @@
 						id: height,
 					}
 				});
-			}
+			},
+
+			getTransaction(thash) {
+				this.$router.push({
+					name: 'TxnPage',
+					params: {
+						id: thash,
+					}
+				});
+			},
 
 		},
 

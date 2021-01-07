@@ -1,5 +1,5 @@
 import { Transaction } from "../basics/transaction.js";
-import { BlockInfoCtrl } from "./blockInfoCtrl.js";
+import { BlockInfoCtrl } from "./blockInfoController.js";
 import { vm } from "../../main.js";
 
 const TransactionInfoCtrl = {
@@ -31,7 +31,7 @@ const TransactionInfoCtrl = {
 			console.log("Use cache, tx hash: " + thash);
 			success(transaction);
 		}
-	}
+	},
 
 	getDetailedTransaction: async function(transaction, success, failure) {
 		if (!transaction) {
@@ -44,7 +44,7 @@ const TransactionInfoCtrl = {
 
 		if (!transaction.hasReceipt) {
 			console.log("Create request for tx receipt, tx hash: " + thash);
-
+			var isSuccess = true;
 			web3.eth.getTransactionReceipt(thash, function(error, result) {
 				if (!error) {
 					transaction.setReceipt(result);

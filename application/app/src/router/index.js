@@ -40,10 +40,17 @@ const routes = [
         component: () => import('../views/explorer/BlockDetails.vue')
       },
       {
+
         path: '/deposit',
         name: 'DepositPage',
         component: () => import('../views/Deposit.vue')
-      }
+      },
+      {
+        path: '/Transaction',
+        name: 'TxnPage',
+        component: () => import('../views/explorer/TransactionDetails.vue')
+      },
+
     ]
   },
   

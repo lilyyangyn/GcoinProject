@@ -4,12 +4,12 @@ export class Transaction {
 
 	constructor(queryResult) {
 		this.hash = queryResult.hash;
-		this.blockNumber = queryResult.blockNumer;
+		this.blockNumber = queryResult.blockNumber;
 		this.from = queryResult.from;
-		this.to = qeuryResult.to;
-		this.value = qeuryResult.value;
-		this.gasPrice = qeuryResult.gasPrice;
-		this.gasUsed = qeuryResult.gas;
+		this.to = queryResult.to;
+		this.value = queryResult.value;
+		this.gasPrice = queryResult.gasPrice;
+		this.gasUsed = queryResult.gas;
 		this.input = web3.utils.hexToAscii(queryResult.input);
 	}
 
@@ -22,7 +22,7 @@ export class Transaction {
 
 	get timestamp() {
 		if (this.block) {
-			 return this.block.timestamp;
+			return this.block.timestamp;
 		}
 		return undefined;
 	}

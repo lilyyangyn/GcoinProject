@@ -11,7 +11,7 @@
                 <Icon type="md-home" />
                 Logout
             </MenuItem>
-            <MenuItem name="Home" to="/login">
+            <MenuItem name="Home" to="/">
                 <Icon type="md-home" />
                 Login
             </MenuItem>
