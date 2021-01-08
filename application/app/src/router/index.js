@@ -6,6 +6,16 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    name: 'Login',
+    component: () => import('../views/Login.vue'),
+  },
+  {
+    path: '/Signup',
+    name: 'Signup',
+    component: () => import('../views/Signup.vue'),
+  },
+  {
+    path: '/',
     name: 'Home',
     component: () => import('../views/Home.vue'),
     children:[
@@ -53,13 +63,30 @@ const routes = [
 
     ]
   },
-  
+
 
 
 ]
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
+})
+
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (Boolean(sessionStorage.getItem("uid"))) {
+      next();
+    } else {
+      next({
+        path: '/',
+      })
+    }
+  } else {
+    next();
+  }
 })
 
 export default router
