@@ -36,14 +36,7 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import('../views/Transfer.vue')
       },
-      {
-        path: '/explorer',
-        name: 'Explorer',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import('../views/explorer/Home.vue')
-      },
+      
       {
         path: '/block',
         name: 'BlockPage',
@@ -59,6 +52,23 @@ const routes = [
         path: '/Transaction',
         name: 'TxnPage',
         component: () => import('../views/explorer/TransactionDetails.vue')
+      },
+
+
+      {
+        path: '/explorer',
+        name: 'Explorer',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('../components/Explorer.vue'),
+        children: [
+          {
+            path: '/',
+            name: 'ExplorerHome',
+            component: () => import('../views/explorer/Home.vue')
+          }
+        ]
       },
 
     ]

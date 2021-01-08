@@ -23,7 +23,9 @@
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">Transactions: </div> 
-				{{block.transactions}}
+				<div v-for="txn in block.transactions" :key="txn.hash">
+				<a @click="getTransaction(txn)">{{txn}}</a>
+				</div>
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">Miner: </div> 
@@ -94,7 +96,7 @@
 </style>
 
 <script>
-	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
+	import ExplorerCtrl from '@/components/Explorer.vue';
 	export default {
 		name: 'BlockInfoCtrl',
 		data() {
@@ -125,12 +127,21 @@
 				this.error=true;
 				this.errorInfo=errors;
 				console.log(errors);
-			}
+			},
+
+			getTransaction(thash) {
+				this.$router.push({
+					name: 'TxnPage',
+					params: {
+						id: thash,
+					}
+				});
+			},
 
 		},
 
 		created(){
-			this.blockInfoController = BlockInfoCtrl;
+			this.blockInfoController = ExplorerCtrl.blockInfoController;
 			
 		},
 

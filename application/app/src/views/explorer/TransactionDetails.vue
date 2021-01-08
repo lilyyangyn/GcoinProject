@@ -18,7 +18,7 @@
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">blockNumber: </div>
-				{{transaction.blockNumber}}
+				<a @click="getInfo(transaction.blockNumber)">{{transaction.blockNumber}}</a>
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">from: </div>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-	import { TransactionInfoCtrl } from '../../scripts/explorer/transactionInfoController.js';
+	import ExplorerCtrl from '@/components/Explorer.vue';
 	export default {
 		name: 'TransactionInfoCtrl',
 		data() {
@@ -79,14 +79,24 @@
 				this.error=true;
 				this.errorInfo=error;
 				console.log(error);
-			}
+			},
+
+			getInfo(height) {
+				this.$router.push({
+					name: 'BlockPage',
+					params: {
+						id: height,
+					}
+				});
+			},
 
 		},
 
 		created(){
-			this.transactionInfoController = TransactionInfoCtrl;
+			this.transactionInfoController = ExplorerCtrl.transactionInfoController;
 			
 		},
+		
 		mounted: function(){
 			this.transactionInfoController.getTransaction(this.$route.params.id, this.displayTransactionDetails, this.failureCallback);
 		}
