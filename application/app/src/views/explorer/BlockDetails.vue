@@ -23,7 +23,9 @@
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">Transactions: </div> 
-				{{block.transactions}}
+				<div v-for="txn in block.transactions" :key="txn.hash">
+				<a @click="getTransaction(txn)">{{txn}}</a>
+				</div>
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">Miner: </div> 
@@ -125,7 +127,16 @@
 				this.error=true;
 				this.errorInfo=errors;
 				console.log(errors);
-			}
+			},
+
+			getTransaction(thash) {
+				this.$router.push({
+					name: 'TxnPage',
+					params: {
+						id: thash,
+					}
+				});
+			},
 
 		},
 
