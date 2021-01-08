@@ -28,22 +28,11 @@ const routes = [
       },
       
       {
-        path: '/block',
-        name: 'BlockPage',
-        component: () => import('../views/explorer/BlockDetails.vue')
-      },
-      {
 
         path: '/deposit',
         name: 'DepositPage',
         component: () => import('../views/Deposit.vue')
       },
-      {
-        path: '/Transaction',
-        name: 'TxnPage',
-        component: () => import('../views/explorer/TransactionDetails.vue')
-      },
-
 
       {
         path: '/explorer',
@@ -54,10 +43,20 @@ const routes = [
         component: () => import('../components/Explorer.vue'),
         children: [
           {
-            path: '/',
-            name: 'ExplorerHome',
+            path: '',
+            name: 'Explorer.Home',
             component: () => import('../views/explorer/Home.vue')
-          }
+          },
+          {
+            path: 'block',
+            name: 'Explorer.BlockDetails',
+            component: () => import('../views/explorer/BlockDetails.vue')
+          },
+          {
+            path: 'transaction',
+            name: 'Explorer.TxDetails',
+            component: () => import('../views/explorer/TransactionDetails.vue')
+          },
         ]
       },
 
