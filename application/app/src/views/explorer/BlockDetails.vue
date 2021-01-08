@@ -119,7 +119,6 @@
 
 			displayBlockDetails(block){
 				this.block=block;
-				console.log(block);
 			},
 
 
@@ -131,7 +130,7 @@
 
 			getTransaction(thash) {
 				this.$router.push({
-					name: 'TxnPage',
+					name: 'Explorer.TxDetails',
 					params: {
 						id: thash,
 					}
