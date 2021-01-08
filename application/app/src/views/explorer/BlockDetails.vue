@@ -94,7 +94,7 @@
 </style>
 
 <script>
-	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
+	import ExplorerCtrl from '@/components/Explorer.vue';
 	export default {
 		name: 'BlockInfoCtrl',
 		data() {
@@ -130,7 +130,7 @@
 		},
 
 		created(){
-			this.blockInfoController = BlockInfoCtrl;
+			this.blockInfoController = ExplorerCtrl.blockInfoController;
 			
 		},
 

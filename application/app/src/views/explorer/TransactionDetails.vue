@@ -53,7 +53,7 @@
 </template>
 
 <script>
-	import { TransactionInfoCtrl } from '../../scripts/explorer/transactionInfoController.js';
+	import ExplorerCtrl from '@/components/Explorer.vue';
 	export default {
 		name: 'TransactionInfoCtrl',
 		data() {
@@ -84,9 +84,10 @@
 		},
 
 		created(){
-			this.transactionInfoController = TransactionInfoCtrl;
+			this.transactionInfoController = ExplorerCtrl.transactionInfoController;
 			
 		},
+		
 		mounted: function(){
 			this.transactionInfoController.getTransaction(this.$route.params.id, this.displayTransactionDetails, this.failureCallback);
 		}

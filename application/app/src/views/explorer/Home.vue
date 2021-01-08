@@ -67,9 +67,12 @@
 </template>
 
 <script>
-	import { BlockInfoCtrl } from '../../scripts/explorer/blockInfoController.js';
+	import ExplorerCtrl from '@/components/Explorer.vue';
 	export default {
 		name: 'ExplorerHome',
+
+		//blockInfoController: ExplorerCtrl.blockInfoController,
+
 		data(){
 			return {
 				n: 10,
@@ -133,10 +136,10 @@
 
 		},
 
-		created(){
-			this.blockInfoController = BlockInfoCtrl;
+		created: function() {
+			this.blockInfoController = ExplorerCtrl.blockInfoController;
 		},
-
+		
 		mounted: function(){
 			this.getLatestBlocks();
 		},
