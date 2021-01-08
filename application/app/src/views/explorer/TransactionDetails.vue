@@ -18,7 +18,7 @@
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">blockNumber: </div>
-				{{transaction.blockNumber}}
+				<a @click="getInfo(transaction.blockNumber)">{{transaction.blockNumber}}</a>
 			</div>
 			<div class="detail-raw">
 				<div class="detail-item">from: </div>
@@ -79,7 +79,16 @@
 				this.error=true;
 				this.errorInfo=error;
 				console.log(error);
-			}
+			},
+
+			getInfo(height) {
+				this.$router.push({
+					name: 'BlockPage',
+					params: {
+						id: height,
+					}
+				});
+			},
 
 		},
 
