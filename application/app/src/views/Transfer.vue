@@ -87,15 +87,20 @@
 				}
 			},
 
+			updateBalance(result) {
+				const balanceElement = document.getElementById("balance");
+				balanceElement.innerHTML = result;
+			},
+
 			/* UI Callback  */
 
 			callbackUpdateStatus(error) {
 				if (!error) {
 					this.setStatus("Transaction complete!");
-					this.gcoin.refreshBalance(this.callbackRefreshBalance);
+					this.updateBalance(Gcoin.balance);
 				} else {
 					this.setStatus(error.message.substring(66));
-					this.gcoin.refreshBalance(this.callbackRefreshBalance);
+					Gcoin.refreshBalance(this.callbackRefreshBalance);
 				}
 			},
 
@@ -109,8 +114,7 @@
 
 			callbackRefreshBalance(error, result) {
 				if (!error) {
-					const balanceElement = document.getElementById("balance");
-					balanceElement.innerHTML = result;
+					this.updateBalance(result);
 				} else {
 					this.popMsg("Fail to get balance.", error);
 				}
@@ -131,14 +135,18 @@
 
 		created(){
 			this.gcoin = Gcoin;
+
+			var self = this;
+			Gcoin.start(() => {
+				Gcoin.refreshBalance(this.callbackRefreshBalance);
+			});
+			
 		},
 
 		mounted(){
-			Gcoin.start();
-
-			window.addEventListener('load', () => {
-				this.gcoin.refreshBalance(this.callbackRefreshBalance);
-			});
+			// window.addEventListener('load', () => {
+			// 	this.gcoin.refreshBalance(this.callbackRefreshBalance);
+			// });
 		},
 	}
 </script>

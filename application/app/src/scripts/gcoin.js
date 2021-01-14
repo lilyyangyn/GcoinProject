@@ -5,6 +5,7 @@ const Gcoin = {
 	web3: vm.web3,
 	account: null,
 	meta: null,
+	balance: 0,
 
 	version: "1.0.0",
 
@@ -21,12 +22,13 @@ const Gcoin = {
 			);
 
 			// get account
-			this.setAccount(0);
+			await this.setAccount(0);
 
-			callback;
+			callback();
 			
 			console.log("Connected to contract 'Gcoin' successfully.");
 		} catch (error) {
+			console.log(error);
 			console.error("Could not connect to contract 'Gcoin'.");
 		}
 	},
@@ -77,7 +79,12 @@ const Gcoin = {
 		const value =  parseInt(document.getElementById("transfer-value").value);
 
 		const { transfer } = this.meta.methods;
-		transfer(to, value).send({from:this.account}, callback);
+		transfer(to, value).send({from:this.account}, (error, result) => {
+			if (!error && result) {
+				this.balance = this.balance - value;
+			}
+			callback(error, result);
+		});
 	},
 
 	transferFrom: async function(callback) {
@@ -86,7 +93,14 @@ const Gcoin = {
 		const value = parseInt(document.getElementById("delegate-value").value);
 
 		const { transferFrom } = this.meta.methods;
-		transferFrom(from, to, value).send({from:this.account}, callback);
+		transferFrom(from, to, value).send({from:this.account}, (error, result) => {
+			if (!error && result) {
+				if (from == this.account) {
+					this.balance = this.balance - value;
+				}
+			}
+			callback(error, result);
+		});
 	},
 
 	approve: async function(callback) {
@@ -116,7 +130,12 @@ const Gcoin = {
 
 	refreshBalance: async function(callback) {
 		const { balanceOf } = this.meta.methods;
-		balanceOf(this.account).call(callback);
+		balanceOf(this.account).call((error, result) => {
+			if (!error) {
+				this.balance = result;
+			}
+			callback(error, result);
+		});
 	},
 
 	setAccount: async function(idx) {

@@ -12,75 +12,70 @@
 				</span>
 			</Alert>
 		</div>
-		<div v-else>
-			<div class="detail-raw">
-				<div class="detail-item">Height: </div> 
-				{{block.height}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">Timestamp: </div> 
-				{{block.timestamp}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">Transactions: </div> 
-				<div v-for="txn in block.transactions" :key="txn.hash">
-				<a @click="getTransaction(txn)">{{txn}}</a>
+		<div v-else class="table blocks">
+			<div class="table-body">
+				<div class="table-row">
+					<div class="table-column">Height:</div>
+					<div class="table-column">{{block.height}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Timestamp:</div>
+					<div class="table-column"><{{block.timestamp}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Transactions:</div>
+					<div class="table-column">{{block.transactions.length}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Miner:</div>
+					<div class="table-column">{{block.miner}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Difficulty:</div>
+					<div class="table-column">{{block.difficulty}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Total Difficulty:</div>
+					<div class="table-column">{{block.totalDifficulty}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Size:</div>
+					<div class="table-column">{{block.size}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Gas Used:</div>
+					<div class="table-column">{{block.gasUsed}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Gas Limit:</div>
+					<div class="table-column">{{block.gasLimit}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Extra Data:</div>
+					<div class="table-column">{{block.extraData}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Hash:</div>
+					<div class="table-column">{{block.hash}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Parent Hash:</div>
+					<div class="table-column">{{block.parentHash}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Sha3 Uncles:</div>
+					<div class="table-column">{{block.sha3Uncles}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">State Root:</div>
+					<div class="table-column">{{block.stateRoot}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Nonce:</div>
+					<div class="table-column">{{block.nonce}}</div>
 				</div>
 			</div>
-			<div class="detail-raw">
-				<div class="detail-item">Miner: </div> 
-				{{block.miner}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">Difficulty: </div> 
-				{{block.difficulty}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">TotalDifficulty: </div> 
-				{{block.totalDifficulty}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">Size: </div> 
-				{{block.size}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">GasUsed: </div> 
-				{{block.gasUsed}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">GasLimit: </div> 
-				{{block.gasLimit}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">ExtraData: </div> 
-				{{block.extraData}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">Hash: </div> 
-				{{block.hash}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">ParentHash: </div> 
-				{{block.parentHash}}
-			</div>
-			<div class="detail-raw" v-if="uncles">
-				<div class="detail-item">Sha3Uncles: </div> 
-				{{block.sha3Uncles}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">StateRoot: </div> 
-				{{block.stateRoot}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">Nonce: </div> 
-				{{block.nonce}}
-			</div>
-
-
-
 		</div>
-
-
 	</div>
 </template>
 
@@ -122,10 +117,10 @@
 			},
 
 
-			failureCallback(errors) {
+			failureCallback(error) {
 				this.error=true;
-				this.errorInfo=errors;
-				console.log(errors);
+				this.errorInfo=error;
+				console.log(error);
 			},
 
 			getTransaction(thash) {

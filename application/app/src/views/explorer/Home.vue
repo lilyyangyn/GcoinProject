@@ -38,19 +38,15 @@
 				</div>
 			</div>
 			<div class="table-body">
-				<div class="table-row" v-for="block in blocks" :key="block.height">
-					<a class="table-column" v-text="block.height" @click="getInfo(block.height)"> </a>
+				<div class="table-row" v-for="block in blocks" :key="block.height" @click="getInfo(block.height)">
+					<div class="table-column" v-text="block.height"></div>
 					<div class="table-column" v-text="block.timestamp"></div>
 					<div class="table-column" v-text="block.transactions.length"></div>
 					<div class="table-column" v-text="block.miner"></div>
 					<div class="table-column" v-text="block.gasUsed"></div>
 					<div class="table-column" v-text="block.gasLimit"></div>
-
-
-				
 				</div>
 			</div>
-			
 			
 		</div>
 		<div v-if="error">

@@ -11,42 +11,43 @@
 				</span>
 			</Alert>
 		</div>
-		<div v-else>
-			<div class="detail-raw">
-				<div class="detail-item">hash: </div>
-				{{transaction.hash}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">blockNumber: </div>
-				<a @click="getInfo(transaction.blockNumber)">{{transaction.blockNumber}}</a>
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">from: </div>
-				{{transaction.from}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">to: </div>
-				{{transaction.to}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">value: </div>
-				{{transaction.value}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">gasPrice: </div>
-				{{transaction.gasPrice}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">gasUsed: </div>
-				{{transaction.gasUsed}}
-			</div>
-			<div class="detail-raw">
-				<div class="detail-item">input: </div>
-				{{transaction.input}}
-			</div>
-			<br>
-			<div>
-				<button @click="getDetailed()">show more</button>
+		<div v-else class="table blocks">
+			<div class="table-body">
+				<div class="table-row">
+					<div class="table-column">Hash:</div>
+					<div class="table-column">{{ transaction.hash }}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Block:</div>
+					<div class="table-column"><a @click="getInfo(transaction.blockNumber)">{{transaction.blockNumber}}</a></div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">From:</div>
+					<div class="table-column">{{transaction.from}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">To:</div>
+					<div class="table-column">{{transaction.to}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Value:</div>
+					<div class="table-column">{{transaction.value}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Gas Price:</div>
+					<div class="table-column">{{transaction.gasPrice}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Gas Used:</div>
+					<div class="table-column">{{transaction.gasUsed}}</div>
+				</div>
+				<div class="table-row">
+					<div class="table-column">Input:</div>
+					<div class="table-column">{{transaction.input}}</div>
+				</div>
+				<div class="table-row">
+					<button @click="getDetailed()">show more</button>
+				</div>
 			</div>
 		</div>
 	</div>
