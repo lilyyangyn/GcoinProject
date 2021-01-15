@@ -59,12 +59,12 @@ const routes = [
             component: () => import('../views/explorer/Home.vue')
           },
           {
-            path: 'block',
+            path: 'block/:id',
             name: 'Explorer.BlockDetails',
             component: () => import('../views/explorer/BlockDetails.vue')
           },
           {
-            path: 'transaction',
+            path: 'transaction/:id',
             name: 'Explorer.TxDetails',
             component: () => import('../views/explorer/TransactionDetails.vue')
           },

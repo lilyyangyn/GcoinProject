@@ -70,7 +70,6 @@
 
 			displayTransactionDetails(transaction){
 				this.transaction=transaction;
-				console.log(transaction);
 			},
 
 
@@ -83,7 +82,7 @@
 
 			getInfo(height) {
 				this.$router.push({
-					name: 'BlockPage',
+					name: 'Explorer.BlockDetails',
 					params: {
 						id: height,
 					}

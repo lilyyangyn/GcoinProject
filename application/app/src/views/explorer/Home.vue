@@ -118,7 +118,7 @@
 
 			getInfo(height) {
 				this.$router.push({
-					name: 'BlockPage',
+					name: 'Explorer.BlockDetails',
 					params: {
 						id: height,
 					}
@@ -127,7 +127,7 @@
 
 			getTransaction(thash) {
 				this.$router.push({
-					name: 'TxnPage',
+					name: 'Explorer.TxDetails',
 					params: {
 						id: thash,
 					}
@@ -139,7 +139,7 @@
 		created: function() {
 			this.blockInfoController = ExplorerCtrl.blockInfoController;
 		},
-		
+
 		mounted: function(){
 			this.getLatestBlocks();
 		},
