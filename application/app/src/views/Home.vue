@@ -5,12 +5,15 @@
         <Menu mode="horizontal">
           <div class="layout-logo"></div>
           <div class=layout-nav>
-            
 
-            <MenuItem name="Home" to="/">
-                <Icon type="md-home" />
-                Logout
-            </MenuItem>
+<!--            <MenuItem name="Home">-->
+<!--                <Icon type="md-home" @click="logout"/>-->
+<!--                Logout-->
+<!--            </MenuItem>-->
+            <dev @click="logout">
+              <Icon type="md-home" />
+              Logout
+            </dev>
             <MenuItem name="Home" to="/">
                 <Icon type="md-home" />
                 Login
@@ -79,5 +82,17 @@
     </Layout>
   </div>
 </template>
+
+<script>
+import {Logout} from "../scripts/api/loginAPI";
+
+export default {
+    methods: {
+      logout(){
+        Logout();
+      }
+    }
+  }
+</script>
 
 

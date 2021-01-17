@@ -3,9 +3,14 @@ import Qs from 'qs';
 import axios from 'axios';
 import router from "../../router";
 
+axios.defaults.withCredentials=true;
+
 export const reqRealEndAsync = (method, baseUrl,
                                 url, params, callback) => {
-    params.token = sessionStorage.getItem('token');
+    const transport = axios.create({
+        withCredentials: true
+    })
+
     return axios({
         timeout: 5000,
         baseURL: baseUrl,
@@ -15,12 +20,14 @@ export const reqRealEndAsync = (method, baseUrl,
             'Content-type': 'application/x-www-form-urlencoded',
         },
         data: Qs.stringify(params),
+        withCredentials: true,
         traditional: true,
     }).then(res => {
         let result = res.data;
+
         if (result.code == 1) {
             router.replace({
-                path: "login",
+                path: "signup",
                 query: {
                     msg: result.message
                 }
@@ -35,4 +42,19 @@ export const reqRealEndAsync = (method, baseUrl,
             }
         }
     }).catch(error => window.alert(error));
+};
+
+export const reqRealEnd = (method, baseUrl,
+                           url, params) => {
+    return axios({
+        timeout: 5000,
+        baseURL: baseUrl,
+        method: method,
+        url: url,
+        headers:{
+            'Content-type': 'application/x-www-form-urlencoded',
+        },
+        data: Qs.stringify(params),
+        traditional: true,
+    });
 };

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {login} from '../scripts/api/loginAPI'
+import {login,checkLogin} from '../scripts/api/loginAPI'
 
 export default {
   data () {
@@ -36,8 +36,13 @@ export default {
       login(param,this.loginCallback);
     },
 
-    loginCallback(){
-      this.$router.push({path : '/explorer'});
+    loginCallback(code,msg,acc){
+      if(code == 0){
+        sessionStorage.setItem("uid",acc.username);
+        this.$router.push({path : '/explorer'});
+      }else {
+        window.alert(msg);
+      }
     },
 
     toSignUp(){

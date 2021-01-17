@@ -11,7 +11,7 @@ const routes = [
     component: () => import('../views/Login.vue'),
   },
   {
-    path: '/Signup',
+    path: '/signup',
     name: 'Signup',
     component: () => import('../views/Signup.vue'),
   },
@@ -56,7 +56,8 @@ const routes = [
           {
             path: '',
             name: 'Explorer.Home',
-            component: () => import('../views/explorer/Home.vue')
+            component: () => import('../views/explorer/Home.vue'),
+            meta: {requireAuth: false},
           },
           {
             path: 'block/:id',
