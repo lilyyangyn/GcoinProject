@@ -6,14 +6,10 @@
           <div class="layout-logo"></div>
           <div class=layout-nav>
 
-<!--            <MenuItem name="Home">-->
-<!--                <Icon type="md-home" @click="logout"/>-->
-<!--                Logout-->
-<!--            </MenuItem>-->
-            <dev @click="logout">
-              <Icon type="md-home" />
-              Logout
-            </dev>
+            <MenuItem name="Home" @click.native="toLogout" to="/">
+                <Icon type="md-home"/>
+                Logout
+            </MenuItem>
             <MenuItem name="Home" to="/">
                 <Icon type="md-home" />
                 Login
@@ -84,12 +80,13 @@
 </template>
 
 <script>
-import {Logout} from "../scripts/api/loginAPI";
+import {logout} from "../scripts/api/loginAPI";
 
 export default {
     methods: {
-      logout(){
-        Logout();
+      toLogout(){
+        logout();
+        this.$Message.success('Logout success!')
       }
     }
   }

@@ -13,8 +13,11 @@ export const checkLogin = (params, callback) => {
         "/login/verifylogin", params, callback);
 }
 
-export const Logout = () => {
-    alert("logout function");
+export const logout = () => {
     sessionStorage.removeItem("uid");
     return reqRealEnd("get",config.domain,"/login/logout",null);
+}
+
+export const signup = (params, callback) => {
+    return reqRealEndAsync("post", config.domain, "/login/registration", params,callback);
 }
