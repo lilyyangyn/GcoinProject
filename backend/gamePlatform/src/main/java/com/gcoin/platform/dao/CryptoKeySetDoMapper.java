@@ -1,7 +1,9 @@
 package com.gcoin.platform.dao;
 
 import com.gcoin.platform.dataobject.CryptoKeySetDo;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CryptoKeySetDoMapper {
     int deleteByPrimaryKey(Integer crytoKeySetId);
 
@@ -10,6 +12,8 @@ public interface CryptoKeySetDoMapper {
     int insertSelective(CryptoKeySetDo record);
 
     CryptoKeySetDo selectByPrimaryKey(Integer crytoKeySetId);
+
+    CryptoKeySetDo selectByPublicKey(String publicKey);
 
     int updateByPrimaryKeySelective(CryptoKeySetDo record);
 

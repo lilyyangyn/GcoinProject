@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
         log.error(e);
         if(e instanceof BusinessException){
             //BusinessErrObj businessErrObj = new BusinessErrObj(((BusinessException) e).getErrCode(),((BusinessException) e).getErrMsg());
-            return new Response(Response.SUCCESS,"Business exception", ((BusinessException) e).getErrCode());
+            return new Response(Response.FAIL,"Business exception", ((BusinessException) e).getErrMsg());
         }else{
             return new Response(Response.FAIL,
                     "Unknown Error Happened",

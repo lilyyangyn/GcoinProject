@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 public interface AccountService {
     AccountDO login(String username, String password);
 
-    void registrate(String username, String password) throws BusinessException;
+    void register(String username, String password, String publickey) throws BusinessException;
 }

@@ -16,7 +16,8 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("login")
-@CrossOrigin(origins = {"*"})
+@CrossOrigin(origins = {"http://localhost:8080"},allowCredentials = "true")
+//@CrossOrigin(origins = {"*"})
 @Log4j2
 
 public class LoginController {
@@ -29,6 +30,8 @@ public class LoginController {
 
     @RequestMapping("/verifylogin")
     public Response verifyLogin(){
+        log.info(this.httpServletRequest.getHeader("withCredentials"));
+        log.info(this.httpServletRequest.getHeader("origin"));
         log.info(this.httpServletRequest.getSession().getId());
         Boolean isLogin = (Boolean) this.httpServletRequest.getSession().getAttribute("IS_LOGIN");
         if (isLogin == null){
@@ -52,13 +55,22 @@ public class LoginController {
             httpSession.setMaxInactiveInterval(10*60);
             log.info(httpSession.getId());
             this.httpServletRequest.getSession().setAttribute("IS_LOGIN", true);
+            //todo: create VO for account to hide PW
             return new Response(account);
         }
     }
 
+    @RequestMapping("/logout")
+    public void logout() {
+        log.info("Logout session: " + this.httpServletRequest.getSession().getId());
+        this.httpServletRequest.getSession().invalidate();
+    }
+
     @RequestMapping("/registration")
-    public void registry(@RequestParam String username,
-                         @RequestParam String password) throws Exception {
-        accountService.registrate(username, password);
+    public Response registry(@RequestParam String username,
+                         @RequestParam String password,
+                         @RequestParam String publickey) throws Exception {
+        accountService.register(username, password,publickey);
+        return new Response(null);
     }
 }
