@@ -39,7 +39,7 @@ export default {
     loginCallback(code,msg,acc){
       if(code == 0){
         sessionStorage.setItem("uid",acc.username);
-        this.$router.push({path : '/explorer'});
+        this.$router.push({path : '/'});
       }else {
         this.$Message.error(data);
       }

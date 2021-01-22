@@ -62,7 +62,7 @@ export default {
     },
     signupCallback(code,msg,data){
       if(code == 0){
-        this.$router.push({path : '/'});
+        this.$router.push({path : '/login'});
         this.$Message.success('Signup Success!')
       }else {
         this.$Message.error(data);

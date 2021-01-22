@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
 
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue'),
   },
@@ -92,7 +92,7 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       next({
-        path: '/',
+        path: '/login',
       })
     }
   } else {
