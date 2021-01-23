@@ -81,6 +81,12 @@ const routes = [
             component: () => import('../views/Shop.vue'),
             meta: {requireAuth: false}
           },
+          {
+            path: '/smartcontract',
+            name: 'SmartContract',
+            component: () => import('../views/SmartContract.vue'),
+            meta: {requireAuth: false}
+          },
         ]
       },
 

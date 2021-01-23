@@ -14,11 +14,11 @@
             <div class="coin-balance">
 <!--              <Icon type="logo-bitcoin" />-->
 <!--              <hr size="8" width="90%">-->
-              <Steps :current="4">
-                <Step title="G" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="E[F]" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="E[H]" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="S" icon="logo-bitcoin" content="1,000,000"></Step>
+              <Steps :current="4" size="small">
+                <Step title="Gcoin" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="Stablecoin" icon="logo-bitcoin" content="1,000,000"></Step>
               </Steps>
 
 <!--            <MenuItem name="Home" to="/">-->
