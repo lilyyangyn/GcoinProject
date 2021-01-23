@@ -75,6 +75,12 @@ const routes = [
             component: () => import('../views/Game.vue'),
             meta: {requireAuth: false}
           },
+          {
+            path: '/shop',
+            name: 'Shop',
+            component: () => import('../views/Shop.vue'),
+            meta: {requireAuth: false}
+          },
         ]
       },
 
