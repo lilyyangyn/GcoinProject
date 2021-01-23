@@ -15,10 +15,10 @@
 <!--              <Icon type="logo-bitcoin" />-->
 <!--              <hr size="8" width="90%">-->
               <Steps :current="4">
-                <Step title="S" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="E(H)" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="E(F)" icon="logo-bitcoin" content="1,000,000"></Step>
                 <Step title="G" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="E[F]" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="E[H]" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="S" icon="logo-bitcoin" content="1,000,000"></Step>
               </Steps>
 
 <!--            <MenuItem name="Home" to="/">-->
@@ -125,7 +125,10 @@ export default {
     flex-direction: row;
     align-items: center;
     margin-top: 10px;
-    width: 400px;
+    margin-right: 2%;
+    width: 450px;
+    border: #5b6270;
+    border-radius: 3px;
   }
 
 </style>
