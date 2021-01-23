@@ -4,16 +4,27 @@
       <Header id="nav" >
         <Menu mode="horizontal">
           <div class="layout-logo"></div>
-          <div class=layout-nav>
+<!--          <div class=layout-nav>-->
 
-            <MenuItem name="Home" @click.native="toLogout" to="/">
-                <Icon type="md-home"/>
-                Logout
+            <MenuItem name="Logout" @click.native="toLogout" to="/" style="float: right">
+              <Icon type="md-home"/>
+              Logout
             </MenuItem>
-            <MenuItem name="Home" to="/">
-                <Icon type="md-home" />
-                Login
-            </MenuItem>
+
+            <div class="coin-balance">
+<!--              <Icon type="logo-bitcoin" />-->
+<!--              <hr size="8" width="90%">-->
+              <Steps :current="4">
+                <Step title="S" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="E(H)" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="E(F)" icon="logo-bitcoin" content="1,000,000"></Step>
+                <Step title="G" icon="logo-bitcoin" content="1,000,000"></Step>
+              </Steps>
+
+<!--            <MenuItem name="Home" to="/">-->
+<!--                <Icon type="md-home" />-->
+<!--                Login-->
+<!--            </MenuItem>-->
 
           </div>
         </Menu>
@@ -49,21 +60,36 @@
                   <MenuItem name="3-1">Option 1</MenuItem>
                   <MenuItem name="3-2">Option 2</MenuItem>
               </Submenu>
-              <Submenu name="Game">
-                  <template slot="title">
-                      <Icon type="" />
-                      Game
-                  </template>
-                  <MenuItem name="2-1">Option 1</MenuItem>
-                  <MenuItem name="2-2">Option 2</MenuItem>
-              </Submenu>
-              <Submenu name="Wallet" to="/">
-                  <template slot="title">
-                      <Icon type="" />
-                      Wallet
-                  </template>
-                  <MenuItem name="Deposit" to="/deposit">Deposit</MenuItem>
-              </Submenu>
+<!--              <Submenu name="Game">-->
+<!--                  <template slot="title">-->
+<!--                      <Icon type="" />-->
+<!--                      Game-->
+<!--                  </template>-->
+<!--                  <MenuItem name="2-1">Option 1</MenuItem>-->
+<!--                  <MenuItem name="2-2">Option 2</MenuItem>-->
+<!--              </Submenu>-->
+              <MenuItem name="Game" to="/game">
+                <Icon type="ios-game-controller-b" />
+                Game
+              </MenuItem>
+
+<!--              <Submenu name="Wallet" to="/">-->
+<!--                  <template slot="title">-->
+<!--                      <Icon type="" />-->
+<!--                      Wallet-->
+<!--                  </template>-->
+<!--                  <MenuItem name="Deposit" to="/deposit">Deposit</MenuItem>-->
+<!--              </Submenu>-->
+            <MenuItem name="Shop" to="/shop">
+              <Icon type="ios-cart" />
+              Shop
+            </MenuItem>
+
+            <MenuItem name="Smart_Contract" to="/smartcontract">
+              <Icon type="ios-document" />
+              Smart Contract
+            </MenuItem>
+
           </Menu>
 
         </Sider>
@@ -92,4 +118,14 @@ export default {
   }
 </script>
 
+<style>
+  .coin-balance {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    width: 400px;
+  }
 
+</style>

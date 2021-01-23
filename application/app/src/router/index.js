@@ -69,6 +69,12 @@ const routes = [
             name: 'Explorer.TxDetails',
             component: () => import('../views/explorer/TransactionDetails.vue')
           },
+          {
+            path: '/game',
+            name: 'Game',
+            component: () => import('../views/Game.vue'),
+            meta: {requireAuth: false}
+          },
         ]
       },
 
