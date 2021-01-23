@@ -110,9 +110,10 @@ export default {
   /*position: relative;*/
   /*left: 25%;*/
   float: right;
-  width: 20%;
-  margin-top: 1%;
-  margin-right: 8%;
+  width: 25%;
+  height: 40px;
+  margin-top: 2%;
+  margin-right: 2%;
 }
 
 
