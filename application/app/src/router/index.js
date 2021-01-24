@@ -4,13 +4,14 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: () => import('../views/Login.vue'),
   },
   {
-    path: '/Signup',
+    path: '/signup',
     name: 'Signup',
     component: () => import('../views/Signup.vue'),
   },
@@ -55,7 +56,8 @@ const routes = [
           {
             path: '',
             name: 'Explorer.Home',
-            component: () => import('../views/explorer/Home.vue')
+            component: () => import('../views/explorer/Home.vue'),
+            meta: {requireAuth: false},
           },
           {
             path: 'block/:id',
@@ -66,6 +68,24 @@ const routes = [
             path: 'transaction/:id',
             name: 'Explorer.TxDetails',
             component: () => import('../views/explorer/TransactionDetails.vue')
+          },
+          {
+            path: '/game',
+            name: 'Game',
+            component: () => import('../views/Game.vue'),
+            meta: {requireAuth: false}
+          },
+          {
+            path: '/shop',
+            name: 'Shop',
+            component: () => import('../views/Shop.vue'),
+            meta: {requireAuth: false}
+          },
+          {
+            path: '/smartcontract',
+            name: 'SmartContract',
+            component: () => import('../views/SmartContract.vue'),
+            meta: {requireAuth: false}
           },
         ]
       },
@@ -90,7 +110,7 @@ router.beforeEach((to, from, next) => {
       next();
     } else {
       next({
-        path: '/',
+        path: '/login',
       })
     }
   } else {

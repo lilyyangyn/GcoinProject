@@ -27,10 +27,19 @@
 
 
 .layout-nav{
-    width: 220px;
+    //width: 110px;
+    //position :relative
+    //float :right;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 70%;
     margin: 0 auto;
     margin-right: 0px;
 }
+
 .layout-logo{
     width: 100px;
     height: 30px;

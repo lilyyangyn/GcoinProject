@@ -2,7 +2,7 @@
   <div class="login-wrap">
     <div class="login-container">
       <h1 class="title">User Login</h1>
-      <Form :model="formLeft" label-position="left" :label-width="100" id="loginForm">
+      <Form label-position="left" :label-width="100" id="loginForm">
         <FormItem label="Username">
           <Input v-model="username"></Input>
         </FormItem>
@@ -18,7 +18,10 @@
     </div>
   </div>
 </template>
+
 <script>
+import {login,checkLogin} from '../scripts/api/loginAPI'
+
 export default {
   data () {
     return {
@@ -26,10 +29,22 @@ export default {
       password: ''
     }
   },
+
   methods: {
     submitForm(){
-      alert(this.input1);
+      let param = {username: this.username, password: this.password};
+      login(param,this.loginCallback);
     },
+
+    loginCallback(code,msg,acc){
+      if(code == 0){
+        sessionStorage.setItem("uid",acc.username);
+        this.$router.push({path : '/'});
+      }else {
+        this.$Message.error(data);
+      }
+    },
+
     toSignUp(){
       window.location.href= "http://localhost:8080/Signup";
     }
@@ -72,7 +87,6 @@ export default {
 }
 
 .buttons {
-
   margin: 2%;
 }
 </style>

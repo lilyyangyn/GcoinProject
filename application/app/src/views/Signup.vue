@@ -2,40 +2,71 @@
   <div class="login-wrap">
     <div class="login-container">
       <h1 class="title">User Sign Up</h1>
-      <Form :model="formLeft" label-position="left" :label-width="100">
-        <FormItem label="Username">
-          <Input v-model="formLeft.input1"></Input>
+      <Form ref="formSignup" :model="formSignup" :rules="ruleSignup" label-position="left" :label-width="100">
+        <FormItem label="Username" prop="username">
+          <Input type="text" v-model="formSignup.username"></Input>
         </FormItem>
-        <FormItem label="Password">
-          <Input v-model="formLeft.input2"></Input>
+        <FormItem label="Password" prop="password">
+          <Input type="text" v-model="formSignup.password"></Input>
         </FormItem>
-        <FormItem label="Public Key">
-          <Input v-model="formLeft.input3"></Input>
+        <FormItem label="Public Key" prop="publickey">
+          <Input type="text" v-model="formSignup.publickey"></Input>
         </FormItem>
       </Form>
 
       <div class="bottom-container">
-        <Button type="primary" long class="button" @click="send">Register</Button>
+        <Button type="primary" long class="button" @click="handleSubmit('formSignup')">Register</Button>
         <Button type="info" long class="button" @click="toLogin">Back to Login Page</Button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import {signup} from "../scripts/api/loginAPI";
 
 export default {
   data () {
     return {
-      formLeft: {
-        input1: '',
-        input2: '',
-        input3: ''
+      formSignup: {
+        username: '',
+        password: '',
+        publickey: ''
+      },
+      ruleSignup: {
+        username:[
+          {required: true, message: 'Please fill in the username'}
+        ],
+        password: [
+          {required:true, message: 'Please fill in the password.'},
+          {type:'string',min:6,message: 'The password length cannot be less than 6 bits', trigger:'blur'},
+          {type:'string',max:18,message: 'The password length cannot be longer than 18 bits', trigger:'blur'}
+        ],
+        publickey: [
+          {required:true, message: 'Please fill in the public key'},
+          {type:'string',len: 42, message: 'The public key length should be 42 with 0x start'}
+        ]
       }
     }
   },
   methods: {
-    send(){
-
+    handleSubmit(name){
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          let param = {username: this.formSignup.username, password: this.formSignup.password, publickey: this.formSignup.publickey}
+          signup(param,this.signupCallback);
+          //this.$Message.success('Success!');
+        } else {
+          this.$Message.error('Fail!');
+        }
+      })
+    },
+    signupCallback(code,msg,data){
+      if(code == 0){
+        this.$router.push({path : '/login'});
+        this.$Message.success('Signup Success!')
+      }else {
+        this.$Message.error(data);
+      }
     },
     toLogin(){
       window.location.href= "http://localhost:8080/";
@@ -59,7 +90,7 @@ export default {
   .login-container {
     border-radius: 10px;
     margin: 0px auto;
-    width: 350px;
+    width: 500px;
     padding: 30px 35px 15px 35px;
     background: #fff;
     border: 1px solid #eaeaea;
