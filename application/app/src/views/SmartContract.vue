@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <h1 style="font-size: 40px">Smart Contract</h1>
+    <h1 class="title">Smart Contract</h1>
     <Tabs type="card" class="SC-container">
       <TabPane label="Gcoin Contract">
         <Card class="contract-info-container">
@@ -57,7 +57,7 @@ import GcoinWriteFunction from "../components/SCPageContent/GcoinWriteFunction";
 export default {
   data () {
     return {
-      formUSDBuyGcoin : {
+      formGameLaunch : {
         amount:'',
         address:'',
         paymentMethod:''
@@ -79,11 +79,11 @@ export default {
 </script>
 
 <style>
-.page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/*.page-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
 
 .SC-container {
   width: 75%;
@@ -106,7 +106,5 @@ export default {
 label{
   font-weight: bold;
 }
-
-
 
 </style>

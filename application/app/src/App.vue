@@ -78,7 +78,25 @@
   text-overflow: ellipsis;
 }
 
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.form-container {
+  width: 50%;
+  height: 200px;
+  position: relative;
+  left: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page-title {
+  font-size: 40px;
+}
 </style>
 <script>
 

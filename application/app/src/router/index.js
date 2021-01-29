@@ -87,6 +87,12 @@ const routes = [
             component: () => import('../views/SmartContract.vue'),
             meta: {requireAuth: false}
           },
+          {
+            path: '/gamelaunch',
+            name: 'GameLaunch',
+            component: () => import('../views/GameLaunch.vue'),
+            meta: {requireAuth: false}
+          },
         ]
       },
 

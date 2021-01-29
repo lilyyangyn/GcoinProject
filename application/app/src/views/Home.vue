@@ -90,6 +90,11 @@
               Smart Contract
             </MenuItem>
 
+            <MenuItem name="Game_Launch" to="/gamelaunch">
+              <Icon type="ios-apps" />
+              Game Launch
+            </MenuItem>
+
           </Menu>
 
         </Sider>

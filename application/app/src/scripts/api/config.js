@@ -1,3 +1,3 @@
 export const config = {
-    domain: "http://192.168.0.109:8090"
+    domain: "http://192.168.0.100:8090"
 }
