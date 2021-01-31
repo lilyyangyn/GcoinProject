@@ -1,5 +1,8 @@
 package com.gcoin.platform.dataobject;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Date;
 
 public class GameDo {
@@ -14,6 +17,10 @@ public class GameDo {
     private String category;
 
     private String name;
+
+    private String trailerUrl;
+
+    private String thumbnailPath;
 
     public Integer getGameId() {
         return gameId;
@@ -61,5 +68,21 @@ public class GameDo {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getTrailerUrl() {
+        return trailerUrl;
+    }
+
+    public void setTrailerUrl(String trailerUrl) {
+        this.trailerUrl = trailerUrl == null ? null : trailerUrl.trim();
+    }
+
+    public String getThumbnailPath() {
+        return thumbnailPath;
+    }
+
+    public void setThumbnailPath(String thumbnailPath) {
+        this.thumbnailPath = thumbnailPath == null ? null : thumbnailPath.trim();
     }
 }

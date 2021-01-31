@@ -1,7 +1,9 @@
 package com.gcoin.platform.dao;
 
 import com.gcoin.platform.dataobject.GameDo;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface GameDoMapper {
     int deleteByPrimaryKey(Integer gameId);
 
