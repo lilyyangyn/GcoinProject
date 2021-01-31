@@ -2,41 +2,55 @@
   <div class="page-container">
     <h1 class="page-title">Game Launch</h1>
     <div class="card-container">
-      <Card>
-        <Form :model="formGameLaunch" label-position="left" :label-width="140" class="form-container">
+      <Card style="display: flex;flex-direction: column">
+        <Form :model="formGameLaunch" label-position="left" :label-width="180" class="form-container">
           <FormItem label="Game Name">
             <Input v-model="formGameLaunch.gameName" placeholder="game name"></Input>
           </FormItem>
-          <FormItem label="Game Description">
-            <Input v-model="formGameLaunch.gameDescription" type="textarea" placeholder="game description"></Input>
+          <FormItem label="Issuer ID">
+            <Input v-model="formGameLaunch.issuerID" placeholder="Gaming company ID"></Input>
           </FormItem>
           <FormItem label="Trailer Youtube URL">
             <Input v-model="formGameLaunch.trailerURL" placeholder="Trailer Youtube URL"></Input>
           </FormItem>
+          <FormItem label="Game Description">
+            <Input v-model="formGameLaunch.gameDescription" type="textarea" placeholder="game description"></Input>
+          </FormItem>
+          <FormItem label="Game Category">
+            <Select v-model="formGameLaunch.gameCategory" placeholder="Select the Game's Category">
+              <Option value="0">RPG</Option>
+              <Option value="1">Action</Option>
+              <Option value="2">Sports</Option>
+              <Option value="3">Strategy</Option>
+              <Option value="4">Other</Option>
+            </Select>
+          </FormItem>
+          <FormItem label="Game Thumbnail">
+            <span class="upload-box-container">
+              <div>
+                <Upload
+                    ref=upload
+                    :before-upload="handleUpload"
+                    :data="uploadData"
+                    :on-success="handleSuccess"
+                    action="http://172.24.172.87:8090/gameregistration/fileupload">
+                  <Button icon="ios-cloud-upload-outline">Select the file to upload</Button>
+                </Upload>
+                <div v-if="file !== null">Upload file: {{ file.name }} <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button></div>
+              </div>
+            </span>
+          </FormItem>
         </Form>
-        <span class="upload-box-container">
-          <div>
-            <Upload
-              ref=upload
-              :before-upload="handleUpload"
-              :data="uploadData"
-              :on-success="handleSuccess"
-              action="http://192.168.0.100:8090/gameregistration/fileupload">
-              <Button icon="ios-cloud-upload-outline">Select the file to upload</Button>
-            </Upload>
-            <div v-if="file !== null">Upload file: {{ file.name }} <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button></div>
-          </div>
-        </span>
+
       </Card>
       <div style="width: 100%">
         <Button type="success" class="submit-btn" @click="formSubmit">Submit</Button>
       </div>
     </div>
-
-
   </div>
 </template>
 <script>
+
 import {gameLaunch} from "../scripts/api/gameLaunchAPI";
 
 export default {
@@ -45,7 +59,9 @@ export default {
       formGameLaunch : {
         gameName :'',
         trailerURL: '',
-        gameDescription:''
+        gameDescription:'',
+        issuerID:'',
+        gameCategory:'',
       },
       file:null,
       uploadData:null,
@@ -88,9 +104,11 @@ export default {
           gameName :this.formGameLaunch.gameName,
           gameDescription:this.formGameLaunch.gameDescription,
           trailerURL: this.formGameLaunch.trailerURL,
+          issuerID: this.formGameLaunch.issuerID,
+          gameCategory: this.formGameLaunch.gameCategory,
           thumbnailPath: this.$refs.upload.fileList[0].response //As the thumbnail only have 1 pic, so array with index 0 is used
         };
-        gameLaunch(param, this.formSubmitCallback());
+        gameLaunch(param, this.formSubmitCallback);
       }
     },
     handleFormSubmit(){
@@ -101,7 +119,13 @@ export default {
       return true;
     },
     formSubmitCallback(code,msg,data) {
-
+      if (code === 0){
+        this.$Message.success("Success to register the game");
+        //todo: redirect page after register game successfully
+        // setTimeout( () => this.$router.push({ path: '/'}
+        // ), 1500);
+        // document.getElementById("columnNav").updateActiveName();
+      }
     }
   }
 }
@@ -131,7 +155,7 @@ export default {
 .upload-box-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
 }
 
 .submit-btn {
@@ -141,4 +165,5 @@ export default {
   margin-top: 2%;
   margin-right: 2%;
 }
+
 </style>

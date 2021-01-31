@@ -24,7 +24,6 @@ export const reqRealEndAsync = (method, baseUrl,
         traditional: true,
     }).then(res => {
         let result = res.data;
-
         if (result.code == 1) {
             router.replace({
                 path: "signup",

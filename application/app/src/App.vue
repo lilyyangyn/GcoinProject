@@ -85,8 +85,9 @@
 }
 
 .form-container {
-  width: 50%;
-  height: 200px;
+  width: 60%;
+  height: auto;
+  padding-top: 3%;
   position: relative;
   left: 25%;
   display: flex;
