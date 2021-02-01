@@ -105,13 +105,13 @@
 import {logout} from "../scripts/api/loginAPI";
 
 export default {
-    methods: {
-      toLogout(){
-        logout();
-        this.$Message.success('Logout success!')
-      }
+  methods: {
+    toLogout(){
+      logout();
+      this.$Message.success('Logout success!')
     }
   }
+}
 </script>
 
 <style>
