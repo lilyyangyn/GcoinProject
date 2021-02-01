@@ -6,8 +6,7 @@
 			<Content id="content">
 
 	<div class="nodeRegistration">
-		<h1>This is the Node Registration page</h1>
-		<p>Version: {{ register.version }}</p>
+
 
 		<div class="verifyOtp">
 			<input type="text" placeholder="verifyOtp" id="verifyOtp-otp">

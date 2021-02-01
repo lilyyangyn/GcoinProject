@@ -1,8 +1,8 @@
 <template>
 	<div class="transfer">
-		<h1>This is the transfer page</h1>
+		
 
-	<p>Version: {{ gcoin.version }}</p>
+	
 		<div class="transfer">
 			<input type="text" placeholder="transfer to" id="transfer-to">
 
@@ -54,6 +54,7 @@
 	//import { vm } from "../main.js";
 	import { Gcoin } from '../scripts/gcoin.js';
 	export default {
+		name: "Trans",
 
 		methods: {
 

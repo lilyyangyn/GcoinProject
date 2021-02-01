@@ -43,6 +43,12 @@
           </Collapse>
         </Card>
       </TabPane>
+      <TabPane label="Transfer">
+        <Trans />
+      </TabPane>
+      <TabPane label="Node Register">
+        <Regist />
+      </TabPane>
       <TabPane label="Another Smart Contract">
 
       </TabPane>
@@ -53,8 +59,12 @@
 <script>
 import GcoinSourceCode from "../components/SCPageContent/GcoinSourceCode";
 import GcoinWriteFunction from "../components/SCPageContent/GcoinWriteFunction";
+import Trans from "./Transfer.vue";
+import Regist from "./NodeRegister.vue";
 
 export default {
+  name: 'SmartContract',
+  
   data () {
     return {
       formGameLaunch : {
@@ -70,7 +80,9 @@ export default {
   },
   components: {
     GcoinSourceCode,
-    GcoinWriteFunction
+    GcoinWriteFunction,
+    Trans,
+    Regist,
   },
   methods: {
 
@@ -86,7 +98,7 @@ export default {
 /*}*/
 
 .SC-container {
-  width: 75%;
+  width: 80%;
   /*display: flex;*/
   /*flex-direction: column;*/
 }

@@ -4,7 +4,6 @@
       <Header id="nav" >
         <Menu mode="horizontal">
           <div class="layout-logo"></div>
-<!--          <div class=layout-nav>-->
 
           <MenuItem name="Logout" @click.native="toLogout()" to="/" style="float: right">
             <Icon type="md-home"/>
@@ -38,7 +37,7 @@
             
             <Submenu name="Game_Service">
                 <template slot="title">
-                  <Icon type="ios-cart" />
+                  <Icon type="ios-game-controller-b-outline" />
                   Game Service
                 </template>
                 <MenuItem name="Game" to="/game">
@@ -59,14 +58,14 @@
 
             <Submenu name="Smart_Contract_Service">
                 <template slot="title">
-                    <Icon type="ios-cart" />
+                    <Icon type="md-briefcase" />
                     Smart Contract Service
                 </template>
                 <MenuItem name="Smart_Contract" to="/smartcontract">
                     <Icon type="ios-document" />
                     Smart Contract
                 </MenuItem>
-                <MenuItem name="NodeRegister" to="/nodeRegister">
+                <!-- <MenuItem name="NodeRegister" to="/nodeRegister">
                     <Icon type="md-add" />
                     NodeRegister
                 </MenuItem>
@@ -74,7 +73,7 @@
                 <MenuItem name="Transfer" to="/transfer">
                     <Icon type="md-card" />
                     Transfer
-                </MenuItem>
+                </MenuItem> -->
 
                 <MenuItem name="Explorer" to="/explorer">
                     <Icon type="ios-keypad" />
