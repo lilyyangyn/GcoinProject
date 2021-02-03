@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component
 @Log4j2
@@ -38,4 +39,11 @@ public class GameServiceImpl implements GameService {
             return false;
         }
     }
+
+    @Override
+    public List<GameDo> getGameList() {
+        return gameDoMapper.listGame();
+    }
+
+
 }

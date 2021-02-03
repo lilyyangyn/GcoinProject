@@ -125,4 +125,12 @@
       thumbnail_path = #{thumbnailPath,jdbcType=VARCHAR}
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
+
+<!--  Self write SQL-->
+  <select id="listGame" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from game order by game_id DESC
+  </select>
+<!--  -->
 </mapper>
