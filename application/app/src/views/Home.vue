@@ -20,7 +20,6 @@
               <Step title="Stablecoin" icon="logo-bitcoin" content="1,000,000"></Step>
             </Steps>
 
-
           </div>
         </Menu>
         <br/>

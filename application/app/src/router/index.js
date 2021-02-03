@@ -96,6 +96,12 @@ const routes = [
         component: () => import('../views/GameLaunch.vue'),
         meta: {requireAuth: false}
       },
+      {
+        path: '/gameinfo',
+        name: 'GameInfo',
+        component: () => import('../views/GameInfo.vue'),
+        meta: {requireAuth: false}
+      },
 
     ]
   },
