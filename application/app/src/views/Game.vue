@@ -1,6 +1,6 @@
 <template>
   <div class="game-container">
-    <Card style="width:360px" class="game-thumbnail" v-for="game in gameList" :key="game.gameId" @click.native="gameOnClickHandle">
+    <Card style="width:360px" class="game-thumbnail" v-for="game in gameList" :key="game.gameId" :id="game.gameId" @click.native="gameOnClickHandle($event)">
       <div style="text-align:center">
         <!--        <img src="../../public/image/pubgSample.jpg" style="width:320px">-->
         <img :src="game.thumbnailBase64Str" style="width:320px">
@@ -25,11 +25,14 @@ export default {
     getGameListData(null, this.getGameListDataCallback);
   },
   methods: {
-    async getGameListDataCallback (code,msg,data){
+    getGameListDataCallback (code,msg,data){
       this.gameList = data;
     },
-    gameOnClickHandle(){
-      //todo
+    gameOnClickHandle(event){
+      // console.log(event.currentTarget.id);
+      let id = event.currentTarget.id;
+      this.$router.push({name: 'GameInfo', params: { gameId: id}})
+      // this.$router.push({ path: `/user/${ele.id}})
     }
   }
 }

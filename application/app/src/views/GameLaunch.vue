@@ -33,7 +33,7 @@
                     :before-upload="handleUpload"
                     :data="uploadData"
                     :on-success="handleSuccess"
-                    action="http://172.24.172.42:8090/game/thumbnail/upload">
+                    action="http://172.24.172.35:8090/game/thumbnail/upload">
                   <Button icon="ios-cloud-upload-outline">Select the file to upload</Button>
                 </Upload>
                 <div v-if="file !== null">Upload file: {{ file.name }} <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button></div>

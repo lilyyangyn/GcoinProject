@@ -11,6 +11,11 @@ export const getGameListData = (params, callback) => {
         "/game/gamelist", params, callback);
 };
 
+export const getGameInfo = (params, callback) => {
+    return reqRealEndAsync("post", config.domain,
+        "/game/gameinfo", params, callback);
+};
+
 export const getThumbnailBase64Str = (params, callback, imgFileName) => {
     let url = "game/thumbnail/"+imgFileName;
     return reqRealEndAsync("get", config.domain,

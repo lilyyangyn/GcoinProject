@@ -97,7 +97,7 @@ const routes = [
         meta: {requireAuth: false}
       },
       {
-        path: '/gameinfo',
+        path: 'game/gameinfo',
         name: 'GameInfo',
         component: () => import('../views/GameInfo.vue'),
         meta: {requireAuth: false}
