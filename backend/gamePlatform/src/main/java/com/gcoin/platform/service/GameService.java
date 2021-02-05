@@ -9,4 +9,6 @@ public interface GameService {
                                  String category, String thumbnailPath);
 
     public List<GameDo> getGameList();
+
+    public GameDo getGameInfo(int gameID);
 }

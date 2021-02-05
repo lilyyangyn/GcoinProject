@@ -45,5 +45,10 @@ public class GameServiceImpl implements GameService {
         return gameDoMapper.listGame();
     }
 
+    @Override
+    public GameDo getGameInfo(int gameID) {
+        return gameDoMapper.selectByPrimaryKey(gameID);
+    }
+
 
 }

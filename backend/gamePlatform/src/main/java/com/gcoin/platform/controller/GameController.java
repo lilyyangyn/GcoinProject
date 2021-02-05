@@ -61,6 +61,18 @@ public class GameController {
 
         return new Response(gameVOList);
     }
+    
+    @RequestMapping("/gameinfo")
+    public Response gameInfo(@RequestParam int gameID) {
+        GameDo gameDo = gameService.getGameInfo(gameID);
+        GameVO gameVO = null;
+        try {
+            gameVO = this.convertVOFromDO(gameDo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new Response(gameVO);
+    }
 
     @RequestMapping("/thumbnail/upload")
     public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
