@@ -68,23 +68,20 @@ export default {
       file:null,
       uploadData:null,
       loadingStatus: false,
-      domainURL:config.domain+"/game/thumbnail/upload",
-      name:'nname',
-      time:'ttime',
-      type:'ttype'
+      domainURL:config.domain+"/game/thumbnail/upload"
     }
   },
   methods:{
     handleUpload (file) {
       this.file = file;
-      this.uploadData= {name:this.name,time:this.time,type:this.type}
+      this.uploadData= {}
       return false;
     },
     upload () {
       this.loadingStatus = true;
-      this.$set(this.$refs.upload.data, 'name', this.name);
-      this.$set(this.$refs.upload.data, 'time', this.time);
-      this.$set(this.$refs.upload.data, 'type', this.type);
+      // this.$set(this.$refs.upload.data, 'name', this.name);
+      // this.$set(this.$refs.upload.data, 'time', this.time);
+      // this.$set(this.$refs.upload.data, 'type', this.type);
       this.$refs.upload.post(this.file);
 
       setTimeout(() => {

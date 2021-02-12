@@ -77,7 +77,7 @@ export default {
 /*}*/
 
 .SC-container {
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction: column;
 }
