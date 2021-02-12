@@ -4,27 +4,21 @@
       <Header id="nav" >
         <Menu mode="horizontal">
           <div class="layout-logo"></div>
-<!--          <div class=layout-nav>-->
 
-            <MenuItem name="Logout" @click.native="toLogout" to="/" style="float: right">
-              <Icon type="md-home"/>
-              Logout
-            </MenuItem>
+          <MenuItem name="Logout" @click.native="toLogout()" to="/" style="float: right">
+            <Icon type="md-home"/>
+            Logout
+          </MenuItem>
 
-            <div class="coin-balance">
+          <div class="coin-balance">
 <!--              <Icon type="logo-bitcoin" />-->
 <!--              <hr size="8" width="90%">-->
-              <Steps :current="4" size="small">
-                <Step title="Gcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-                <Step title="Stablecoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              </Steps>
-
-<!--            <MenuItem name="Home" to="/">-->
-<!--                <Icon type="md-home" />-->
-<!--                Login-->
-<!--            </MenuItem>-->
+            <Steps :current="4" size="small">
+              <Step title="Gcoin" icon="logo-bitcoin" content="1,000,000"></Step>
+              <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
+              <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
+              <Step title="Stablecoin" icon="logo-bitcoin" content="1,000,000"></Step>
+            </Steps>
 
           </div>
         </Menu>
@@ -33,62 +27,63 @@
       <Layout>
         <Sider :style="{background: '#fff'}" id="sider">
           <Menu theme="light" width="auto">
-              <MenuItem name="Home" to="/">
-                  <Icon type="md-home" />
-                  Home
-              </MenuItem>
-              <MenuItem name="NodeRegister" to="/nodeRegister">
-                  <Icon type="md-add" />
-                  NodeRegister
-              </MenuItem>
-              
-              <MenuItem name="Transfer" to="/transfer">
-                  <Icon type="md-card" />
-                  Transfer
-              </MenuItem>
-
-              <MenuItem name="Explorer" to="/explorer">
-                  <Icon type="ios-keypad" />
-                  Explorer
-              </MenuItem>
-              
-              <Submenu name="3">
-                  <template slot="title">
-                      <Icon type="ios-analytics"></Icon>
-                      Statistic
-                  </template>
-                  <MenuItem name="3-1">Option 1</MenuItem>
-                  <MenuItem name="3-2">Option 2</MenuItem>
-              </Submenu>
-<!--              <Submenu name="Game">-->
-<!--                  <template slot="title">-->
-<!--                      <Icon type="" />-->
-<!--                      Game-->
-<!--                  </template>-->
-<!--                  <MenuItem name="2-1">Option 1</MenuItem>-->
-<!--                  <MenuItem name="2-2">Option 2</MenuItem>-->
-<!--              </Submenu>-->
-              <MenuItem name="Game" to="/game">
-                <Icon type="ios-game-controller-b" />
-                Game
-              </MenuItem>
-
-<!--              <Submenu name="Wallet" to="/">-->
-<!--                  <template slot="title">-->
-<!--                      <Icon type="" />-->
-<!--                      Wallet-->
-<!--                  </template>-->
-<!--                  <MenuItem name="Deposit" to="/deposit">Deposit</MenuItem>-->
-<!--              </Submenu>-->
-            <MenuItem name="Shop" to="/shop">
-              <Icon type="ios-cart" />
-              Shop
+            <MenuItem name="Home" to="/">
+                <Icon type="md-home" />
+                Home
             </MenuItem>
+              
 
-            <MenuItem name="Smart_Contract" to="/smartcontract">
-              <Icon type="ios-document" />
-              Smart Contract
-            </MenuItem>
+            
+            <Submenu name="Game_Service">
+                <template slot="title">
+                  <Icon type="ios-game-controller-b-outline" />
+                  Game Service
+                </template>
+                <MenuItem name="Game" to="/game">
+                  <Icon type="ios-game-controller-b" />
+                  Game
+                </MenuItem>
+                <MenuItem name="Shop" to="/shop">
+                  <Icon type="ios-cart" />
+                  Shop
+                </MenuItem>
+
+
+                <MenuItem name="Game_Launch" to="/gamelaunch">
+                  <Icon type="ios-apps" />
+                  Game Launch
+                </MenuItem>
+            </Submenu>
+
+            <Submenu name="Smart_Contract_Service">
+                <template slot="title">
+                    <Icon type="md-briefcase" />
+                    Smart Contract Service
+                </template>
+                <MenuItem name="Smart_Contract" to="/smartcontract">
+                    <Icon type="ios-document" />
+                    Smart Contract
+                </MenuItem>
+                <!-- <MenuItem name="NodeRegister" to="/nodeRegister">
+                    <Icon type="md-add" />
+                    NodeRegister
+                </MenuItem>
+                
+                <MenuItem name="Transfer" to="/transfer">
+                    <Icon type="md-card" />
+                    Transfer
+                </MenuItem> -->
+
+                <MenuItem name="Explorer" to="/explorer">
+                    <Icon type="ios-keypad" />
+                    Explorer
+                </MenuItem>
+
+                <MenuItem name="Statistic">
+                    <Icon type="ios-analytics"></Icon>
+                    Statistic
+                </MenuItem>
+            </Submenu>
 
           </Menu>
 
@@ -109,13 +104,13 @@
 import {logout} from "../scripts/api/loginAPI";
 
 export default {
-    methods: {
-      toLogout(){
-        logout();
-        this.$Message.success('Logout success!')
-      }
+  methods: {
+    toLogout(){
+      logout();
+      this.$Message.success('Logout success!')
     }
   }
+}
 </script>
 
 <style>

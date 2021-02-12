@@ -20,23 +20,23 @@ const routes = [
     name: 'Home',
     component: () => import('../views/Home.vue'),
     children:[
-      {
-        path: '/nodeRegister',
-        name: 'NodeRegister',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import('../views/NodeRegister.vue'),
-        meta: {requireAuth: false}
-      },
-      {
-        path: '/transfer',
-        name: 'Transfer',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import('../views/Transfer.vue')
-      },
+      // {
+      //   path: '/nodeRegister',
+      //   name: 'NodeRegister',
+      //   // route level code-splitting
+      //   // this generates a separate chunk (about.[hash].js) for this route
+      //   // which is lazy-loaded when the route is visited.
+      //   component: () => import('../views/NodeRegister.vue'),
+      //   meta: {requireAuth: false}
+      // },
+      // {
+      //   path: '/transfer',
+      //   name: 'Transfer',
+      //   // route level code-splitting
+      //   // this generates a separate chunk (about.[hash].js) for this route
+      //   // which is lazy-loaded when the route is visited.
+      //   component: () => import('../views/Transfer.vue')
+      // },
       
       {
 
@@ -69,25 +69,38 @@ const routes = [
             name: 'Explorer.TxDetails',
             component: () => import('../views/explorer/TransactionDetails.vue')
           },
-          {
-            path: '/game',
-            name: 'Game',
-            component: () => import('../views/Game.vue'),
-            meta: {requireAuth: false}
-          },
-          {
-            path: '/shop',
-            name: 'Shop',
-            component: () => import('../views/Shop.vue'),
-            meta: {requireAuth: false}
-          },
-          {
-            path: '/smartcontract',
-            name: 'SmartContract',
-            component: () => import('../views/SmartContract.vue'),
-            meta: {requireAuth: false}
-          },
+          
         ]
+      },
+      {
+        path: '/game',
+        name: 'Game',
+        component: () => import('../views/Game.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: '/shop',
+        name: 'Shop',
+        component: () => import('../views/Shop.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: '/smartcontract',
+        name: 'SmartContract',
+        component: () => import('../views/SmartContract.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: '/gamelaunch',
+        name: 'GameLaunch',
+        component: () => import('../views/GameLaunch.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: 'game/gameinfo',
+        name: 'GameInfo',
+        component: () => import('../views/GameInfo.vue'),
+        meta: {requireAuth: false}
       },
 
     ]

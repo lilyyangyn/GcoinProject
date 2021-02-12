@@ -24,7 +24,7 @@ export const reqRealEndAsync = (method, baseUrl,
         traditional: true,
     }).then(res => {
         let result = res.data;
-
+        console.log(result);
         if (result.code == 1) {
             router.replace({
                 path: "signup",
@@ -41,7 +41,7 @@ export const reqRealEndAsync = (method, baseUrl,
                 callback(result.code, result.message, result.data);
             }
         }
-    }).catch(error => window.alert(error));
+    }).catch(error => window.console.log(error));
 };
 
 export const reqRealEnd = (method, baseUrl,

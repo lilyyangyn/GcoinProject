@@ -1,45 +1,60 @@
 <template>
-	<div class="transfer">
-		<h1>This is the transfer page</h1>
-
-	<p>Version: {{ gcoin.version }}</p>
-		<div class="transfer">
-			<input type="text" placeholder="transfer to" id="transfer-to">
-
-			<input type="text" placeholder="transfer value" id="transfer-value">
+	<Card class="contract-info-container">
+		<Collapse style="width: 100%">
+	<!-- <div class="transfer"> -->
+		
+		<Panel name="contractInfo">Contract Info</Panel>
+		<Panel name="contractSourceCode">Contract Source Code</Panel>
+	
+		<Panel name="transfer">Transfer
+			<div slot="content">
+				<label>transfer to</label>
+			<input type="text" id="transfer-to">
+				<label>transfer value</label>
+			<input type="text" id="transfer-value">
 
 			<button class="button" @click="initiateTx(gcoin.transfer(callbackUpdateStatus))">submit</button>
 			
-		</div>
-		<br>
+			</div>
+		</Panel>
 
-		<div class="delegate">
-			<input type="text" placeholder="delegate from" id="delegate-from">
-			<input type="text" placeholder="delegate to" id="delegate-to">
-			<input type="text" placeholder="delegate value" id="delegate-value">
+		<Panel name="delegate">Delegate
+		<div slot="content">
+			<label>delegate from</label>
+			<input type="text" placeholder="" id="delegate-from">
+			<label>delegate to</label>
+			<input type="text" placeholder="" id="delegate-to">
+			<label>delegate value</label>
+			<input type="text" placeholder="" id="delegate-value">
 
 			<button class="button" @click="initiateTx(gcoin.transferFrom(callbackUpdateStatus))">submit</button>
 		</div>
-		<br>
+		</Panel>
 
-		<div class="approve">
-			<input type="text" placeholder="approve spender" id="approve-spender">
-			<input type="text" placeholder="approve value" id="approve-value">
+		<Panel name="approve">Approve
+		<div slot="content">
+			<label>approve spender</label>
+			<input type="text" placeholder="" id="approve-spender">
+			<label>approve value</label>
+			<input type="text" placeholder="" id="approve-value">
 
 			<button class="button" @click="initiateTx(gcoin.approve(callbackShowResult))">submit</button>
 
 		</div>
-		<br>
-
-		<div class="allownce">
-			<input type="text" placeholder="allowance spender" id="allowance-spender">
-			<input type="text" placeholder="allowance owner" id="allowance-owner">
+		</Panel>
+		<Panel name="allownce">Allownce
+		<div slot="content">
+			<label>allowance spender</label>
+			<input type="text" placeholder="" id="allowance-spender">
+			<label>allowance owner</label>
+			<input type="text" placeholder="" id="allowance-owner">
 
 			<button class="button" @click="gcoin.refreshAllowance(callbackRefreshAllowence)">submit</button>
 		</div>
+	</Panel>
 
 		<div class="balance">
-			<p id="balance">balance</p>
+			<p id="balance"></p>
 		</div>
 
 		<div class="status">
@@ -47,13 +62,36 @@
 		</div>
 
 
-	</div>
+	<!-- </div> -->
+	</Collapse>
+        </Card>
 </template>
+<style>
+.contract-info-container {
+  width:100%;
+  max-height: 550px;
+  /*height: 550px;*/
+  overflow: scroll;
+}
+  label {
+    margin-right: 2%;
+  }
 
+  input {
+    margin-right: 4%;
+  }
+.balance{
+	margin-left: 4%;
+}
+.status{
+	margin-left: 4%;
+}
+</style>
 <script>
 	//import { vm } from "../main.js";
 	import { Gcoin } from '../scripts/gcoin.js';
 	export default {
+		name: "Trans",
 
 		methods: {
 

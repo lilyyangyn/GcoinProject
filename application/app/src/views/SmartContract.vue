@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <h1 style="font-size: 40px">Smart Contract</h1>
+    <h1 class="title">Smart Contract</h1>
     <Tabs type="card" class="SC-container">
       <TabPane label="Gcoin Contract">
         <Card class="contract-info-container">
@@ -43,6 +43,12 @@
           </Collapse>
         </Card>
       </TabPane>
+      <TabPane label="Transfer">
+        <Trans />
+      </TabPane>
+      <TabPane label="Node Register">
+        <Regist />
+      </TabPane>
       <TabPane label="Another Smart Contract">
 
       </TabPane>
@@ -53,11 +59,15 @@
 <script>
 import GcoinSourceCode from "../components/SCPageContent/GcoinSourceCode";
 import GcoinWriteFunction from "../components/SCPageContent/GcoinWriteFunction";
+import Trans from "./Transfer.vue";
+import Regist from "./NodeRegister.vue";
 
 export default {
+  name: 'SmartContract',
+  
   data () {
     return {
-      formUSDBuyGcoin : {
+      formGameLaunch : {
         amount:'',
         address:'',
         paymentMethod:''
@@ -70,7 +80,9 @@ export default {
   },
   components: {
     GcoinSourceCode,
-    GcoinWriteFunction
+    GcoinWriteFunction,
+    Trans,
+    Regist,
   },
   methods: {
 
@@ -79,14 +91,14 @@ export default {
 </script>
 
 <style>
-.page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+/*.page-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
 
 .SC-container {
-  width: 75%;
+  width: 80%;
   /*display: flex;*/
   /*flex-direction: column;*/
 }
@@ -106,7 +118,5 @@ export default {
 label{
   font-weight: bold;
 }
-
-
 
 </style>

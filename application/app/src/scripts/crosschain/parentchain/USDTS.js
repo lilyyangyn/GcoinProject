@@ -6,8 +6,7 @@ const USDTS = {
 	spenderAddr: null,
 	meta: null,
 
-	version: "1.0.0",
-
+	
 	start: async function() {		
 		const { web3 } = this;
 

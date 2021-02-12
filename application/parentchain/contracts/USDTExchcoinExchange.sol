@@ -74,7 +74,7 @@ contract USDTExchcoinExchange {
         uint256 _v = Exchcoin_Ledger[msg.sender];
         require(_v > 0, "Please send USDT to this smart constract first.");
         bool success = exchcoin.transfer(msg.sender, _v);
-        require (success == true, "USDT deliver failed, try to call CoinDeliver function again");
+        require (success == true, "Exchcoin deliver failed, try to call CoinDeliver function again");
         Exchcoin_Ledger[msg.sender] = 0;
     }
     
