@@ -33,7 +33,7 @@
                     :before-upload="handleUpload"
                     :data="uploadData"
                     :on-success="handleSuccess"
-                    action="http://172.24.172.35:8090/game/thumbnail/upload">
+                    :action="domainURL">
                   <Button icon="ios-cloud-upload-outline">Select the file to upload</Button>
                 </Upload>
                 <div v-if="file !== null">Upload file: {{ file.name }} <Button type="text" @click="upload" :loading="loadingStatus">{{ loadingStatus ? 'Uploading' : 'Click to upload' }}</Button></div>
@@ -53,6 +53,7 @@
 
 
 import {gameLaunch} from "../scripts/api/gameAPI";
+import {config} from "../scripts/api/config";
 
 export default {
   data(){
@@ -67,6 +68,7 @@ export default {
       file:null,
       uploadData:null,
       loadingStatus: false,
+      domainURL:config.domain+"/game/thumbnail/upload",
       name:'nname',
       time:'ttime',
       type:'ttype'

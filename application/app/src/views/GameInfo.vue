@@ -121,8 +121,8 @@ export default {
 
   .right-container{
     height: 100%;
-    width: 50%;display:
-      flex;
+    width: 50%;
+    display: flex;
     flex-direction: column;
     align-items: flex-end;
   }
@@ -130,6 +130,7 @@ export default {
   .gameinfo-container {
     background: #515a6e;
     height: 100%;
+    width: 100%;
     border-radius: 15px;
     padding: 3%;
     overflow-y: scroll;
