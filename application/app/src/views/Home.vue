@@ -107,7 +107,8 @@ export default {
   methods: {
     toLogout(){
       logout();
-      this.$Message.success('Logout success!')
+      this.$router.push({path : '/login'});
+      this.$Message.success('Logout success!');
     }
   }
 }
