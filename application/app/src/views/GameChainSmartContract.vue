@@ -2,18 +2,19 @@
   <div class="page-container">
     <h1 class="page-title">Ethereum Smart Contract</h1>
     <Tabs type="card" class="SC-container">
-      <TabPane label="Home Bridgeable Token Contract">
-        <HBTCContractCardContainer></HBTCContractCardContainer>
+      <TabPane label="Gcoin Contract">
+        <GCContractCardContainer></GCContractCardContainer>
       </TabPane>
-      <TabPane label="Exchange Contract">
-        <ExchangeContractCardContainer></ExchangeContractCardContainer>
+      <TabPane label="Bridgeable Token Contract">
+        <FBTCContractCardContainer></FBTCContractCardContainer>
       </TabPane>
       <TabPane label="Bridge Storage Proxy Contract">
         <BridgeStorageProxyContractCardContainer></BridgeStorageProxyContractCardContainer>
       </TabPane>
-      <TabPane label="Bridge Contract">
+      <TabPane label="Bridge Storage Proxy Contract">
         <BridgeContractCardContainer></BridgeContractCardContainer>
       </TabPane>
+
 <!--      <TabPane label="Transfer">-->
 <!--        <Trans />-->
 <!--      </TabPane>-->
@@ -30,18 +31,18 @@
 <script>
 import Trans from "./Transfer.vue";
 import Regist from "./NodeRegister.vue";
-import HBTCContractCardContainer from "../components/SCPageContent/EthereumChain/HomeBridgeableTokenContract/ContractCardContainer";
-import ExchangeContractCardContainer from "../components/SCPageContent/EthereumChain/ExchangeContract/ContractCardContainer";
-import BridgeContractCardContainer from "../components/SCPageContent/EthereumChain/BridgeContract/ContractCardContainer";
-import BridgeStorageProxyContractCardContainer from "../components/SCPageContent/EthereumChain/BridgeProxyContract/ContractCardContainer";
+import GCContractCardContainer from "../components/SCPageContent/GameChain/GcoinContract/ContractCardContainer";
+import FBTCContractCardContainer from "../components/SCPageContent/GameChain/ForeignBridgeableTokenContract/ContractCardContainer";
+import BridgeStorageProxyContractCardContainer from "../components/SCPageContent/GameChain/BridgeProxyContract/ContractCardContainer";
+import BridgeContractCardContainer from "../components/SCPageContent/GameChain/BridgeContract/ContractCardContainer";
 
 export default {
   name: 'SmartContract',
   components: {
-    HBTCContractCardContainer,
-    ExchangeContractCardContainer,
-    BridgeContractCardContainer,
+    GCContractCardContainer,
+    FBTCContractCardContainer,
     BridgeStorageProxyContractCardContainer,
+    BridgeContractCardContainer,
     Trans,
     Regist,
   },

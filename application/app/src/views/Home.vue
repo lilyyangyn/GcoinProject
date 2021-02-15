@@ -69,7 +69,7 @@
                 <MenuItem name="Ethereum_Smart_Contract" to="/smartcontract/ethereum">
                   Ethereum Chain
                 </MenuItem>
-                <MenuItem name="GameChain_Smart_Contract" to="/">
+                <MenuItem name="GameChain_Smart_Contract" to="/smartcontract/gamechain">
                   Game Chain
                 </MenuItem>
               </Submenu>
