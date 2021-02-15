@@ -1,7 +1,7 @@
 <template>
   <div class="page-container">
-    <h1>Buy Gcoin</h1>
-    <Tabs type="card" class="SC-container">
+    <h1 class="page-title">Buy Gcoin</h1>
+    <Tabs type="card" class="card-container">
       <TabPane label="USD">
         <Card style="width:100%">
             <Form :model="formGameLaunch" label-position="left" :label-width="70" class="form-container">
@@ -76,7 +76,7 @@ export default {
 /*  align-items: center;*/
 /*}*/
 
-.SC-container {
+.card-container {
   width: 60%;
   display: flex;
   flex-direction: column;

@@ -61,10 +61,20 @@
                 Blockchain
               </template>
 
-              <MenuItem name="Smart_Contract" to="/smartcontract">
-                <Icon type="ios-document"/>
-                Smart Contract
-              </MenuItem>
+              <Submenu name="Smart Contract">
+                <template slot="title">
+                  <Icon type="ios-document"/>
+                  Contract
+                </template>
+                <MenuItem name="Ethereum_Smart_Contract" to="/smartcontract/ethereum">
+                  Ethereum Chain
+                </MenuItem>
+                <MenuItem name="GameChain_Smart_Contract" to="/">
+                  Game Chain
+                </MenuItem>
+              </Submenu>
+
+
 
               <!-- <MenuItem name="NodeRegister" to="/nodeRegister">
                   <Icon type="md-add" />

@@ -89,7 +89,7 @@
 
 </template>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 
 .contract-info-container {
   width:100%;
