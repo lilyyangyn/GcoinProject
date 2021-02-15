@@ -3,7 +3,11 @@
                 <pre>
                   <code>
 /**
- *Submitted for verification at Etherscan.io on 2020-01-17
+ *Submitted for verification at Etherscan.io on 2020-12-24
+*/
+
+/**
+ *Submitted for verification at Etherscan.io on 2020-12-15
 */
 
 // File: contracts/upgradeability/EternalStorage.sol
@@ -330,7 +334,6 @@ contract OwnedUpgradeabilityProxy is UpgradeabilityOwnerStorage, UpgradeabilityP
 // File: contracts/upgradeability/EternalStorageProxy.sol
 
 pragma solidity 0.4.24;
-
 
 
 /**

@@ -6,15 +6,15 @@
         <div slot="content">
           <div>
             <label>Contract Address:</label>
-            0x5AF5075a6c13978f88659a27E8ED1B0A04bd0912
+            0x60Fc1c7347b7D52aB28401311e49e22845C6706E
           </div>
           <div>
             <label>Transaction hash:</label>
-            0xabacc6677b67e5fbb47c9ad7e13eb050a6e9d00314984dd23ee7e840e33ae590
+            0xc2632fe23c67e57e2bf92731bc7bec6b06802ad448d3546edd1282286617d7b4
           </div>
           <div>
             <label>Blockchain Chain Network:</label>
-            Ropsten
+            Goerli
           </div>
         </div>
       </Panel>
@@ -48,7 +48,7 @@ import SourceCode from "./SourceCode";
 import ReadFunction from "./ReadFunction";
 
 export default {
-  name: "HBTCContractCardContainer",
+  name: "FBTCContractCardContainer",
   components:{
     SourceCode,
     WriteFunction,

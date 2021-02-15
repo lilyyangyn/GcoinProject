@@ -6,15 +6,15 @@
         <div slot="content">
           <div>
             <label>Contract Address:</label>
-            0x68a6fDC3a75d8Bb23b2F789b53A84e0C4f3Cd277
+            0xB6b13A14AC6D16b879A6C2B1eDE5B4668F564668
           </div>
           <div>
             <label>Transaction hash:</label>
-            0xe26f7ab108dbf91da9d46fece1f6bbaa94054d0224c76894e4826131e50cb73d
+            0x162704269b9557f4bafe779aebe7c9a414649f1330f0ca659e5cb673289f0fc3
           </div>
           <div>
             <label>Blockchain Chain Network:</label>
-            Ropsten
+            Goerli
           </div>
         </div>
       </Panel>

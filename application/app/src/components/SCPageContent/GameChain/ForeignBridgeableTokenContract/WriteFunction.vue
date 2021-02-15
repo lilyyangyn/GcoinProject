@@ -1,6 +1,6 @@
 <template>
   <Collapse accordion simple>
-    https://ropsten.etherscan.io/address/0x5AF5075a6c13978f88659a27E8ED1B0A04bd0912#writeContract
+    https://goerli.etherscan.io/address/0x60Fc1c7347b7D52aB28401311e49e22845C6706E#writeContract
   </Collapse>
 </template>
 

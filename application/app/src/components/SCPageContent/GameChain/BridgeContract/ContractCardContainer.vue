@@ -6,11 +6,11 @@
         <div slot="content">
           <div>
             <label>Contract Address:</label>
-            0xB6b13A14AC6D16b879A6C2B1eDE5B4668F564668
+            0x0E11CAAf9602b0be7858464b9B674a9fD5a7A268
           </div>
           <div>
             <label>Transaction hash:</label>
-            0x162704269b9557f4bafe779aebe7c9a414649f1330f0ca659e5cb673289f0fc3
+            0x426cfb1c80ca43c2cec23627013c109869b9bf883734a2948f9cce1822ca6cb5
           </div>
           <div>
             <label>Blockchain Chain Network:</label>
@@ -34,7 +34,7 @@
 import SourceCode from "./SourceCode";
 
 export default {
-  name: "BridgeStorageProxyContractCardContainer",
+  name: "BridgeContractCardContainer",
   components:{
     SourceCode,
   }

@@ -3,8 +3,8 @@
                 <pre>
                   <code>
 /**
- *Submitted for verification at Etherscan.io on 2020-12-24
- */
+ *Submitted for verification at Etherscan.io on 2021-01-01
+*/
 
 // File: openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol
 
@@ -766,13 +766,13 @@ contract ERC677BridgeToken is IBurnableMintableERC677Token, DetailedERC20, Burna
         return _to.call(abi.encodeWithSelector(ON_TOKEN_TRANSFER, _from, _value, _data));
     }
 
-    function finishMinting() public returns (bool) {
-        revert();
-    }
+    // function finishMinting() public returns (bool) {
+    //     revert();
+    // }
 
-    function renounceOwnership() public onlyOwner {
-        revert();
-    }
+    // function renounceOwnership() public onlyOwner {
+    //     revert();
+    // }
 
     /**
      * @dev Withdraws the erc20 tokens or native coins from this contract.

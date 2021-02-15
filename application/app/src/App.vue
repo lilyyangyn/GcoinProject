@@ -97,6 +97,7 @@
 
 .page-title {
   font-size: 40px;
+  margin-bottom: 2%
 }
 </style>
 <script>
