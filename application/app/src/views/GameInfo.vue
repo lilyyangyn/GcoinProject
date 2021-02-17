@@ -20,7 +20,7 @@
 
 
       <div class="context-text right-container">
-        <Button style="position:relative; float: right; width: 60px; margin-bottom: 3%">Back</Button>
+        <Button style="position:relative; float: right; width: 60px; margin-bottom: 3%" to="/game">Back</Button>
         <div class="gameinfo-container">
           <label>Game Name: </label>
           <p>{{gameInfo.name}}</p>

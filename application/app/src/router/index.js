@@ -44,7 +44,6 @@ const routes = [
       //   name: 'DepositPage',
       //   component: () => import('../views/Deposit.vue')
       // },
-
       {
         path: '/explorer',
         //name: 'Explorer',
@@ -72,6 +71,12 @@ const routes = [
             meta: {requireAuth: false},
           },
         ]
+      },
+      {
+        path: '/blockchain/statistic',
+        name: 'Statistic',
+        component: () => import('../views/Statistic.vue'),
+        meta: {requireAuth: false}
       },
       {
         path: '/game',

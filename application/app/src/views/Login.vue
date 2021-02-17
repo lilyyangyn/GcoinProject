@@ -39,7 +39,7 @@ export default {
     loginCallback(code,msg,acc){
       if(code == 0){
         sessionStorage.setItem("uid",acc.username);
-        this.$router.push({path : '/'});
+        this.$router.push({path : '/game'});
       }else {
         this.$Message.error(msg);
       }

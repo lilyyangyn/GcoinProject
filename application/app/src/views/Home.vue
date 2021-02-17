@@ -91,7 +91,7 @@
                 Explorer
               </MenuItem>
 
-              <MenuItem name="Statistic">
+              <MenuItem name="Statistic" to="/blockchain/statistic">
                 <Icon type="ios-analytics"></Icon>
                 Statistic
               </MenuItem>
