@@ -86,7 +86,7 @@ contract Gcoin is ERC20Interface {
 
 <script>
 export default {
-  name: "GcoinSourceCode"
+  name: "SourceCode"
 }
 </script>
 

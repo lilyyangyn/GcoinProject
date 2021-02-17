@@ -66,7 +66,7 @@
 	</Collapse>
         </Card>
 </template>
-<style>
+<style scoped>
 .contract-info-container {
   width:100%;
   max-height: 550px;

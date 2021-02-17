@@ -38,12 +38,12 @@ const routes = [
       //   component: () => import('../views/Transfer.vue')
       // },
       
-      {
-
-        path: '/deposit',
-        name: 'DepositPage',
-        component: () => import('../views/Deposit.vue')
-      },
+      // {
+      //
+      //   path: '/deposit',
+      //   name: 'DepositPage',
+      //   component: () => import('../views/Deposit.vue')
+      // },
 
       {
         path: '/explorer',
@@ -62,14 +62,15 @@ const routes = [
           {
             path: 'block/:id',
             name: 'Explorer.BlockDetails',
-            component: () => import('../views/explorer/BlockDetails.vue')
+            component: () => import('../views/explorer/BlockDetails.vue'),
+            meta: {requireAuth: false},
           },
           {
             path: 'transaction/:id',
             name: 'Explorer.TxDetails',
-            component: () => import('../views/explorer/TransactionDetails.vue')
+            component: () => import('../views/explorer/TransactionDetails.vue'),
+            meta: {requireAuth: false},
           },
-          
         ]
       },
       {
@@ -85,9 +86,15 @@ const routes = [
         meta: {requireAuth: false}
       },
       {
-        path: '/smartcontract',
-        name: 'SmartContract',
-        component: () => import('../views/SmartContract.vue'),
+        path: '/smartcontract/ethereum',
+        name: 'EthereumSmartContract',
+        component: () => import('../views/EthereumSmartContract.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: '/smartcontract/gamechain',
+        name: 'GameChainSmartContract',
+        component: () => import('../views/GameChainSmartContract.vue'),
         meta: {requireAuth: false}
       },
       {

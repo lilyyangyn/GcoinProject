@@ -41,7 +41,7 @@ export default {
         sessionStorage.setItem("uid",acc.username);
         this.$router.push({path : '/'});
       }else {
-        this.$Message.error(data);
+        this.$Message.error(msg);
       }
     },
 
