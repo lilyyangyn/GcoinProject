@@ -15,15 +15,15 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/yuening/Documents/\\u5c0f\\u5440\\u561b\\u5c0f\\u4e8c\\u90ce\\u5440~/4.1/COMP4801/GcoinProject/application/contracts/NodeRegistration.sol\":\"NodeRegistrationInterface\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/yuening/Documents/\\u5c0f\\u5440\\u561b\\u5c0f\\u4e8c\\u90ce\\u5440~/4.1/COMP4801/GcoinProject/application/contracts/NodeRegistration.sol\":{\"keccak256\":\"0xb8f3e101799bd2da31cbda57c84400ceb9dce207ab30dd0bf72ad3012b6ee2cc\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://74f6671fd7e510d2de912085efbbfa6424964b45a4d26cb3989e1a7050b247b0\",\"dweb:/ipfs/QmTB2vBiCdhbsxHXs8SgrDimXuf1QbtSF5YqsnuHc8GMpg\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5060d68061001f6000396000f3fe6080604052348015600f57600080fd5b50600436106045576000357c010000000000000000000000000000000000000000000000000000000090048063f851a44014604a575b600080fd5b6050607c565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea2646970667358221220c9018e1b490c217d2c7dffb80ad6f710c9d31df4c363a3cb583e015729abe2eb64736f6c63430007040033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b50600436106045576000357c010000000000000000000000000000000000000000000000000000000090048063f851a44014604a575b600080fd5b6050607c565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea2646970667358221220c9018e1b490c217d2c7dffb80ad6f710c9d31df4c363a3cb583e015729abe2eb64736f6c63430007040033",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.4+commit.3f05b770\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/yuening/Documents/\\u5c0f\\u5440\\u561b\\u5c0f\\u4e8c\\u90ce\\u5440~/4.1/COMP4801/GcoinProject/application/childchain/contracts/NodeRegistration.sol\":\"NodeRegistrationInterface\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/yuening/Documents/\\u5c0f\\u5440\\u561b\\u5c0f\\u4e8c\\u90ce\\u5440~/4.1/COMP4801/GcoinProject/application/childchain/contracts/NodeRegistration.sol\":{\"keccak256\":\"0xb8f3e101799bd2da31cbda57c84400ceb9dce207ab30dd0bf72ad3012b6ee2cc\",\"license\":\"UNLICENSED\",\"urls\":[\"bzz-raw://74f6671fd7e510d2de912085efbbfa6424964b45a4d26cb3989e1a7050b247b0\",\"dweb:/ipfs/QmTB2vBiCdhbsxHXs8SgrDimXuf1QbtSF5YqsnuHc8GMpg\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060d68061001f6000396000f3fe6080604052348015600f57600080fd5b50600436106045576000357c010000000000000000000000000000000000000000000000000000000090048063f851a44014604a575b600080fd5b6050607c565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea264697066735822122013c9069fb9f56e8ed16d918dfa22c805606262e664cf4be610e91a1df925488c64736f6c63430007040033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b50600436106045576000357c010000000000000000000000000000000000000000000000000000000090048063f851a44014604a575b600080fd5b6050607c565b604051808273ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b60008054906101000a900473ffffffffffffffffffffffffffffffffffffffff168156fea264697066735822122013c9069fb9f56e8ed16d918dfa22c805606262e664cf4be610e91a1df925488c64736f6c63430007040033",
   "sourceMap": "64:64:2:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "64:64:2:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;105:20;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
   "source": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.7.4;\n\ncontract NodeRegistrationInterface {\n    address public admin;\n}\n\ncontract NodeRegistration is NodeRegistrationInterface{\n\n    struct OtpInfo {\n        bytes32 otpHashValue;\n        uint256 otpValidation;\n        uint activate;\n    }\n\n    mapping(address => OtpInfo) internal otpOf;\n    bytes32 public hashedAdminPW = 0x2e6285b5dde400bb8e8306ceffb0f9ade888e91d2b4d3aa8b23981e9c90c5eaa;\n\n    constructor() {\n        admin = msg.sender;\n    }\n\n    function verifyOtp(string memory otp) public {\n        if(otpOf[msg.sender].activate == 0){\n            if(keccak256(bytes(otp)) == otpOf[msg.sender].otpHashValue){\n                otpOf[msg.sender].activate = 1;\n            }\n        }\n    }\n\n    function settingOtpHashValue(address applicantAddress,bytes32 otpHashValue) public {\n        require(msg.sender == admin);\n        OtpInfo memory otpInfo = OtpInfo(otpHashValue,block.timestamp+(3 * 1 days),0);\n        otpOf[applicantAddress] = otpInfo;\n    }\n\n    function addingPeer(address applicantAddress) public {\n        require(msg.sender==admin);\n        if(otpOf[applicantAddress].activate == 1)\n            otpOf[applicantAddress].activate = 2;\n    }\n\n    function setHashedAdminPW(bytes32 hashedpw) public {\n        require(msg.sender == admin);\n        hashedAdminPW = hashedpw;\n    }\n\n    function deleteMappingElement(address a) public {\n        require(msg.sender == admin);\n        delete otpOf[a];\n    }\n\n    function addressNetworkState(address a) public view returns (uint) {\n        return otpOf[a].activate;\n    }\n\n    function addressOtphashedValue(address a) public view returns(bytes32){\n        return otpOf[a].otpHashValue;\n    }\n}\n",
-  "sourcePath": "/Users/yuening/Documents/小呀嘛小二郎呀~/4.1/COMP4801/GcoinProject/application/contracts/NodeRegistration.sol",
+  "sourcePath": "/Users/yuening/Documents/小呀嘛小二郎呀~/4.1/COMP4801/GcoinProject/application/childchain/contracts/NodeRegistration.sol",
   "ast": {
-    "absolutePath": "/Users/yuening/Documents/小呀嘛小二郎呀~/4.1/COMP4801/GcoinProject/application/contracts/NodeRegistration.sol",
+    "absolutePath": "/Users/yuening/Documents/小呀嘛小二郎呀~/4.1/COMP4801/GcoinProject/application/childchain/contracts/NodeRegistration.sol",
     "exportedSymbols": {
       "NodeRegistration": [
         565
@@ -2388,7 +2388,7 @@
     "src": "39:1677:2"
   },
   "legacyAST": {
-    "absolutePath": "/Users/yuening/Documents/小呀嘛小二郎呀~/4.1/COMP4801/GcoinProject/application/contracts/NodeRegistration.sol",
+    "absolutePath": "/Users/yuening/Documents/小呀嘛小二郎呀~/4.1/COMP4801/GcoinProject/application/childchain/contracts/NodeRegistration.sol",
     "exportedSymbols": {
       "NodeRegistration": [
         565
@@ -4758,7 +4758,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.23",
-  "updatedAt": "2020-12-29T07:16:25.883Z",
+  "updatedAt": "2021-02-19T15:30:50.594Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
