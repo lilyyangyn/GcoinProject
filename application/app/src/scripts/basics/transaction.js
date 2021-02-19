@@ -10,7 +10,7 @@ export class Transaction {
 		this.value = queryResult.value;
 		this.gasPrice = queryResult.gasPrice;
 		this.gasUsed = queryResult.gas;
-		this.input = web3.utils.hexToAscii(queryResult.input);
+		this.input = queryResult.input;
 	}
 
 	get transactionFee() {

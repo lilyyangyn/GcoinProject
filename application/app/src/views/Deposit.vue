@@ -16,6 +16,7 @@
 		methods: {
 
 			async transferToChildChain() {
+
 				const value = document.getElementById("deposit-value").value;
 				var self = this;
 
@@ -28,7 +29,8 @@
 					self.refreshUSDTAllowanceCallback(error, result);
 				});
 				if (currentAllowance < value) {
-					await this.USDT.approve(value, function(error, result) {
+					await
+					 this.USDT.approve(value, function(error, result) {
 						if (!error) {
 							currentAllowance = result;
 						} 
@@ -68,6 +70,16 @@
 					self.refreshExchcoinBalanceCallback(error, result);
 				})
 			},
+
+			async unlockAccount() {
+				account = document.getElementById("account");
+				password = document.getElementById("password");
+				web3.personal.unlockAccount(account, password, (err) => {
+					if (err) {
+						popMsg("Fail to unlock your account")
+					}
+				});
+			}
 
 			/* UI Methods */ 
 

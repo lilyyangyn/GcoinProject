@@ -52,7 +52,7 @@
 				</div>
 				<div class="table-row">
 					<div class="table-column">Extra Data:</div>
-					<div class="table-column">{{block.extraData}}</div>
+					<div class="table-column">{{block.decodeExtraData()}} (Hash: {{block.extraData}})</div>
 				</div>
 				<div class="table-row">
 					<div class="table-column">Hash:</div>
