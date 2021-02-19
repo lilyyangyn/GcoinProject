@@ -2,7 +2,7 @@
   <div class="page-container">
     <h1 class="page-title">Ethereum Smart Contract</h1>
     <Tabs type="card" class="SC-container">
-      <TabPane label="Home Bridgeable Token Contract">
+      <TabPane label="Bridgeable Token Contract">
         <HBTCContractCardContainer></HBTCContractCardContainer>
       </TabPane>
       <TabPane label="Exchange Contract">
