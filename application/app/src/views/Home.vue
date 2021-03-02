@@ -37,6 +37,13 @@
               Game
             </MenuItem>
 
+<!--            test -->
+            <MenuItem name="Test" to="/test">
+              <Icon type="ios-game-controller-b"/>
+              Test
+            </MenuItem>
+<!--            test-->
+
             <Submenu name="Service">
               <template slot="title">
                 <Icon type="ios-apps"/>
