@@ -47,6 +47,19 @@ const web3Util = {
         return resolvedValue;
     },
 
+    //Eth account creation
+    createAcc: async function () {
+        if (web3Util.parentChainWeb3 == null) {
+            await web3Util.homeChainWeb3Initialize();
+        }
+        return this.parentChainWeb3.eth.accounts.create();
+        // alert("Public Key: \n" + accountInfo.address + "\n" + "Private Key: \n" + accountInfo.privateKey + "\n\n" +
+        //     "Please make sure you keep the private key safely, otherwise you are unable to use your account for transaction");
+    // .then((resolved) => {
+    //         console.log(resolved);
+    //     });
+    },
+
     //Write Function
     getUSDTFromFaucet: async function () {
 

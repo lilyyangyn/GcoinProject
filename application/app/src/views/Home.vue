@@ -15,8 +15,10 @@
             <!--              <hr size="8" width="90%">-->
             <Steps :current="4" size="small">
               <Step title="Gcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Exchcoin[F]" icon="logo-bitcoin" v-bind:content="coinBalance.childChainExchgCoinBalance"></Step>
-              <Step title="Exchcoin[H]" icon="logo-bitcoin" v-bind:content="coinBalance.homeChainExchgCoinBalance"></Step>
+              <Step title="Exchcoin[F]" icon="logo-bitcoin"
+                    v-bind:content="coinBalance.childChainExchgCoinBalance"></Step>
+              <Step title="Exchcoin[H]" icon="logo-bitcoin"
+                    v-bind:content="coinBalance.homeChainExchgCoinBalance"></Step>
               <Step title="USDT" icon="logo-bitcoin" v-bind:content="coinBalance.USDTBalance"></Step>
             </Steps>
 
@@ -124,12 +126,13 @@ import {web3Util} from "@/scripts/web3Util/web3Util";
 
 export default {
 
-  data(){
+  data() {
     return {
-      coinBalance : {
-        USDTBalance:'',
-        homeChainExchgCoinBalance:'',
-        childChainExchgCoinBalance:''
+      numeral: require('numeral'),
+      coinBalance: {
+        USDTBalance: '',
+        homeChainExchgCoinBalance: '',
+        childChainExchgCoinBalance: ''
       }
     }
   },
@@ -138,26 +141,31 @@ export default {
       logout();
       this.$router.push({path: '/login'});
       this.$Message.success('Logout success!');
+    },
+    USDTBalanceUpdate() {
+      web3Util.getUserUSDTBalance().then((resolved) => {
+        let balance = this.numeral(parseInt("1000000")).format('0,0');
+        this.coinBalance.USDTBalance = balance;
+      });
+    },
+    parentChainExchgCoinUpdate() {
+      web3Util.getUserParentChainExchangeCoinBalance().then((resolved) => {
+        let balance = this.numeral(parseInt(resolved)).format('0,0');
+        this.coinBalance.homeChainExchgCoinBalance = balance;
+      });
+    },
+    childChainExchgCoinUpdate() {
+      web3Util.getUserChildChainExchgCoinBalance().then((resolved) => {
+        let balance = this.numeral(parseInt(resolved)).format('0,0');
+        this.coinBalance.childChainExchgCoinBalance = balance;
+      });
     }
   },
   mounted() {
-    let numeral = require('numeral');
-
-    web3Util.getUserUSDTBalance().then((resolved) => {
-      let balance = numeral(parseInt("1000000")).format('0,0');
-      this.coinBalance.USDTBalance = balance;
-    });
-
-    web3Util.getUserParentChainExchangeCoinBalance().then((resolved) => {
-      let balance = numeral(parseInt(resolved)).format('0,0');
-      this.coinBalance.homeChainExchgCoinBalance = balance;
-    });
-
-    web3Util.getUserChildChainExchgCoinBalance().then((resolved) => {
-      let balance = numeral(parseInt(resolved)).format('0,0');
-      this.coinBalance.childChainExchgCoinBalance = balance;
-    });
-
+    // let numeral = require('numeral');
+    this.USDTBalanceUpdate();
+    this.parentChainExchgCoinUpdate();
+    this.childChainExchgCoinUpdate();
   }
 }
 </script>

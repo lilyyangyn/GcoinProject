@@ -41,8 +41,8 @@
 <!--    <div id="frame-wrapper" hidden="" style="position: absolute; height: 1000px; width: 886px; transform: scale(0.5); transform-origin: 0px 0px; display: block;">-->
 <!--      <iframe id="frame" style="position: absolute; width: 3000px; height: 100%; border: none;" src="http://localhost:3000"></iframe>-->
 <!--    </div>-->
-    <div id="frame-wrapper" hidden="" style="position: absolute; height: 100%; width: 100%; transform: scale(0.65); transform-origin: 0px 0px; display: block;">
-      <iframe id="frame" style="position: absolute; width: 2066px; height: 1077px; border: none; margin-left: 5px" src="http://localhost:3000"></iframe>
+    <div id="frame-wrapper" hidden="" style="position: absolute; height: 100%; width: 100%; transform: scale(0.59); transform-origin: 0px 0px; display: block;">
+      <iframe id="frame" style="position: absolute; width: 2066px; height: 1077px;  margin-left: 5px" src="http://localhost:3000"></iframe>
     </div>
   </div>
 </template>
@@ -67,4 +67,5 @@ export default {
 /*  height: 100%;*/
 /*  resize: both;*/
 /*}*/
+
 </style>

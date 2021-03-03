@@ -15,14 +15,30 @@
       </Form>
 
       <div class="bottom-container">
-        <Button type="primary" long class="button" @click="handleSubmit('formSignup')">Register</Button>
+        <div>
+          <Button style="float: right; width: 50%" type="primary" class="button" @click="handleSubmit('formSignup')">Register</Button>
+          <Button style="float: right; width: 45%" class="button" @click="handleCreateKey('formSignup')">Create Public Key</Button>
+        </div>
         <Button type="info" long class="button" @click="toLogin">Back to Login Page</Button>
       </div>
     </div>
+    <Modal
+        v-model="showDialog"
+        title="Key Generation Info"
+        ok-text="OK"
+        cancel-text="">
+      <p>Public Key:</p>
+      <p>{{ethAccountInfo.publicKey}}</p>
+      <p>Private Key:</p>
+      <p>{{ethAccountInfo.privateKey}}</p>
+      <br>
+      <p style="color: darkred">Make sure you store the private key private key properly</p>
+    </Modal>
   </div>
 </template>
 <script>
 import {signup} from "../scripts/api/loginAPI";
+import {web3Util} from "@/scripts/web3Util/web3Util";
 
 export default {
   data () {
@@ -45,6 +61,11 @@ export default {
           {required:true, message: 'Please fill in the public key'},
           {type:'string',len: 42, message: 'The public key length should be 42 with 0x start'}
         ]
+      },
+      showDialog: false,
+      ethAccountInfo : {
+        publicKey:'',
+        privateKey:''
       }
     }
   },
@@ -68,8 +89,17 @@ export default {
         this.$Message.error(data);
       }
     },
+    handleCreateKey(){
+      web3Util.createAcc().then((resolved) => {
+        this.ethAccountInfo.publicKey = resolved.address;
+        this.ethAccountInfo.privateKey = resolved.privateKey;
+        this.showDialog = true;
+        localStorage.setItem('publicKey',resolved.address);
+        localStorage.setItem('privateKey',resolved.privateKey);
+      });
+    },
     toLogin(){
-      window.location.href= "http://localhost:8080/";
+      window.location.href= "http://localhost:8080/login";
     }
   }
 }
