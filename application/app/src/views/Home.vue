@@ -15,9 +15,9 @@
             <!--              <hr size="8" width="90%">-->
             <Steps :current="4" size="small">
               <Step title="Gcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Stablecoin" icon="logo-bitcoin" content="1,000,000"></Step>
+              <Step title="Exchcoin[F]" icon="logo-bitcoin" v-bind:content="coinBalance.childChainExchgCoinBalance"></Step>
+              <Step title="Exchcoin[H]" icon="logo-bitcoin" v-bind:content="coinBalance.homeChainExchgCoinBalance"></Step>
+              <Step title="USDT" icon="logo-bitcoin" v-bind:content="coinBalance.USDTBalance"></Step>
             </Steps>
 
           </div>
@@ -37,12 +37,12 @@
               Game
             </MenuItem>
 
-<!--            test -->
+            <!--            test -->
             <MenuItem name="Test" to="/test">
               <Icon type="ios-game-controller-b"/>
               Test
             </MenuItem>
-<!--            test-->
+            <!--            test-->
 
             <Submenu name="Service">
               <template slot="title">
@@ -56,7 +56,7 @@
               </MenuItem>
 
               <MenuItem name="Game_Launch" to="/gamelaunch">
-                <Icon type="md-cloud-upload" />
+                <Icon type="md-cloud-upload"/>
                 Game Launch
               </MenuItem>
 
@@ -64,7 +64,7 @@
 
             <Submenu name="Blockchain_Service">
               <template slot="title">
-                <Icon type="md-git-merge" />
+                <Icon type="md-git-merge"/>
                 Blockchain
               </template>
 
@@ -80,7 +80,6 @@
                   Game Chain
                 </MenuItem>
               </Submenu>
-
 
 
               <!-- <MenuItem name="NodeRegister" to="/nodeRegister">
@@ -121,14 +120,44 @@
 
 <script>
 import {logout} from "../scripts/api/loginAPI";
+import {web3Util} from "@/scripts/web3Util/web3Util";
 
 export default {
+
+  data(){
+    return {
+      coinBalance : {
+        USDTBalance:'',
+        homeChainExchgCoinBalance:'',
+        childChainExchgCoinBalance:''
+      }
+    }
+  },
   methods: {
     toLogout() {
       logout();
       this.$router.push({path: '/login'});
       this.$Message.success('Logout success!');
     }
+  },
+  mounted() {
+    let numeral = require('numeral');
+
+    web3Util.getUserUSDTBalance().then((resolved) => {
+      let balance = numeral(parseInt("1000000")).format('0,0');
+      this.coinBalance.USDTBalance = balance;
+    });
+
+    web3Util.getUserParentChainExchangeCoinBalance().then((resolved) => {
+      let balance = numeral(parseInt(resolved)).format('0,0');
+      this.coinBalance.homeChainExchgCoinBalance = balance;
+    });
+
+    web3Util.getUserChildChainExchgCoinBalance().then((resolved) => {
+      let balance = numeral(parseInt(resolved)).format('0,0');
+      this.coinBalance.childChainExchgCoinBalance = balance;
+    });
+
   }
 }
 </script>

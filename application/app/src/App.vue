@@ -21,8 +21,8 @@
 
   min-height 700px
 
-  //margin-left 50px
-  //margin-top 20px
+  margin-left 50px
+  margin-top 20px
   color #2c3e50
 
 

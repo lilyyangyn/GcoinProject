@@ -12,33 +12,34 @@
 import {web3Util} from "@/scripts/web3Util/web3Util";
 
 export default {
-  data (){
+  data() {
     return {
-      name:null,
+      name: null,
     }
   },
   mounted() {
 
   },
   methods: {
-    onClickHandle1(){
+    onClickHandle1() {
       console.log("setting local storage");
       localStorage.setItem("privateKey", "abc");
       console.log("setting local storage private key: ", localStorage.getItem("privateKey"))
     },
-    onClickHandle2(){
+    onClickHandle2() {
       console.log("setting local storage private key: ", localStorage.getItem("privateKey"))
     },
-    onClickHandle3(){
-      if(web3Util.web3 == null){
+    onClickHandle3() {
+      if (web3Util.web3 == null) {
         try {
-          web3Util.web3Initialize();
-        }catch (e) {
+          web3Util.homeChainWeb3Initialize();
+        } catch (e) {
           console.log(e)
           return
         }
       }
-      web3Util.getUSDTFromFaucet();
+      // web3Util.getUSDTFromFaucet();
+      web3Util.getUserUSDTBalance();
     },
   }
 }
@@ -51,7 +52,7 @@ export default {
   flex-wrap: wrap;
 }
 
-.game-thumbnail{
+.game-thumbnail {
   margin-right: 1%;
   margin-bottom: 1%;
 }
