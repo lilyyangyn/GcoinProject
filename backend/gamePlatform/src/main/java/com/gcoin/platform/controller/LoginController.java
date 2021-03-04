@@ -1,6 +1,5 @@
 package com.gcoin.platform.controller;
 
-
 import com.gcoin.platform.dataobject.AccountDO;
 import com.gcoin.platform.response.Response;
 import com.gcoin.platform.service.AccountService;

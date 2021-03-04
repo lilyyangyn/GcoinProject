@@ -22,6 +22,8 @@ public class FileServiceImpl implements FileService {
 
 //    @Value("${app.upload.dir:${user.home}}")
 //    public String uploadDir;
+    @Value("${file.storage.path}")
+    private String fileStoragePath;
 
     @Override
     public String uploadFile(MultipartFile file) {
@@ -31,7 +33,8 @@ public class FileServiceImpl implements FileService {
             long times = 1000000000;
             long imageName = (long) (rand.nextDouble()*times);
             filename = imageName+".jpg";
-            Path copyLocation = Paths.get( "C:/UploadFile"+ File.separator + StringUtils.cleanPath(filename));
+//            Path copyLocation = Paths.get( "C:/UploadFile"+ File.separator + StringUtils.cleanPath(filename));
+            Path copyLocation = Paths.get( fileStoragePath + File.separator + StringUtils.cleanPath(filename));
             Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
             return filename;
         } catch (Exception e) {
