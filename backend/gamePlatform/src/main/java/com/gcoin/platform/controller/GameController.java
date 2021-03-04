@@ -8,6 +8,7 @@ import com.gcoin.platform.service.GameService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -29,6 +30,10 @@ public class GameController {
     FileService fileService;
     @Autowired
     GameService gameService;
+
+    @Value("${file.storage.path}")
+    private String fileStoragePath;
+
 
     //thumbnailPath is the image file name in the default server image directory
     @RequestMapping("/register")
@@ -93,7 +98,7 @@ public class GameController {
         }
         GameVO gameVO = new GameVO();
         BeanUtils.copyProperties(gameDo,gameVO);
-        String filepath = "C:/UploadFile/"+gameDo.getThumbnailPath();
+        String filepath = fileStoragePath+gameDo.getThumbnailPath();
         String imgBase64String = "data:image/jpg;base64," + fileService.getImageBase64Str(filepath);
         gameVO.setThumbnailBase64Str(imgBase64String);
         return gameVO;

@@ -34,7 +34,7 @@ public class FileServiceImpl implements FileService {
             long imageName = (long) (rand.nextDouble()*times);
             filename = imageName+".jpg";
 //            Path copyLocation = Paths.get( "C:/UploadFile"+ File.separator + StringUtils.cleanPath(filename));
-            Path copyLocation = Paths.get( fileStoragePath + File.separator + StringUtils.cleanPath(filename));
+            Path copyLocation = Paths.get( fileStoragePath + StringUtils.cleanPath(filename));
             Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
             return filename;
         } catch (Exception e) {
