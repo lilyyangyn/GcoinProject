@@ -3,6 +3,7 @@
     <button @click="onClickHandle1()">click</button>
     <button @click="onClickHandle2()">click2</button>
     <button @click="onClickHandle3()">click3</button>
+    <button @click="onClickHandle4()">click4</button>
   </div>
 </template>
 
@@ -10,8 +11,11 @@
 
 
 import {web3Util} from "@/scripts/web3Util/web3Util";
+import home from "@/views/Home";
+import {vm} from "@/main";
 
 export default {
+  // props:{updateFunction: {type: Function}},
   data() {
     return {
       name: null,
@@ -41,6 +45,14 @@ export default {
       // web3Util.getUSDTFromFaucet();
       web3Util.getUserUSDTBalance();
     },
+    onClickHandle4() {
+      // console.log(this.$refs);
+      // home.data().coinBalance.USDTBalance = "10000000";
+      // home.methods.USDTBalanceUpdate();
+      // this.updateFunction();
+      vm.$emit('balanceUpdate',"500000");
+    },
+
   }
 }
 </script>

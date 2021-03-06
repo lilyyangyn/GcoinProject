@@ -115,6 +115,12 @@ const routes = [
         meta: {requireAuth: false}
       },
       {
+        path: '/faucet',
+        name: 'Faucet',
+        component: () => import('../views/USDTFaucet.vue'),
+        meta: {requireAuth: false}
+      },
+      {
         path: '/test',
         name: 'Test',
         component: () => import('../views/Test.vue'),

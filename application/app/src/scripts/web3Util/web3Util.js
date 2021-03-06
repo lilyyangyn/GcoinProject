@@ -19,16 +19,24 @@ const web3Util = {
     },
 
     //Utilized by the write function to sign the transaction for EVM state update
-    signTransaction: function (web3, tx) {
-        const signPromise = web3.eth.accounts.signTransaction(tx, this.privateKey);
+    signTransaction: function (web3, tx, callbackFunction,privateKey) {
+        const signPromise = web3.eth.accounts.signTransaction(tx, privateKey);
+        console.log("here");
         signPromise.then((signedTx) => {
+            console.log(signedTx);
             const sentTx = web3.eth.sendSignedTransaction(signedTx.raw || signedTx.rawTransaction);
-            sentTx.on("receipt", receipt => {
-                console.log(receipt);
+            sentTx.then((resolved)=>{
+                console.log(resolved);
+                callbackFunction(resolved);
             });
-            sentTx.on("error", err => {
-                console.log(err);
-            });
+            // sentTx.on("receipt", receipt => {
+            //     console.log(receipt);
+            //     callbackFunction("got the receipt");
+            //
+            // });
+            // sentTx.on("error", err => {
+            //     console.log(err);
+            // });
         }).catch((err) => {
             console.log(err);
         });
@@ -61,25 +69,56 @@ const web3Util = {
     },
 
     //Write Function
-    getUSDTFromFaucet: async function () {
+    getUSDTFromFaucet: async function (receiver,callbackFunction) {
 
         if (web3Util.parentChainWeb3 == null) {
             await web3Util.homeChainWeb3Initialize();
         }
 
+        alert(receiver);
         const myContract = new this.parentChainWeb3.eth.Contract(contractAbi.USDTFaucetAbi, utilConfig.homeChainContractAddress.USDT_Faucet);
 
         const tx = {
-            from: this.userAddress,
             to: utilConfig.homeChainContractAddress.USDT_Faucet,
             gas: 100000,
-            gasPrice: 10,
+            gasPrice: 10000000000,
             value: 0,
-            data: myContract.methods.getUSDT("0x2f56b78D2d3B5EF6FDf0A6c2415089909496C646").encodeABI()
+            data: myContract.methods.getUSDT(receiver).encodeABI()
         };
-        this.signTransaction(this.parentChainWeb3, tx);
+        this.signTransaction(this.parentChainWeb3, tx, callbackFunction, this.privateKey);
     },
 
+    getParentChainGasFromFaucet: async function (receiver,callbackFunction) {
+
+        if (web3Util.parentChainWeb3 == null) {
+            await web3Util.homeChainWeb3Initialize();
+        }
+
+        const tx = {
+            from: utilConfig.faucet.faucetPublicKey,
+            to: receiver,
+            gas: 100000,
+            gasPrice: 10000000000,
+            value: utilConfig.faucet.homeChainGasFaucetValue,
+        };
+        this.signTransaction(this.parentChainWeb3, tx, callbackFunction, utilConfig.faucet.faucetAccPrivateKey);
+    },
+
+    getChildChainGasFromFaucet: async function (receiver,callbackFunction) {
+        alert(receiver);
+        if (web3Util.childChainWeb3 == null) {
+            await web3Util.childChainWeb3Initialize();
+        }
+
+        const tx = {
+            from: utilConfig.faucet.faucetPublicKey,
+            to: receiver,
+            gas: 1000000,
+            gasPrice: 10000000000,
+            value: utilConfig.faucet.childChainGasFaucetValue,
+        };
+        this.signTransaction(this.childChainWeb3, tx, callbackFunction, utilConfig.faucet.faucetAccPrivateKey);
+    },
     //Read function
 
     //Get user balance

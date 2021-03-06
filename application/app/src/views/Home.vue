@@ -94,6 +94,11 @@
                   Transfer
               </MenuItem> -->
 
+              <MenuItem name="Faucet" to="/faucet">
+                <Icon type="md-log-in" />
+                Faucet
+              </MenuItem>
+
               <MenuItem name="Explorer" to="/explorer">
                 <Icon type="ios-keypad"/>
                 Explorer
@@ -123,9 +128,10 @@
 <script>
 import {logout} from "../scripts/api/loginAPI";
 import {web3Util} from "@/scripts/web3Util/web3Util";
+import {vm} from "@/main";
 
 export default {
-
+  name:"home",
   data() {
     return {
       numeral: require('numeral'),
@@ -144,8 +150,9 @@ export default {
     },
     USDTBalanceUpdate() {
       web3Util.getUserUSDTBalance().then((resolved) => {
-        let balance = this.numeral(parseInt("1000000")).format('0,0');
+        let balance = this.numeral(parseInt(resolved)).format('0,0');
         this.coinBalance.USDTBalance = balance;
+        console.log("ran USDT update");
       });
     },
     parentChainExchgCoinUpdate() {
@@ -159,13 +166,24 @@ export default {
         let balance = this.numeral(parseInt(resolved)).format('0,0');
         this.coinBalance.childChainExchgCoinBalance = balance;
       });
-    }
+    },
   },
   mounted() {
     // let numeral = require('numeral');
     this.USDTBalanceUpdate();
     this.parentChainExchgCoinUpdate();
     this.childChainExchgCoinUpdate();
+
+    vm.$on('USDTBalanceUpdate', () => {
+      console.log('USDTBalanceUpdate Event');
+      this.USDTBalanceUpdate();
+    });
+    vm.$on('parentChainExchgCoinBalanceUpdate', () => {
+      this.parentChainExchgCoinUpdate();
+    });
+    vm.$on('childChainExchgCoinBalanceUpdate', () => {
+      this.childChainExchgCoinUpdate();
+    });
   }
 }
 </script>
