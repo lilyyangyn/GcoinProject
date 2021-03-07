@@ -121,6 +121,12 @@ const routes = [
         meta: {requireAuth: false}
       },
       {
+        path: '/wallet/manager',
+        name: 'WalletManager',
+        component: () => import('../views/WalletManager.vue'),
+        meta: {requireAuth: false}
+      },
+      {
         path: '/test',
         name: 'Test',
         component: () => import('../views/Test.vue'),

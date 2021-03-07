@@ -68,6 +68,28 @@ const web3Util = {
     //     });
     },
 
+    //private key to public key
+    privateKeyToPublicKey: async function (privateKey) {
+      if (web3Util.parentChainWeb3 == null) {
+          await web3Util.homeChainWeb3Initialize();
+      }
+      return this.parentChainWeb3.eth.accounts.privateKeyToAccount(privateKey);
+    },
+
+    checkHomeChainBalance: async function (address) {
+        if (web3Util.parentChainWeb3 == null) {
+            await web3Util.homeChainWeb3Initialize();
+        }
+        return this.parentChainWeb3.eth.getBalance(address);
+    },
+
+    checkChildChainBalance: async function (address) {
+        if (web3Util.childChainWeb3 == null) {
+            await web3Util.childChainWeb3Initialize();
+        }
+        return this.childChainWeb3.eth.getBalance(address);
+    },
+
     //Write Function
     getUSDTFromFaucet: async function (receiver,callbackFunction) {
 
@@ -85,7 +107,11 @@ const web3Util = {
             value: 0,
             data: myContract.methods.getUSDT(receiver).encodeABI()
         };
-        this.signTransaction(this.parentChainWeb3, tx, callbackFunction, this.privateKey);
+        if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            this.signTransaction(this.parentChainWeb3, tx, callbackFunction, localStorage.getItem('privateKey'));
+        }
     },
 
     getParentChainGasFromFaucet: async function (receiver,callbackFunction) {
@@ -129,9 +155,13 @@ const web3Util = {
             await web3Util.homeChainWeb3Initialize();
         }
 
-        const contract = new this.parentChainWeb3.eth.Contract(contractAbi.USDTAbi, utilConfig.homeChainContractAddress.USDT);
-        let contractCallPromise = contract.methods.balanceOf(this.userAddress).call();
-        return await this.readContract(contractCallPromise, contract);
+        if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            const contract = new this.parentChainWeb3.eth.Contract(contractAbi.USDTAbi, utilConfig.homeChainContractAddress.USDT);
+            let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
+            return await this.readContract(contractCallPromise, contract);
+        }
     },
 
     getUserParentChainExchangeCoinBalance: async function () {
@@ -140,9 +170,15 @@ const web3Util = {
             await web3Util.homeChainWeb3Initialize();
         }
 
-        const contract = new this.parentChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.homeChainContractAddress.Bridgeable_Token);
-        let contractCallPromise = contract.methods.balanceOf(this.userAddress).call();
-        return await this.readContract(contractCallPromise, contract);
+        if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            const contract = new this.parentChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.homeChainContractAddress.Bridgeable_Token);
+            let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
+            return await this.readContract(contractCallPromise, contract);
+        }
+
+
     },
 
     getUserChildChainExchgCoinBalance: async function () {
@@ -151,9 +187,15 @@ const web3Util = {
             await web3Util.childChainWeb3Initialize();
         }
 
-        const contract = new this.childChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.childChainContractAddress.Bridgeable_Token);
-        let contractCallPromise = contract.methods.balanceOf(this.userAddress).call();
-        return await this.readContract(contractCallPromise, contract);
+        if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            const contract = new this.childChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.childChainContractAddress.Bridgeable_Token);
+            let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
+            return await this.readContract(contractCallPromise, contract);
+        }
+
+
     },
 
 

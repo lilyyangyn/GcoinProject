@@ -52,7 +52,7 @@ export default {
   mounted() {
     // if ($(this).attr('src') != '') { resize(); $('#frame-wrapper').fadeIn(300); }
     if(document.getElementById("frame")!=null){
-      resize();
+      // resize();
       // this.getElementById("frame-wrapper").fadeIn(300);
 
     }

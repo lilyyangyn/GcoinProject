@@ -109,7 +109,10 @@
                 Statistic
               </MenuItem>
             </Submenu>
-
+            <MenuItem name="wallet" to="/wallet/manager">
+              <Icon type="logo-buffer" />
+              Wallet Manager
+            </MenuItem>
           </Menu>
 
         </Sider>
@@ -170,18 +173,28 @@ export default {
   },
   mounted() {
     // let numeral = require('numeral');
-    this.USDTBalanceUpdate();
-    this.parentChainExchgCoinUpdate();
-    this.childChainExchgCoinUpdate();
+    if(localStorage.getItem('address')!=null && localStorage.getItem('address')!=""){
+      this.USDTBalanceUpdate();
+      this.parentChainExchgCoinUpdate();
+      this.childChainExchgCoinUpdate();
+    }
 
     vm.$on('USDTBalanceUpdate', () => {
-      console.log('USDTBalanceUpdate Event');
+      // console.log('USDTBalanceUpdate Event');
       this.USDTBalanceUpdate();
     });
     vm.$on('parentChainExchgCoinBalanceUpdate', () => {
       this.parentChainExchgCoinUpdate();
     });
     vm.$on('childChainExchgCoinBalanceUpdate', () => {
+      this.childChainExchgCoinUpdate();
+    });
+    vm.$on('allBalanceUpdate', () => {
+      this.coinBalance.USDTBalance = "";
+      this.coinBalance.childChainExchgCoinBalance = "";
+      this.coinBalance.homeChainExchgCoinBalance = "";
+      this.USDTBalanceUpdate();
+      this.parentChainExchgCoinUpdate();
       this.childChainExchgCoinUpdate();
     });
   }
@@ -196,7 +209,7 @@ export default {
   align-items: center;
   margin-top: 10px;
   margin-right: 2%;
-  width: 450px;
+  width: 550px;
   border: #5b6270;
   border-radius: 3px;
 }
