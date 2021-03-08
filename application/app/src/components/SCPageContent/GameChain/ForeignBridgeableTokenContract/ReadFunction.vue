@@ -1,6 +1,6 @@
 <template>
   <Collapse accordion simple>
-    https://goerli.etherscan.io/address/0x60Fc1c7347b7D52aB28401311e49e22845C6706E#readContract
+    <!-- https://goerli.etherscan.io/address/0x60Fc1c7347b7D52aB28401311e49e22845C6706E#readContract -->
     <Panel name="mingtingFinishedFunction">
       Mingting_Finished
       <div slot="content">

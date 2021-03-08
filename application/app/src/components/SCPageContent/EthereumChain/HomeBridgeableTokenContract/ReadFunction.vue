@@ -1,5 +1,6 @@
 <template>
   <Collapse accordion simple>
+    <!-- https://ropsten.etherscan.io/address/0x5AF5075a6c13978f88659a27E8ED1B0A04bd0912 -->
     <Panel name="mingtingFinishedFunction">
       Mingting_Finished
       <div slot="content">

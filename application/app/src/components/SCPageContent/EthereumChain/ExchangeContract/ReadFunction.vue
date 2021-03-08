@@ -1,114 +1,44 @@
 <template>
   <Collapse accordion simple>
-    https://ropsten.etherscan.io/address/0xb9Ed6B7c16E4300BB8793daDD632dc39eD2Db119#readContract
-    <Panel name="mingtingFinishedFunction">
-      Mingting_Finished
+<!--     https://ropsten.etherscan.io/address/0xb9Ed6B7c16E4300BB8793daDD632dc39eD2Db119#readContract -->
+    <Panel name="exchcoinContractFunction">
+      Exchcoin_Contract
       <div slot="content">
         <Button type="success">read</Button>
       </div>
     </Panel>
-    <Panel name="nameFunction">
-      Name
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="totalSupplyFunction">
-      Total_Supply
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    
-    <Panel name="permitTypehashFunction">
-      PERMIT_TYPEHASH
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="decimalsFunction">
-      Decimals
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="domainSeparatorFunction">
-      DOMAIN_SEPARATOR
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="versionFunction">
-      Version
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="balanceOfFunction">
-      Balance_Of
-      <div slot="content">
-        <label>owner</label>
-        <input type="text"></input>
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="isBridgeFunction">
-      Is_Bridge
+    <Panel name="exchcoinLedgerFunction">
+      Exchcoin_Ledger
       <div slot="content">
         <label>address</label>
         <input type="text"></input>
         <Button type="success">read</Button>
       </div>
     </Panel>
-    <Panel name="noucesFunction">
-      Nouces
+    <Panel name="USDTContractFunction">
+      USDT_Contract
       <div slot="content">
-        <label>input</label>
+        <Button type="success">read</Button>
+      </div>
+    </Panel>
+    
+    <Panel name="USDTLedgerFunction">
+      USDT_Ledger
+      <div slot="content">
+        <label>address</label>
         <input type="text"></input>
         <Button type="success">read</Button>
       </div>
     </Panel>
-    <Panel name="getTokenInterfacesVersionFunction">
-      Get_Token_Interfaces_Version
+    <Panel name="pltfFeeRateFunction">
+      Pltf_Fee_Rate
       <div slot="content">
         <Button type="success">read</Button>
       </div>
     </Panel>
-    <Panel name="ownerFunction">
-      Owner
+    <Panel name="dpltfOwnerFunction">
+      Pltf_Owner
       <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="symbolFunction">
-      Symbol
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="bridgeContractFunction">
-      Bridge_Contract
-      <div slot="content">
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="allowanceFunction">
-      Allowance
-      <div slot="content">
-        <label>owner</label>
-        <input type="text"></input>
-        <label>spender</label>
-        <input type="text"></input>
-        <Button type="success">read</Button>
-      </div>
-    </Panel>
-    <Panel name="expirationsFunction">
-      Expirations
-      <div slot="content">
-        <!-- <label>owner</label> -->
-        <input type="text"></input>
-        <!-- <label>spender</label> -->
-        <input type="text"></input>
         <Button type="success">read</Button>
       </div>
     </Panel>

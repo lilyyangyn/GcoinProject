@@ -1,196 +1,42 @@
 <template>
   <Collapse accordion simple>
-    https://ropsten.etherscan.io/address/0xb9Ed6B7c16E4300BB8793daDD632dc39eD2Db119#writeContract
-    <Panel name="approveFunction">
-      Approve
+    <!-- https://ropsten.etherscan.io/address/0xb9Ed6B7c16E4300BB8793daDD632dc39eD2Db119#writeContract -->
+    <Panel name="USDTToExchcoinFunction">
+      USDT_To_Exchcoin
       <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
-        <label>value</label>
+        <label>_v</label>
         <input type="text"></input>
         <Button type="success">write</Button>
       </div>
     </Panel>
-    <Panel name="setBridgeContractFunction">
-      Set_Bridge_Contract
+    <Panel name="USDTToExchcoinCoinDeliverFunction">
+      USDT_To_Exchcoin_Coin_Deliver
       <div slot="content">
-        <label>bridgeContract</label>
+        <label>_v</label>
         <input type="text"></input>
         <Button type="success">write</Button>
       </div>
     </Panel>
-    <Panel name="transferFromFunction">
-      Transfer_From
+    <Panel name="exchcoinToUSDTFunction">
+      Exchcoin_To_USDT
       <div slot="content">
-        <label>sender</label>
-        <input type="text"></input>
-        <label>recipient</label>
-        <input type="text"></input>
-        <label>amount</label>
+        <label>_v</label>
         <input type="text"></input>
         <Button type="success">write</Button>
       </div>
     </Panel>
-    <Panel name="increaseAllowanceFunction">
-      Increase_Allowance
+    <Panel name="exchcoinToUSDTCoinDeliverFunction">
+      Exchcoin_To_USDT_Coin_Deliver
       <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
-        <label>addedValue</label>
+        <label>_v</label>
         <input type="text"></input>
         <Button type="success">write</Button>
       </div>
     </Panel>
-    <Panel name="transferAndCallFunction">
-      Transfer_And_Call
+    <Panel name="transferPltfOwnershipFunction">
+      Transfer_Pltf_Ownership
       <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
-        <label>value</label>
-        <input type="text"></input>
-        <label>data</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="mintFunction">
-      Mint
-      <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
-        <label>amount</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="burnFunction">
-      Burn
-      <div slot="content">
-        <label>value</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="decreaseApprovalFunction">
-      Decrease_Approval
-      <div slot="content">
-        <label>spender</label>
-        <input type="text"></input>
-        <label>subtractedValue</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="claimTokensFunction">
-      Claim_Tokens
-      <div slot="content">
-        <label>token</label>
-        <input type="text"></input>
-        <label>to</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="renounceOwnershipFunction">
-      Renounce_Ownership
-      <div slot="content">
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="finishMintingFunction">
-      Finish_Minting
-      <div slot="content">
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="permitFunction">
-      Permit
-      <div slot="content">
-        <label>holder</label>
-        <input type="text"></input>
-        <label>spender</label>
-        <input type="text"></input>
-        <label>nonce</label>
-        <input type="text"></input>
-        <label>expiry</label>
-        <input type="text"></input>
-        <label>allowed</label>
-        <input type="text"></input>
-        <label>v</label>
-        <input type="text"></input>
-        <label>r</label>
-        <input type="text"></input>
-        <label>s</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="decreaseAllowanceFunction">
-      Decrease_Allowance
-      <div slot="content">
-        <label>spender</label>
-        <input type="text"></input>
-        <label>subtractedValue</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="transferFunction">
-      Transfer
-      <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
-        <label>value</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="pushFunction">
-      Push
-      <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
-        <label>amount</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="moveFunction">
-      Move
-      <div slot="content">
-        <label>from</label>
-        <input type="text"></input>
-        <label>to</label>
-        <input type="text"></input>
-        <label>amount</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="increaseApprovalFunction">
-      Increase_Approval
-      <div slot="content">
-        <label>spender</label>
-        <input type="text"></input>
-        <label>addedValue</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="pullFunction">
-      Pull
-      <div slot="content">
-        <label>from</label>
-        <input type="text"></input>
-        <label>amount</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
-      </div>
-    </Panel>
-    <Panel name="transferOwnershipFunction">
-      Transfer_Ownership
-      <div slot="content">
-        <label>newOwner</label>
+        <label>_a</label>
         <input type="text"></input>
         <Button type="success">write</Button>
       </div>
