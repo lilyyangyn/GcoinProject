@@ -38,12 +38,18 @@
 <!--           style="border:3px solid black;"-->
 <!--           src="http://localhost:3000"  id="frame" ></iframe>-->
   <div>
+
 <!--    <div id="frame-wrapper" hidden="" style="position: absolute; height: 1000px; width: 886px; transform: scale(0.5); transform-origin: 0px 0px; display: block;">-->
 <!--      <iframe id="frame" style="position: absolute; width: 3000px; height: 100%; border: none;" src="http://localhost:3000"></iframe>-->
 <!--    </div>-->
-    <div id="frame-wrapper" hidden="" style="position: absolute; height: 100%; width: 100%; transform: scale(0.59); transform-origin: 0px 0px; display: block;">
-      <iframe id="frame" style="position: absolute; width: 2066px; height: 1077px;  margin-left: 5px" src="http://localhost:3000"></iframe>
-    </div>
+    <Tabs type="card" value="gameChainNetwork" style="height: 650px">
+      <TabPane label="Game Chain Network Statistic" name="gameChainNetwork">
+        <div id="frame-wrapper" hidden="" style="position: absolute; height: 100%; width: 100%; transform: scale(0.60); transform-origin: 0px 0px; display: block;">
+          <!--      <iframe id="frame" style="position: absolute; width: 2066px; height: 1077px;  margin-left: 5px" src="https://ethstats.net/"></iframe>-->
+          <iframe id="frame" style="position: absolute; width: 2066px; height: 1063px;  margin-left: 5px" src="https://ethstats.net/"></iframe>
+        </div>
+      </TabPane>
+    </Tabs>
   </div>
 </template>
 

@@ -21,8 +21,8 @@
         <br>
       </Card>
       <div style="display: inline-flex; width: 100%; height: 40px;">
-        <Button type="success" class="button" @click="removeKeyHandler">Remove Key</Button>
-        <Button class="button" @click="setKeyHandler">Set Key</Button>
+        <Button type="info" class="button" @click="removeKeyHandler">Remove Key</Button>
+        <Button type="primary" class="button" @click="setKeyHandler">Set Key</Button>
         <Button class="button" @click="exportPrivateKeyHandler">Export Private Key</Button>
       </div>
     </span>

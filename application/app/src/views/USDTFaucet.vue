@@ -19,7 +19,6 @@
 
     <br>
     <br>
-    <br>
 
     <h1 class="page-title">Game Chain Gas Faucet</h1>
     <span class="card-container">
@@ -33,15 +32,14 @@
           <Icon type="ios-loading" size=25 class="demo-spin-icon-load"></Icon>
         </Spin>
       </Card>
-      <Button type="success" class="submit-btn" @click="childChainGasFaucetSubmitHandler">
+      <Button type="primary" class="submit-btn" @click="childChainGasFaucetSubmitHandler">
         Submit
       </Button>
     </span>
 
+    <br>
+    <br>
 
-    <br>
-    <br>
-    <br>
     <h1 class="page-title">Public Chain Gas Faucet</h1>
     <span class="card-container">
       <Card>
@@ -54,7 +52,7 @@
           <Icon type="ios-loading" size=25 class="demo-spin-icon-load"></Icon>
         </Spin>
       </Card>
-      <Button type="success" class="submit-btn" @click="parentChainGasFaucetSubmitHandler">
+      <Button type="warning" class="submit-btn" @click="parentChainGasFaucetSubmitHandler">
         Submit
       </Button>
     </span>
