@@ -28,7 +28,7 @@
       </Header>
       <Layout>
         <Sider :style="{background: '#fff'}" id="sider">
-          <Menu theme="light" width="auto">
+          <Menu theme="light" width="auto" style="height: 100%">
             <!--            <MenuItem name="Home" to="/">-->
             <!--              <Icon type="md-home"/>-->
             <!--              Home-->
@@ -121,9 +121,9 @@
           <router-view/>
         </Content>
       </Layout>
-      <Footer id="foot">
-        foot
-      </Footer>
+<!--      <Footer id="foot">-->
+<!--        foot-->
+<!--      </Footer>-->
     </Layout>
   </div>
 </template>

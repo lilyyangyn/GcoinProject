@@ -14,7 +14,8 @@ async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 1550,
-    height: 863,
+    height:804,
+    // height: 863,
     resizable: false,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
@@ -22,6 +23,8 @@ async function createWindow() {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
     }
   })
+  win.setMenuBarVisibility(false)
+
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
@@ -61,7 +64,7 @@ app.on('ready', async () => {
       console.error('Vue Devtools failed to install:', e.toString())
     }
   }
-  createWindow()
+  createWindow();
 })
 
 // Exit cleanly on request from parent process in development mode.
