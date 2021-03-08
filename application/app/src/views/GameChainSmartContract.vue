@@ -11,7 +11,7 @@
       <TabPane label="Bridge Storage Proxy Contract">
         <BridgeStorageProxyContractCardContainer></BridgeStorageProxyContractCardContainer>
       </TabPane>
-      <TabPane label="Bridge Storage Proxy Contract">
+      <TabPane label="Bridge Contract">
         <BridgeContractCardContainer></BridgeContractCardContainer>
       </TabPane>
 

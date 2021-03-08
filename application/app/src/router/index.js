@@ -44,7 +44,6 @@ const routes = [
       //   name: 'DepositPage',
       //   component: () => import('../views/Deposit.vue')
       // },
-
       {
         path: '/explorer',
         //name: 'Explorer',
@@ -72,6 +71,12 @@ const routes = [
             meta: {requireAuth: false},
           },
         ]
+      },
+      {
+        path: '/blockchain/statistic',
+        name: 'Statistic',
+        component: () => import('../views/Statistic.vue'),
+        meta: {requireAuth: false}
       },
       {
         path: '/game',
@@ -107,6 +112,24 @@ const routes = [
         path: 'game/gameinfo',
         name: 'GameInfo',
         component: () => import('../views/GameInfo.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: '/faucet',
+        name: 'Faucet',
+        component: () => import('../views/USDTFaucet.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: '/wallet/manager',
+        name: 'WalletManager',
+        component: () => import('../views/WalletManager.vue'),
+        meta: {requireAuth: false}
+      },
+      {
+        path: '/test',
+        name: 'Test',
+        component: () => import('../views/Test.vue'),
         meta: {requireAuth: false}
       },
 

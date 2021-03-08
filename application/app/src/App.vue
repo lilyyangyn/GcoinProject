@@ -18,9 +18,8 @@
 
 
 #main
-
-  min-height 700px
-
+  //min-height 700px
+  height 650px
   margin-left 50px
   margin-top 20px
   color #2c3e50
