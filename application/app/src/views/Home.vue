@@ -15,9 +15,11 @@
             <!--              <hr size="8" width="90%">-->
             <Steps :current="4" size="small">
               <Step title="Gcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Exchcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Stablecoin" icon="logo-bitcoin" content="1,000,000"></Step>
+              <Step title="Exchcoin[F]" icon="logo-bitcoin"
+                    v-bind:content="coinBalance.childChainExchgCoinBalance"></Step>
+              <Step title="Exchcoin[H]" icon="logo-bitcoin"
+                    v-bind:content="coinBalance.homeChainExchgCoinBalance"></Step>
+              <Step title="USDT" icon="logo-bitcoin" v-bind:content="coinBalance.USDTBalance"></Step>
             </Steps>
 
           </div>
@@ -37,6 +39,13 @@
               Game
             </MenuItem>
 
+            <!--            test -->
+            <MenuItem name="Test" to="/test">
+              <Icon type="ios-game-controller-b"/>
+              Test
+            </MenuItem>
+            <!--            test-->
+
             <Submenu name="Service">
               <template slot="title">
                 <Icon type="ios-apps"/>
@@ -49,7 +58,7 @@
               </MenuItem>
 
               <MenuItem name="Game_Launch" to="/gamelaunch">
-                <Icon type="md-cloud-upload" />
+                <Icon type="md-cloud-upload"/>
                 Game Launch
               </MenuItem>
 
@@ -57,7 +66,7 @@
 
             <Submenu name="Blockchain_Service">
               <template slot="title">
-                <Icon type="md-git-merge" />
+                <Icon type="md-git-merge"/>
                 Blockchain
               </template>
 
@@ -75,7 +84,6 @@
               </Submenu>
 
 
-
               <!-- <MenuItem name="NodeRegister" to="/nodeRegister">
                   <Icon type="md-add" />
                   NodeRegister
@@ -85,6 +93,11 @@
                   <Icon type="md-card" />
                   Transfer
               </MenuItem> -->
+
+              <MenuItem name="Faucet" to="/faucet">
+                <Icon type="md-log-in" />
+                Faucet
+              </MenuItem>
 
               <MenuItem name="Explorer" to="/explorer">
                 <Icon type="ios-keypad"/>
@@ -96,7 +109,10 @@
                 Statistic
               </MenuItem>
             </Submenu>
-
+            <MenuItem name="wallet" to="/wallet/manager">
+              <Icon type="logo-buffer" />
+              Wallet Manager
+            </MenuItem>
           </Menu>
 
         </Sider>
@@ -114,14 +130,73 @@
 
 <script>
 import {logout} from "../scripts/api/loginAPI";
+import {web3Util} from "@/scripts/web3Util/web3Util";
+import {vm} from "@/main";
 
 export default {
+  name:"home",
+  data() {
+    return {
+      numeral: require('numeral'),
+      coinBalance: {
+        USDTBalance: '',
+        homeChainExchgCoinBalance: '',
+        childChainExchgCoinBalance: ''
+      }
+    }
+  },
   methods: {
     toLogout() {
       logout();
       this.$router.push({path: '/login'});
       this.$Message.success('Logout success!');
+    },
+    USDTBalanceUpdate() {
+      web3Util.getUserUSDTBalance().then((resolved) => {
+        let balance = this.numeral(parseInt(resolved)).format('0,0');
+        this.coinBalance.USDTBalance = balance;
+        console.log("ran USDT update");
+      });
+    },
+    parentChainExchgCoinUpdate() {
+      web3Util.getUserParentChainExchangeCoinBalance().then((resolved) => {
+        let balance = this.numeral(parseInt(resolved)).format('0,0');
+        this.coinBalance.homeChainExchgCoinBalance = balance;
+      });
+    },
+    childChainExchgCoinUpdate() {
+      web3Util.getUserChildChainExchgCoinBalance().then((resolved) => {
+        let balance = this.numeral(parseInt(resolved)).format('0,0');
+        this.coinBalance.childChainExchgCoinBalance = balance;
+      });
+    },
+  },
+  mounted() {
+    // let numeral = require('numeral');
+    if(localStorage.getItem('address')!=null && localStorage.getItem('address')!=""){
+      this.USDTBalanceUpdate();
+      this.parentChainExchgCoinUpdate();
+      this.childChainExchgCoinUpdate();
     }
+
+    vm.$on('USDTBalanceUpdate', () => {
+      // console.log('USDTBalanceUpdate Event');
+      this.USDTBalanceUpdate();
+    });
+    vm.$on('parentChainExchgCoinBalanceUpdate', () => {
+      this.parentChainExchgCoinUpdate();
+    });
+    vm.$on('childChainExchgCoinBalanceUpdate', () => {
+      this.childChainExchgCoinUpdate();
+    });
+    vm.$on('allBalanceUpdate', () => {
+      this.coinBalance.USDTBalance = "";
+      this.coinBalance.childChainExchgCoinBalance = "";
+      this.coinBalance.homeChainExchgCoinBalance = "";
+      this.USDTBalanceUpdate();
+      this.parentChainExchgCoinUpdate();
+      this.childChainExchgCoinUpdate();
+    });
   }
 }
 </script>
@@ -134,7 +209,7 @@ export default {
   align-items: center;
   margin-top: 10px;
   margin-right: 2%;
-  width: 450px;
+  width: 550px;
   border: #5b6270;
   border-radius: 3px;
 }
