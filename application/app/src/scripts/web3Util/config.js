@@ -8,6 +8,7 @@ const utilConfig = {
         USDT_Faucet: "0x415cCa4B51552c9854CfF03656a38dD8664a087A",
         Bridgeable_Token: "0x10fd971Dab524A87537E0Ea8af7EC7Eb7d117f95",
         Bridge_Mediator: "0x194F052528d5FbBEd085004C6451Ef116dD61173",
+        Home_Exchange:"0x1650089d337dB2312d47983A62cf3735b838e8d3",
     },
     childChainContractAddress:{
         Bridgeable_Token: "0x5362490a5c48cBc2a686DEE73695CE52f7eBbD3c",

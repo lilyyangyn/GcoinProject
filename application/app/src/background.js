@@ -15,6 +15,7 @@ async function createWindow() {
   const win = new BrowserWindow({
     width: 1550,
     height:804,
+    // icon:"./assets/logo.png",
     // height: 863,
     resizable: false,
     webPreferences: {
@@ -23,7 +24,8 @@ async function createWindow() {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
     }
   })
-  win.setMenuBarVisibility(false)
+  win.setMenuBarVisibility(false);
+  // win.setIcon(path.join(__dirname,'/src/assets/icons8-game-maker-48.png'));
 
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
