@@ -4,6 +4,10 @@
     <button @click="onClickHandle2()">click2</button>
     <button @click="onClickHandle3()">click3</button>
     <button @click="onClickHandle4()">click4</button>
+
+    <button @click="onClickHandle5()">click5</button>
+    <button @click="onClickHandle6()">click6</button>
+    <button @click="onClickHandle7()">click7</button>
   </div>
 </template>
 
@@ -13,6 +17,7 @@
 import {web3Util} from "@/scripts/web3Util/web3Util";
 import home from "@/views/Home";
 import {vm} from "@/main";
+import {USDTS} from "@/scripts/homechain/USDTS"
 
 export default {
   // props:{updateFunction: {type: Function}},
@@ -51,6 +56,27 @@ export default {
       // home.methods.USDTBalanceUpdate();
       // this.updateFunction();
       vm.$emit('balanceUpdate',"500000");
+    },
+
+
+    async onClickHandle5() {
+      if (web3Util.parentChainWeb3 == null) {
+        await web3Util.homeChainWeb3Initialize();
+      }
+      await USDTS.start(web3Util.parentChainWeb3);
+      USDTS.refreshBalance((err, result) => console.log(result));
+      USDTS.refreshAllowance((err, result) => console.log(result));
+    },
+
+    async onClickHandle6() {
+      if (web3Util.parentChainWeb3 == null) {
+        await web3Util.homeChainWeb3Initialize();
+      }
+      await USDTS.start(web3Util.parentChainWeb3);
+      USDTS.approve(10, (err, res) => console.log(res));
+    },
+    onClickHandle7() {
+
     },
 
   }

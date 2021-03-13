@@ -113,7 +113,7 @@
 </style>
 
 <script>
-	import { NodeRegister } from '../scripts/NodeRegister.js';
+	import { NodeRegister } from '@/scripts/contracts/NodeRegister.js';
 
 	export default {
 		name: 'Register',

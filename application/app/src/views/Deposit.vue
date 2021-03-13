@@ -8,87 +8,71 @@
 <script>
 	import Web3 from "web3";
  
-	import { USDTS } from '../scripts/crosschain/parentchain/USDTS.js';
-	import { USDTExchcoinExchange } from '../scripts/crosschain/parentchain/USDTExchcoinExchange.js';
-	import { BridgeableToken } from '../scripts/crosschain/parentchain/BridgeableToken.js';
+	import { USDTS } from '@/scripts/crosschain/parentchain/USDTS';
+	import { USDTExchcoinExchange } from '@/scripts/crosschain/parentchain/USDTExchcoinExchange';
+	import { BridgeableToken } from '@/scripts/crosschain/parentchain/BridgeableToken';
+
 	export default {
 		name: 'CrossChainDeposit',
+		data() {
+			return {
+				depositValue: 0,
+			}
+		},
 		methods: {
 
 			async transferToChildChain() {
 
-				const value = document.getElementById("deposit-value").value;
 				var self = this;
 
 				// USDT approval
 				var currentAllowance = 0;
-				await this.USDT.refreshAllowance(function(error, result) {
+				await USDT.refreshAllowance(function(error, result) {
 					if (!error) {
 						currentAllowance = result;
 					} 
 					self.refreshUSDTAllowanceCallback(error, result);
 				});
-				if (currentAllowance < value) {
-					await
-					 this.USDT.approve(value, function(error, result) {
+				if (currentAllowance < this.depositValue) {
+					await USDT.approve(this.depositValue, function(error, result) {
 						if (!error) {
 							currentAllowance = result;
 						} 
 						self.refreshUSDTAllowanceCallback(error, result);
 					})
 				}
-				if (currentAllowance < value) {
-					this.popMsg("Fail to allow the platform to spend your USDT. \nPlease try again or do it explicitly.");
+				if (currentAllowance < this.result) {
+					this.$Message.error("Fail to allow the platform to spend your USDT. \nPlease try again or do the allowance explicitly.")
 					return;
 				}
 
 				// USDT to Exchcoin
 				var successful = true;
-				await this.USDTExchcoinExchange.USDTToExchcoin(value, function(error, result) {
+				await USDTExchcoinExchange.USDTToExchcoin(value, function(error, result) {
 					if (error) {
 						console.error(error);
 						successful = false;
 					}
-					self.refreshUSDTBalanceCallback(error, result);
-					self.refreshSCUSDTLedgerBalanceCallback(error, result);
-				})
+				});
+				USDTExchcoinExchange.refreshUSDTBalance(this.refreshUSDTBalanceCallback);
+				USDTExchcoinExchange.refreshSCUSDTLedgerBalance(this.refreshSCUSDTLedgerBalanceCallback)
+
 				if (!successful) {
-					this.popMsg("Fail to reserve Exchcoin.\nPlease try again or do it explicitly.");
+					this.$Message.error("Fail to reserve Exchcoin.\nPlease try again or do the reservation explicitly.")
 					return;
 				}
 
 				// Crosschain
-				await this.BridgeableToken.transferToChildChain(value, function(error, result) {
+				await BridgeableToken.transferToChildChain(value, function(error, result) {
 					if (!error && result) {
-						this.popMsg("Succeed!");
+						alert("Succeed!");
 					} else {
-						this.popMsg("Fail to transfer Exchcoin to permissioned chain.\nPlease try again or do it explicitly.");
+						this.$Message.error("Fail to transfer Exchcoin to permissioned chain.\nPlease try again or do the transfer explicitly.");
 					}
-
-					self.refreshUSDTBalanceCallback(error, result);
-					self.refreshSCUSDTLedgerBalanceCallback(error, result);
-					self.refreshExchcoinBalanceCallback(error, result);
 				})
-			},
-
-			async unlockAccount() {
-				account = document.getElementById("account");
-				password = document.getElementById("password");
-				web3.personal.unlockAccount(account, password, (err) => {
-					if (err) {
-						popMsg("Fail to unlock your account")
-					}
-				});
-			}
-
-			/* UI Methods */ 
-
-			popMsg(error) {
-				// TODO
-				const popDetail = document.getElementById("popDetail");
-				if (popDetail) {
-					popDetail.innerHTML = error;
-				}
+				USDTExchcoinExchange.refreshUSDTBalance(this.refreshUSDTBalanceCallback);
+				USDTExchcoinExchange.refreshSCUSDTLedgerBalance(this.refreshSCUSDTLedgerBalanceCallback)
+				USDTExchcoinExchange.refreshExchcoinBalance(this.refreshExchcoinBalanceCallback)
 			},
 
 			/* UI Callback */

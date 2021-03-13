@@ -11,10 +11,12 @@ const web3Util = {
     userAddress: "0x2f56b78D2d3B5EF6FDf0A6c2415089909496C646",
 
     homeChainWeb3Initialize: async function () {
+        console.log("Initializing home-chain web3...");
         this.parentChainWeb3 = new Web3(new Web3.providers.HttpProvider(utilConfig.networkRPC.parentNetworkRPC));
     },
 
     childChainWeb3Initialize: async function () {
+        console.log("Initializing game-chain web3...");
         this.childChainWeb3 = new Web3(new Web3.providers.HttpProvider(utilConfig.networkRPC.childNetworkRPC));
     },
 

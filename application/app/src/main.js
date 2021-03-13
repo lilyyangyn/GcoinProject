@@ -16,19 +16,4 @@ var vm = new Vue({
 
 }).$mount('#app')
 
-if (window.ethereum) {
-	// use MetaMask's provider
-	vm.web3 = new Web3(window.ethereum);
-	window.ethereum.enable(); // get permission to access accounts
-} else {
-	console.warn(
-			"No web3 detected. Falling back to http://127.0.0.1:8545.",
-		);
-	vm.web3 = new Web3(
-			new Web3.providers.HttpProvider("http://127.0.0.1:8545"),
-		);
-}
-console.log("Web3 for Platform Permissioned Chain initialized successfully");
-
-
 export { vm }

@@ -483,6 +483,7 @@ const contractAbi = {
         "name": "Transfer",
         "type": "event"
     }],
+    USDTExchcoinExchangeAbi: [],
 
 }
 

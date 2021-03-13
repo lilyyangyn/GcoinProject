@@ -89,7 +89,7 @@
 </style>
 <script>
 	//import { vm } from "../main.js";
-	import { Gcoin } from '../scripts/gcoin.js';
+	import { Gcoin } from '@/scripts/contracts/gcoin.js';
 	export default {
 		name: "Trans",
 
