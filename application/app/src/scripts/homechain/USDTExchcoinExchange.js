@@ -7,7 +7,7 @@ const USDTExchcoinExchange = {
 	meta: null,
 	contractAddr: utilConfig.homeChainContractAddress.USDT_Exchcoin_Exchange,
 
-	start: async function() {		
+	start: async function(web3) {		
 		if (this.web3 != null && this.meta != null) {
 			return;
 		}	

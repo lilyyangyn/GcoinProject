@@ -18,6 +18,7 @@ import {web3Util} from "@/scripts/web3Util/web3Util";
 import home from "@/views/Home";
 import {vm} from "@/main";
 import {USDTS} from "@/scripts/homechain/USDTS"
+import {USDTExchcoinExchange} from "@/scripts/homechain/USDTExchcoinExchange"
 
 export default {
   // props:{updateFunction: {type: Function}},
@@ -64,8 +65,13 @@ export default {
         await web3Util.homeChainWeb3Initialize();
       }
       await USDTS.start(web3Util.parentChainWeb3);
-      USDTS.refreshBalance((err, result) => console.log(result));
-      USDTS.refreshAllowance((err, result) => console.log(result));
+      USDTS.refreshBalance((err, res) => console.log("1: "+ res));
+      USDTS.refreshAllowance((err, res) => console.log("2: "+res));
+
+      await USDTExchcoinExchange.start(web3Util.parentChainWeb3);
+      USDTExchcoinExchange.refreshExchcoinBalance((err, res) => console.log("3: "+res))
+      USDTExchcoinExchange.refreshUSDTBalance((err, res) => console.log("4: "+res))
+      USDTExchcoinExchange.refreshSCUSDTLedgerBalance((err, res) => console.log("5: "+res))
     },
 
     async onClickHandle6() {
@@ -75,8 +81,12 @@ export default {
       await USDTS.start(web3Util.parentChainWeb3);
       USDTS.approve(10, (err, res) => console.log(res));
     },
-    onClickHandle7() {
-
+    async onClickHandle7() {
+      if (web3Util.parentChainWeb3 == null) {
+        await web3Util.homeChainWeb3Initialize();
+      }
+      await USDTExchcoinExchange.start(web3Util.parentChainWeb3);
+      USDTExchcoinExchange.USDTToExchcoin(1, (err, res) => console.log(err));
     },
 
   }

@@ -5,7 +5,7 @@
         <Menu mode="horizontal">
           <div class="layout-logo"></div>
 
-          <MenuItem name="Logout" @click.native="toLogout()" to="/" style="float: right">
+          <MenuItem name="Logout" style="float: right" to="/" @click.native="toLogout()">
             <Icon type="md-home"/>
             Logout
           </MenuItem>
@@ -14,12 +14,12 @@
             <!--              <Icon type="logo-bitcoin" />-->
             <!--              <hr size="8" width="90%">-->
             <Steps :current="4" size="small">
-              <Step title="Gcoin" icon="logo-bitcoin" content="1,000,000"></Step>
-              <Step title="Exchcoin[F]" icon="logo-bitcoin"
+              <Step content="1,000,000" icon="logo-bitcoin" title="Gcoin"></Step>
+              <Step icon="logo-bitcoin" title="Exchcoin[F]"
                     v-bind:content="coinBalance.childChainExchgCoinBalance"></Step>
-              <Step title="Exchcoin[H]" icon="logo-bitcoin"
+              <Step icon="logo-bitcoin" title="Exchcoin[H]"
                     v-bind:content="coinBalance.homeChainExchgCoinBalance"></Step>
-              <Step title="USDT" icon="logo-bitcoin" v-bind:content="coinBalance.USDTBalance"></Step>
+              <Step icon="logo-bitcoin" title="USDT" v-bind:content="coinBalance.USDTBalance"></Step>
             </Steps>
 
           </div>
@@ -27,8 +27,8 @@
         <br/>
       </Header>
       <Layout>
-        <Sider :style="{background: '#fff'}" id="sider">
-          <Menu theme="light" width="auto">
+        <Sider id="sider" :style="{background: '#fff'}">
+          <Menu style="height: 100%" theme="light" width="auto">
             <!--            <MenuItem name="Home" to="/">-->
             <!--              <Icon type="md-home"/>-->
             <!--              Home-->
@@ -95,7 +95,7 @@
               </MenuItem> -->
 
               <MenuItem name="Faucet" to="/faucet">
-                <Icon type="md-log-in" />
+                <Icon type="md-log-in"/>
                 Faucet
               </MenuItem>
 
@@ -110,7 +110,7 @@
               </MenuItem>
             </Submenu>
             <MenuItem name="wallet" to="/wallet/manager">
-              <Icon type="logo-buffer" />
+              <Icon type="logo-buffer"/>
               Wallet Manager
             </MenuItem>
           </Menu>
@@ -121,9 +121,9 @@
           <router-view/>
         </Content>
       </Layout>
-      <Footer id="foot">
-        foot
-      </Footer>
+      <!--      <Footer id="foot">-->
+      <!--        foot-->
+      <!--      </Footer>-->
     </Layout>
   </div>
 </template>
@@ -134,7 +134,7 @@ import {web3Util} from "@/scripts/web3Util/web3Util";
 import {vm} from "@/main";
 
 export default {
-  name:"home",
+  name: "home",
   data() {
     return {
       numeral: require('numeral'),
@@ -173,7 +173,7 @@ export default {
   },
   mounted() {
     // let numeral = require('numeral');
-    if(localStorage.getItem('address')!=null && localStorage.getItem('address')!=""){
+    if (localStorage.getItem('address') != null && localStorage.getItem('address') != "") {
       this.USDTBalanceUpdate();
       this.parentChainExchgCoinUpdate();
       this.childChainExchgCoinUpdate();
