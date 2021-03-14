@@ -38,12 +38,12 @@ const routes = [
       //   component: () => import('../views/Transfer.vue')
       // },
       
-      // {
-      //
-      //   path: '/deposit',
-      //   name: 'DepositPage',
-      //   component: () => import('../views/Deposit.vue')
-      // },
+      {
+      
+        path: '/deposit',
+        name: 'DepositPage',
+        component: () => import('../views/Deposit.vue')
+      },
       {
         path: '/explorer',
         //name: 'Explorer',

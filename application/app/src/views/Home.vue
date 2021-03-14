@@ -99,6 +99,11 @@
                 Faucet
               </MenuItem>
 
+              <MenuItem name="Deposit" to="/deposit">
+                <Icon type="md-log-out"/>
+                Deposit
+              </MenuItem>
+
               <MenuItem name="Explorer" to="/explorer">
                 <Icon type="ios-keypad"/>
                 Explorer
