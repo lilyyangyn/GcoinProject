@@ -3,7 +3,7 @@ import GcoinArtifact from "../../../../childchain/build/contracts/Gcoin.json";
 const Gcoin = {
 	web3: null,
 	meta: null,
-	contractAddr: null, /* TODO */
+	contractAddr: utilConfig.homeChainContractAddress.Gcoin, 
 
 	start: async function(web3) {	
 		if (this.web3 != null && this.meta != null) {
@@ -14,11 +14,9 @@ const Gcoin = {
 
 		try {
 			// get contract instance
-			const networkId = await web3.eth.net.getId();
-			const deployedNetwork = GcoinArtifact.networks[networkId];
-			this.meta = new web3.eth.Contract(
-				GcoinArtifact.abi, 
-				deployedNetwork.address,
+			this.meta = new this.web3.eth.Contract(
+				contractAbi.GcoinAbi, 
+				this.contractAddr
 			);
 			
 			console.log("Connected to contract 'Gcoin' successfully.");
@@ -28,7 +26,7 @@ const Gcoin = {
 		}
 	},
 
-	transfer: async function(to, value, callback) {
+	transfer: async function(to, value, comfirmCallback, errorCallback) {
 		const tx = {
 			to: this.contractAddr,
 			gas: 100000,
@@ -40,11 +38,11 @@ const Gcoin = {
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            web3Util.signTransaction(this.web3, tx, callback, localStorage.getItem('privateKey'));
+            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), resolveCallback, errorCallback);
         }
 	},
 
-	approve: async function(spender, value, callback) {
+	approve: async function(spender, value, comfirmCallback, errorCallback) {
 		const tx = {
 			to: this.contractAddr,
 			gas: 100000,
@@ -56,7 +54,7 @@ const Gcoin = {
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            web3Util.signTransaction(this.web3, tx, callback, localStorage.getItem('privateKey'));
+            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), resolveCallback);
         }
 	},
 
