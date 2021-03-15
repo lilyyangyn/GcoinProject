@@ -21,16 +21,34 @@ const web3Util = {
     },
 
     //Utilized by the write function to sign the transaction for EVM state update
-    signTransaction: function (web3, tx, callbackFunction,privateKey) {
+    signTransaction: function (web3, tx,privateKey, resolveCallback, comfirmCallback, errorCallback, confirmation = 1) {
         const signPromise = web3.eth.accounts.signTransaction(tx, privateKey);
         console.log("here");
         signPromise.then((signedTx) => {
             console.log(signedTx);
             const sentTx = web3.eth.sendSignedTransaction(signedTx.raw || signedTx.rawTransaction);
             sentTx.then((resolved)=>{
-                console.log(resolved);
-                callbackFunction(resolved);
+                // console.log(resolved);
+                if (resolveCallback) {
+                    resolveCallback(resolved);
+                }
+            })
+            sentTx.on('transactionHash', hash => console.log("Transaction Generated: " + hash));
+            sentTx.on("receipt", receipt => console.log(receipt));
+            sentTx.on("error", error => (error) => {
+                console.error(error);
+                if (errorCallback) {
+                    errorCallback(error);
+                }
             });
+            sentTx.on("confirmation", (num, obj) => {
+                if (num == confirmation) {
+                    console.log("Transaction Comfirmed: " + obj.transactionHash);
+                    if (comfirmCallback) {
+                        comfirmCallback(num, obj);
+                    }
+                }
+            })
             // sentTx.on("receipt", receipt => {
             //     console.log(receipt);
             //     callbackFunction("got the receipt");
@@ -42,6 +60,18 @@ const web3Util = {
         }).catch((err) => {
             console.log(err);
         });
+    },
+
+    getHomeTransactionCount: async function() {
+        let account = localStorage.getItem('address');
+        if (account == null || account == '') {
+            privateKey = localStorage.getItem('privateKey');
+            if (privateKey == null || privateKey == '') {
+                account = await this.privateKeyToPublicKey(privateKey).address;
+            }
+        }
+        return this.parentChainWeb3.eth.getTransactionCount(account);
+
     },
 
     readContract: async function (contractCallPromise, myContract) {
@@ -93,7 +123,7 @@ const web3Util = {
     },
 
     //Write Function
-    getUSDTFromFaucet: async function (receiver,callbackFunction) {
+    getUSDTFromFaucet: async function (receiver, resolveCallback) {
 
         if (web3Util.parentChainWeb3 == null) {
             await web3Util.homeChainWeb3Initialize();
@@ -112,11 +142,11 @@ const web3Util = {
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            this.signTransaction(this.parentChainWeb3, tx, callbackFunction, localStorage.getItem('privateKey'));
+            this.signTransaction(this.parentChainWeb3, tx, localStorage.getItem('privateKey'), resolveCallback);
         }
     },
 
-    getParentChainGasFromFaucet: async function (receiver,callbackFunction) {
+    getParentChainGasFromFaucet: async function (receiver,resolveCallback) {
 
         if (web3Util.parentChainWeb3 == null) {
             await web3Util.homeChainWeb3Initialize();
@@ -129,10 +159,10 @@ const web3Util = {
             gasPrice: 10000000000,
             value: utilConfig.faucet.homeChainGasFaucetValue,
         };
-        this.signTransaction(this.parentChainWeb3, tx, callbackFunction, utilConfig.faucet.faucetAccPrivateKey);
+        this.signTransaction(this.parentChainWeb3, tx, utilConfig.faucet.faucetAccPrivateKey, resolveCallback);
     },
 
-    getChildChainGasFromFaucet: async function (receiver,callbackFunction) {
+    getChildChainGasFromFaucet: async function (receiver,resolveCallback) {
         alert(receiver);
         if (web3Util.childChainWeb3 == null) {
             await web3Util.childChainWeb3Initialize();
@@ -145,7 +175,7 @@ const web3Util = {
             gasPrice: 10000000000,
             value: utilConfig.faucet.childChainGasFaucetValue,
         };
-        this.signTransaction(this.childChainWeb3, tx, callbackFunction, utilConfig.faucet.faucetAccPrivateKey);
+        this.signTransaction(this.childChainWeb3, tx, utilConfig.faucet.faucetAccPrivateKey, resolveCallback);
     },
     //transfer and call
     transferAndCall: async function (value,callbackFunction) {

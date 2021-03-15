@@ -1,12 +1,27 @@
 import { Transaction } from "../basics/transaction.js";
 import { BlockInfoCtrl } from "./blockInfoController.js";
-import { vm } from "../../main.js";
+import {web3Util} from "@/scripts/web3Util/web3Util"
 
 const TransactionInfoCtrl = {
-	web3 : vm.web3,
-	cache : new Map(),
+	web3 : null,
+	cache : null,
+
+	start: async function() {
+		if (this.web3 != null && this.cache != null) {
+			return;
+		}	
+
+		if (web3Util.childChainWeb3 == null) {
+          	await web3Util.childChainWeb3Initialize();
+      	}
+		this.web3 = web3Util.childChainWeb3;
+
+		this.cache = new Map()
+	},
 
 	getTransaction: async function(thash, success, failure) {
+		await this.start();
+
 		const { web3 } = this;
 		var self = this;
 

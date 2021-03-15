@@ -5,18 +5,26 @@ import {web3Util} from "@/scripts/web3Util/web3Util"
 const BridgeableToken = {
 	web3: null,
 	meta: null,
+<<<<<<< HEAD
 	contractAddr: config.homeChainContractAddress.Bridgeable_Token,
 	bridgeMediator: config.homeChainContractAddress.Bridge_ERC677_Extend_Mediator,
+=======
+	contractAddr: utilConfig.homeChainContractAddress.Bridgeable_Token,
+	bridgeMediator: utilConfig.homeChainContractAddress.Bridge_Mediator,
+>>>>>>> a6980c99fa78f85ed7223a52d8e352f0b43be49f
 
-	start: async function(web3) {	
+	start: async function() {	
 		if (this.web3 != null && this.meta != null) {
 			return;
 		}	
 
-		this.web3 = web3;
+		if (web3Util.parentChainWeb3 == null) {
+          await web3Util.homeChainWeb3Initialize();
+      	}
+		this.web3 = web3Util.parentChainWeb3;
 
 		try {
-			this.meta = new web3.eth.Contract(
+			this.meta = new this.web3.eth.Contract(
 				contractAbi.bridgeTokenAbi,
 				this.contractAddr
 				);
@@ -27,10 +35,12 @@ const BridgeableToken = {
 		}
 	},
 
-	transferToChildChain: async function(value, callback) {
+	transferToChildChain: async function(value, confirmCallback, errorCallback) {
+		await this.start();
+
 		const tx = {
 			to: this.contractAddr,
-			gas: 100000,
+			gas: 1000000,
 			gasPrice: 10000000000,
 			value: 0,
 			data: this.meta.methods.transferAndCall(this.bridgeMediator, value, '0x').encodeABI()
@@ -39,7 +49,7 @@ const BridgeableToken = {
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            web3Util.signTransaction(this.web3, tx, callback, localStorage.getItem('privateKey'));
+            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
 	},
 

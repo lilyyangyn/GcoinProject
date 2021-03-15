@@ -8,15 +8,18 @@ const USDTS = {
 	contractAddr: utilConfig.homeChainContractAddress.USDT,
 	exchangeContractAddr: utilConfig.homeChainContractAddress.USDT_Exchcoin_Exchange,
 
-	start: async function(web3) {
+	start: async function() {
 		if (this.web3 != null && this.meta != null) {
 			return;
 		}	
 
-		this.web3 = web3;
+		if (web3Util.parentChainWeb3 == null) {
+          	await web3Util.homeChainWeb3Initialize();
+      	}
+		this.web3 = web3Util.parentChainWeb3;
 
 		try {
-			this.meta = new web3.eth.Contract(
+			this.meta = new this.web3.eth.Contract(
 				contractAbi.USDTAbi, 
 				this.contractAddr
 			);
@@ -33,23 +36,27 @@ const USDTS = {
 	// 	transfer(receiver, value).send({from:sponsor}, callback);
 	// },
 
-	approve: async function(value, callback) {
+	approve: async function(value, confirmCallback, errorCallback) {
+		await this.start();
+
 		const tx = {
 			to: this.contractAddr,
 			gas: 100000,
 			gasPrice: 10000000000,
 			value: 0,
-			data: this.meta.methods.approve(this.exchangeContractAddr, value).encodeABI()
+			data: this.meta.methods.approve(this.exchangeContractAddr, value).encodeABI(),
 		};
 
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
-        }else{
-            web3Util.signTransaction(this.web3, tx, callback, localStorage.getItem('privateKey'));
+        } else {
+            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
 	},
 
 	refreshAllowance: async function(callback) {
+		await this.start();
+
 		let sponsor = localStorage.getItem('address');
 		if (sponsor == null || sponsor == "") {
 			this.$Message.error("You should first set your account in wallet manager");
@@ -57,10 +64,12 @@ const USDTS = {
 		}
 
 		const { allowance } = this.meta.methods;
-		allowance(sponsor, this.exchangeContractAddr).call(callback);
+		await allowance(sponsor, this.exchangeContractAddr).call(callback);
 	},
 
 	refreshBalance: async function(callback) {
+		await this.start();
+
 		let owner = localStorage.getItem('address');
 		if (owner == null || owner == "") {
 			this.$Message.error("You should first set your account in wallet manager");
@@ -68,7 +77,7 @@ const USDTS = {
 		}
 
 		const { balanceOf } = this.meta.methods;
-		balanceOf(owner).call(callback);
+		await balanceOf(owner).call(callback);
 	},
 }
 
