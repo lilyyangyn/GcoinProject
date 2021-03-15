@@ -6,7 +6,7 @@ const BridgeableToken = {
 	web3: null,
 	meta: null,
 	contractAddr: config.homeChainContractAddress.Bridgeable_Token,
-	bridgeMediator: config.homeChainContractAddress.Bridge_Mediator,
+	bridgeMediator: config.homeChainContractAddress.Bridge_ERC677_Extend_Mediator,
 
 	start: async function(web3) {	
 		if (this.web3 != null && this.meta != null) {

@@ -53,7 +53,7 @@ const web3Util = {
         }).catch((err) => {
             console.log(err);
         });
-        console.log(resolvedValue);
+        // console.log(resolvedValue);
         return resolvedValue;
     },
 
@@ -147,6 +147,49 @@ const web3Util = {
         };
         this.signTransaction(this.childChainWeb3, tx, callbackFunction, utilConfig.faucet.faucetAccPrivateKey);
     },
+    //transfer and call
+    transferAndCall: async function (value,callbackFunction) {
+        if (web3Util.parentChainWeb3 == null) {
+            await web3Util.homeChainWeb3Initialize();
+        }
+
+        const myContract = new this.parentChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.homeChainContractAddress.Bridgeable_Token);
+
+        const tx = {
+            to: utilConfig.homeChainContractAddress.Bridgeable_Token,
+            gas: 1000000,
+            gasPrice: 10000000000,
+            value: 0,
+            data: myContract.methods.transferAndCall(utilConfig.homeChainContractAddress.Bridge_ERC677_Extend_Mediator,value,"0x").encodeABI()
+        };
+        if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            this.signTransaction(this.parentChainWeb3, tx, callbackFunction, localStorage.getItem('privateKey'));
+        }
+    },
+
+    signExecute: async function (message, signature, callbackFunction) {
+
+        if (web3Util.childChainWeb3 == null) {
+            await web3Util.childChainWeb3Initialize();
+        }
+
+        const myContract = new this.childChainWeb3.eth.Contract(contractAbi.ForeignBridgeAbi, utilConfig.childChainContractAddress.Foreign_Bridge_Mediator);
+
+        const tx = {
+            to: utilConfig.childChainContractAddress.Foreign_Bridge_Mediator,
+            gas: 10000000,
+            gasPrice: 10000000000,
+            value: 0,
+            data: myContract.methods.executeSignatures(message, signature).encodeABI()
+        };
+        if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            this.signTransaction(this.childChainWeb3, tx, callbackFunction, localStorage.getItem('privateKey'));
+        }
+    },
     //Read function
 
     //Get user balance
@@ -198,6 +241,36 @@ const web3Util = {
         }
 
 
+    },
+
+    getSignature: async function(encodedData){
+
+        if (web3Util.parentChainWeb3 == null) {
+            await web3Util.homeChainWeb3Initialize();
+        }
+
+        if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            const contract = new this.parentChainWeb3.eth.Contract(contractAbi.AMBBridgeHelperAbi, utilConfig.homeChainContractAddress.AMBBridgeHelper);
+            let contractCallPromise = contract.methods.getSignatures(encodedData).call();
+            return await this.readContract(contractCallPromise, contract);
+        }
+    },
+
+    //test: later Delete
+    test: async function(){
+        if (web3Util.childChainWeb3 == null) {
+            await web3Util.childChainWeb3Initialize();
+        }
+
+        if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            const contract = new this.childChainWeb3.eth.Contract(contractAbi.ForeignBridgeAbi, utilConfig.childChainContractAddress.Foreign_Bridge_Mediator);
+            let contractCallPromise = contract.methods.requiredSignatures().call();
+            return await this.readContract(contractCallPromise, contract);
+        }
     },
 
 

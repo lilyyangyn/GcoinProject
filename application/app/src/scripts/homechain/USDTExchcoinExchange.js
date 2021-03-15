@@ -62,7 +62,7 @@ const USDTExchcoinExchange = {
 	USDTToExchcoin: async function(value, callback) {
 		const tx = {
 			to: this.contractAddr,
-			gas: 100000,
+			gas: 1000000,
 			gasPrice: 10000000000,
 			value: 0,
 			data: this.meta.methods.USDTToExchcoin(value).encodeABI()
