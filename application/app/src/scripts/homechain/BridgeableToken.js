@@ -5,11 +5,8 @@ import {web3Util} from "@/scripts/web3Util/web3Util"
 const BridgeableToken = {
 	web3: null,
 
-	contractAddr: config.homeChainContractAddress.Bridgeable_Token,
-	bridgeMediator: config.homeChainContractAddress.Bridge_ERC677_Extend_Mediator,
-
 	contractAddr: utilConfig.homeChainContractAddress.Bridgeable_Token,
-	bridgeMediator: utilConfig.homeChainContractAddress.Bridge_Mediator,
+	bridgeMediator: utilConfig.homeChainContractAddress.Bridge_ERC677_Extension_Mediator,
 
 
 	start: async function() {	

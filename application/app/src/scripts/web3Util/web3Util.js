@@ -190,7 +190,7 @@ const web3Util = {
             gas: 1000000,
             gasPrice: 10000000000,
             value: 0,
-            data: myContract.methods.transferAndCall(utilConfig.homeChainContractAddress.Bridge_ERC677_Extend_Mediator,value,"0x").encodeABI()
+            data: myContract.methods.transferAndCall(utilConfig.homeChainContractAddress.Bridge_ERC677_Extension_Mediator,value,"0x").encodeABI()
         };
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
