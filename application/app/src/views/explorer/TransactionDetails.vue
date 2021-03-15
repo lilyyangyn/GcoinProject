@@ -54,7 +54,7 @@
 			<div v-if="detailed">
 					<ListItem>
 						<div class="detail-item">transactionFee: </div>
-						{{transactionFee}}
+						{{transaction._transactionFee}}
 					</ListItem>
 					<ListItem>
 						<div class="detail-item">timestamp: </div>
@@ -89,7 +89,6 @@
 				error: false,
 				errorInfo: "",
 				detailed: false,
-				transactionFee: null,
 			}
 		},
 		methods: {
@@ -122,7 +121,6 @@
 				if(transaction){
 					this.transactionInfoController.getDetailedTransaction(transaction, this.displayTransactionDetails, this.failureCallback);
 					this.detailed=true;
-					this.transactionFee=this.transaction.transactionFee();
 				}
 			},
 
