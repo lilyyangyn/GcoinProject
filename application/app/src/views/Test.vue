@@ -8,13 +8,13 @@
     <button @click="onClickHandle5()">click5</button>
     <button @click="onClickHandle6()">click6</button>
     <button @click="onClickHandle7()">click7</button>
-<<<<<<< HEAD
+
     <button @click="homeTransferAndCallHandle()">click8</button>
 <!--    <button @click="handle8Callback()">click9</button>-->
     <button @click="onClickHandle10()">click10</button>
-=======
+
     <button @click="onClickHandle8()">click8</button>
->>>>>>> a6980c99fa78f85ed7223a52d8e352f0b43be49f
+
   </div>
 </template>
 
@@ -86,7 +86,7 @@ export default {
     async onClickHandle7() {
       USDTExchcoinExchange.USDTToExchcoin(1, (err, res) => console.log(err));
     },
-<<<<<<< HEAD
+
     onClickHandle10() {
       // let encodeData = "0x00050000249bfc2f3cc8d68f6b6bf7230ea0a8ed853de73100000000000003f4194f052528d5fbbed085004c6451ef116dd61173ae3e850013d4045709610893156175354340bb190007a1200101004d2a8b6c03540000000000000000000000002f56b78d2d3b5ef6fdf0a6c2415089909496c646000000000000000000000000000000000000000000000000000000000000000a";
       // web3Util.getSignature(encodeData).then((resolved) => {console.log(resolved)});
@@ -147,12 +147,11 @@ export default {
       // const start = Date.now();
       // while (Date.now() - start < milliseconds);
       new Promise(resolve => setTimeout(resolve, milliseconds))
-    }
-=======
+    },
+
     async onClickHandle8() {
       BridgeableToken.transferToChildChain(1, (err, res) => console.log(err));
     },
->>>>>>> a6980c99fa78f85ed7223a52d8e352f0b43be49f
 
   }
 }

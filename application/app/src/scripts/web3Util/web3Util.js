@@ -65,7 +65,7 @@ const web3Util = {
     getHomeTransactionCount: async function() {
         let account = localStorage.getItem('address');
         if (account == null || account == '') {
-            privateKey = localStorage.getItem('privateKey');
+            let privateKey = localStorage.getItem('privateKey');
             if (privateKey == null || privateKey == '') {
                 account = await this.privateKeyToPublicKey(privateKey).address;
             }
