@@ -1,7 +1,8 @@
 <template>
 	<div class="transaction">
-		<h1>This is the transaction page</h1>
-		<br>
+		<h1>Transaction</h1>
+		<Tabs type="card" style="width: 85%;">
+
 
 		<div v-if="error">
 			<Alert type="error" show-icon>
@@ -11,45 +12,70 @@
 				</span>
 			</Alert>
 		</div>
-		<div v-else class="table blocks">
-			<div class="table-body">
-				<div class="table-row">
-					<div class="table-column">Hash:</div>
-					<div class="table-column">{{ transaction.hash }}</div>
-				</div>
-				<div class="table-row">
-					<div class="table-column">Block:</div>
-					<div class="table-column"><a @click="getInfo(transaction.blockNumber)">{{transaction.blockNumber}}</a></div>
-				</div>
-				<div class="table-row">
-					<div class="table-column">From:</div>
-					<div class="table-column">{{transaction.from}}</div>
-				</div>
-				<div class="table-row">
-					<div class="table-column">To:</div>
-					<div class="table-column">{{transaction.to}}</div>
-				</div>
-				<div class="table-row">
-					<div class="table-column">Value:</div>
-					<div class="table-column">{{transaction.value}}</div>
-				</div>
-				<div class="table-row">
-					<div class="table-column">Gas Price:</div>
-					<div class="table-column">{{transaction.gasPrice}}</div>
-				</div>
-				<div class="table-row">
-					<div class="table-column">Gas Used:</div>
-					<div class="table-column">{{transaction.gasUsed}}</div>
-				</div>
-				<div class="table-row">
-					<div class="table-column">Input:</div>
-					<div class="table-column">{{transaction.input}}</div>
-				</div>
-				<div class="table-row">
-					<button @click="getDetailed()">show more</button>
-				</div>
+		<div v-else>
+			<Card class="transaction">
+				<List border>
+			<ListItem>
+				<div class="detail-item">hash: </div>
+				{{transaction.hash}}
+			</ListItem> 
+			<ListItem>
+				<div class="detail-item">blockNumber: </div>
+				<a @click="getInfo(transaction.blockNumber)">{{transaction.blockNumber}}</a>
+			</ListItem>
+			<ListItem>
+				<div class="detail-item">from: </div>
+				{{transaction.from}}
+			</ListItem>
+			<ListItem>
+				<div class="detail-item">to: </div>
+				{{transaction.to}}
+			</ListItem>
+			<ListItem>
+				<div class="detail-item">value: </div>
+				{{transaction.value}}
+			</ListItem>
+			<ListItem>
+				<div class="detail-item">gasPrice: </div>
+				{{transaction.gasPrice}}
+			</ListItem>
+			<ListItem>
+				<div class="detail-item">gasUsed: </div>
+				{{transaction.gasUsed}}
+			</ListItem>
+			<ListItem>
+				<div class="detail-item" style="word-break: break-all;">input: </div>
+				{{transaction.input}}
+			</ListItem>
+			
+			<ListItem>
+				<Button @click="getDetailed(transaction)">show more</Button>
+			</ListItem>
+			<div v-if="detailed">
+					<ListItem>
+						<div class="detail-item">transactionFee: </div>
+						{{transactionFee}}
+					</ListItem>
+					<ListItem>
+						<div class="detail-item">timestamp: </div>
+						{{transaction.timestamp}}
+					</ListItem>
+					<ListItem>
+						<div class="detail-item">status: </div>
+						{{transaction.status}}
+					</ListItem>
+					<ListItem>
+						<div class="detail-item">contractAddress: </div>
+						{{transaction.contractAddress}}
+					</ListItem>
 			</div>
+
+
+		</List>
+		</Card>
 		</div>
+	
+</Tabs>
 	</div>
 </template>
 
@@ -62,6 +88,8 @@
 				transaction: null,
 				error: false,
 				errorInfo: "",
+				detailed: false,
+				transactionFee: null,
 			}
 		},
 		methods: {
@@ -88,6 +116,14 @@
 						id: height,
 					}
 				});
+			},
+
+			getDetailed(transaction){
+				if(transaction){
+					this.transactionInfoController.getDetailedTransaction(transaction, this.displayTransactionDetails, this.failureCallback);
+					this.detailed=true;
+					this.transactionFee=this.transaction.transactionFee();
+				}
 			},
 
 		},
