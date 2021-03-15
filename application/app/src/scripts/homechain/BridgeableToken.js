@@ -4,14 +4,13 @@ import {web3Util} from "@/scripts/web3Util/web3Util"
 
 const BridgeableToken = {
 	web3: null,
-	meta: null,
-<<<<<<< HEAD
+
 	contractAddr: config.homeChainContractAddress.Bridgeable_Token,
 	bridgeMediator: config.homeChainContractAddress.Bridge_ERC677_Extend_Mediator,
-=======
+
 	contractAddr: utilConfig.homeChainContractAddress.Bridgeable_Token,
 	bridgeMediator: utilConfig.homeChainContractAddress.Bridge_Mediator,
->>>>>>> a6980c99fa78f85ed7223a52d8e352f0b43be49f
+
 
 	start: async function() {	
 		if (this.web3 != null && this.meta != null) {
