@@ -62,18 +62,6 @@ const web3Util = {
         });
     },
 
-    getHomeTransactionCount: async function() {
-        let account = localStorage.getItem('address');
-        if (account == null || account == '') {
-            let privateKey = localStorage.getItem('privateKey');
-            if (privateKey == null || privateKey == '') {
-                account = await this.privateKeyToPublicKey(privateKey).address;
-            }
-        }
-        return this.parentChainWeb3.eth.getTransactionCount(account);
-
-    },
-
     readContract: async function (contractCallPromise, myContract) {
         let resolvedValue = null;
         // const contractCallPromise = myContract.methods.balanceOf(this.userAddress).call();
@@ -178,7 +166,7 @@ const web3Util = {
         this.signTransaction(this.childChainWeb3, tx, utilConfig.faucet.faucetAccPrivateKey, resolveCallback);
     },
     //transfer and call
-    transferAndCall: async function (value,callbackFunction) {
+    transferAndCall: async function (value,resolveCallback) {
         if (web3Util.parentChainWeb3 == null) {
             await web3Util.homeChainWeb3Initialize();
         }
@@ -195,11 +183,11 @@ const web3Util = {
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            this.signTransaction(this.parentChainWeb3, tx, callbackFunction, localStorage.getItem('privateKey'));
+            this.signTransaction(this.parentChainWeb3, tx, localStorage.getItem('privateKey'), resolveCallback);
         }
     },
 
-    signExecute: async function (message, signature, callbackFunction) {
+    signExecute: async function (message, signature, resolveCallback) {
 
         if (web3Util.childChainWeb3 == null) {
             await web3Util.childChainWeb3Initialize();
@@ -217,7 +205,8 @@ const web3Util = {
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            this.signTransaction(this.childChainWeb3, tx, callbackFunction, localStorage.getItem('privateKey'));
+            console.log("___________HERE__________");
+            this.signTransaction(this.childChainWeb3, tx, localStorage.getItem('privateKey'), resolveCallback);
         }
     },
     //Read function

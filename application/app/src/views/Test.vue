@@ -78,7 +78,7 @@ export default {
     },
 
     async onClickHandle6() {
-      USDTS.approve(0, (resolved) => {
+      USDTS.approve(1, (resolved) => {
         console.log("TESTING-TESTING-TESTING-TESTING");
         console.log(resolved);
       });
