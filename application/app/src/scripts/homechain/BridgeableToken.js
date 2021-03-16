@@ -4,9 +4,10 @@ import {web3Util} from "@/scripts/web3Util/web3Util"
 
 const BridgeableToken = {
 	web3: null,
-	meta: null,
+
 	contractAddr: utilConfig.homeChainContractAddress.Bridgeable_Token,
-	bridgeMediator: utilConfig.homeChainContractAddress.Bridge_Mediator,
+	bridgeMediator: utilConfig.homeChainContractAddress.Bridge_ERC677_Extension_Mediator,
+
 
 	start: async function() {	
 		if (this.web3 != null && this.meta != null) {
@@ -44,7 +45,7 @@ const BridgeableToken = {
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
+            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), confirmCallback, errorCallback);
         }
 	},
 

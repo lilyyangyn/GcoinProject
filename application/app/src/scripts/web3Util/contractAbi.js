@@ -583,7 +583,207 @@ const contractAbi = {
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
-    }]
+    }],
+    GcoinAbi: [{
+        "inputs": [{"internalType": "uint8", "name": "_decimals", "type": "uint8"}, {
+            "internalType": "uint256",
+            "name": "_totalSupply",
+            "type": "uint256"
+        }], "stateMutability": "nonpayable", "type": "constructor"
+    }, {
+        "anonymous": false,
+        "inputs": [{"indexed": true, "internalType": "address", "name": "_owner", "type": "address"}, {
+            "indexed": true,
+            "internalType": "address",
+            "name": "_spender",
+            "type": "address"
+        }, {"indexed": false, "internalType": "uint256", "name": "_value", "type": "uint256"}],
+        "name": "Approval",
+        "type": "event"
+    }, {
+        "anonymous": false,
+        "inputs": [{"indexed": true, "internalType": "address", "name": "_from", "type": "address"}, {
+            "indexed": true,
+            "internalType": "address",
+            "name": "_to",
+            "type": "address"
+        }, {"indexed": false, "internalType": "uint256", "name": "_value", "type": "uint256"}],
+        "name": "Transfer",
+        "type": "event"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_owner", "type": "address"}, {
+            "internalType": "address",
+            "name": "_spender",
+            "type": "address"
+        }],
+        "name": "allowance",
+        "outputs": [{"internalType": "uint256", "name": "remaining", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_spender", "type": "address"}, {
+            "internalType": "uint256",
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "approve",
+        "outputs": [{"internalType": "bool", "name": "success", "type": "bool"}],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_owner", "type": "address"}],
+        "name": "balanceOf",
+        "outputs": [{"internalType": "uint256", "name": "balance", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [{"internalType": "uint8", "name": "", "type": "uint8"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "name",
+        "outputs": [{"internalType": "string", "name": "", "type": "string"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [{"internalType": "string", "name": "", "type": "string"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_to", "type": "address"}, {
+            "internalType": "uint256",
+            "name": "_value",
+            "type": "uint256"
+        }],
+        "name": "transfer",
+        "outputs": [{"internalType": "bool", "name": "success", "type": "bool"}],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_from", "type": "address"}, {
+            "internalType": "address",
+            "name": "_to",
+            "type": "address"
+        }, {"internalType": "uint256", "name": "_value", "type": "uint256"}],
+        "name": "transferFrom",
+        "outputs": [{"internalType": "bool", "name": "success", "type": "bool"}],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }],
+    GcoinExchcoinExchangeAbi: [{
+        "inputs": [{
+            "internalType": "address",
+            "name": "_g",
+            "type": "address"
+        }, {"internalType": "address", "name": "_e", "type": "address"}, {
+            "internalType": "address",
+            "name": "_o",
+            "type": "address"
+        }], "stateMutability": "nonpayable", "type": "constructor"
+    }, {
+        "inputs": [],
+        "name": "Exchcoin_Contract",
+        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "name": "Exchcoin_Ledger",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "uint256", "name": "_v", "type": "uint256"}],
+        "name": "GcoinToExchcoin",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "Gcoin_Contract",
+        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "name": "Gcoin_Ledger",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "GcointoExchcoinCoinDeliver",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "checkExchcoinBalance",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "checkGcoinBalance",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "checkSCExchcoinLedger",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "checkSCGcoinLedger",
+        "outputs": [{"internalType": "uint256", "name": "", "type": "uint256"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "name": "companyList",
+        "outputs": [{"internalType": "bool", "name": "", "type": "bool"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "uint256", "name": "_v", "type": "uint256"}],
+        "name": "exchcoinToGcoin",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "exchcoinToGcoinCoinDeliver",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }, {
+        "inputs": [],
+        "name": "pltf_owner",
+        "outputs": [{"internalType": "address", "name": "", "type": "address"}],
+        "stateMutability": "view",
+        "type": "function"
+    }, {
+        "inputs": [{"internalType": "address", "name": "_a", "type": "address"}, {
+            "internalType": "bool",
+            "name": "_b",
+            "type": "bool"
+        }], "name": "registerCompany", "outputs": [], "stateMutability": "nonpayable", "type": "function"
+    }],
+    AMBBridgeHelperAbi: [{"type":"constructor","stateMutability":"nonpayable","inputs":[{"type":"address","name":"_homeBridge","internalType":"address"}]},{"type":"function","stateMutability":"view","outputs":[{"type":"address","name":"","internalType":"contract IHomeBridge"}],"name":"AMBcontract","inputs":[]},{"type":"function","stateMutability":"nonpayable","outputs":[],"name":"clean","inputs":[]},{"type":"function","stateMutability":"view","outputs":[{"type":"bytes","name":"","internalType":"bytes"}],"name":"getSignatures","inputs":[{"type":"bytes","name":"_message","internalType":"bytes"}]}],
+    ForeignBridgeAbi: [{"constant":true,"inputs":[],"name":"transactionHash","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"sourceChainId","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_contract","type":"address"},{"name":"_data","type":"bytes"},{"name":"_gas","type":"uint256"},{"name":"_dataType","type":"uint256"}],"name":"_sendMessage","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_txHash","type":"bytes32"}],"name":"relayedMessages","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_sourceChainId","type":"uint256"},{"name":"_destinationChainId","type":"uint256"},{"name":"_validatorContract","type":"address"},{"name":"_maxGasPerTx","type":"uint256"},{"name":"_gasPrice","type":"uint256"},{"name":"_requiredBlockConfirmations","type":"uint256"},{"name":"_owner","type":"address"}],"name":"initialize","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"isInitialized","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"requiredBlockConfirmations","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_data","type":"bytes"},{"name":"_signatures","type":"bytes"}],"name":"executeSignatures","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_data","type":"bytes"}],"name":"getMinimumGasUsage","outputs":[{"name":"gas","type":"uint256"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":true,"inputs":[{"name":"_messageId","type":"bytes32"}],"name":"failedMessageReceiver","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getBridgeMode","outputs":[{"name":"_data","type":"bytes4"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":false,"inputs":[{"name":"_sourceChainId","type":"uint256"},{"name":"_destinationChainId","type":"uint256"}],"name":"setChainIds","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_messageId","type":"bytes32"}],"name":"failedMessageSender","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"allowReentrantRequests","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"messageId","outputs":[{"name":"id","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_maxGasPerTx","type":"uint256"}],"name":"setMaxGasPerTx","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"requiredSignatures","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"validatorContract","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"deployedAtBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getBridgeInterfacesVersion","outputs":[{"name":"major","type":"uint64"},{"name":"minor","type":"uint64"},{"name":"patch","type":"uint64"}],"payable":false,"stateMutability":"pure","type":"function"},{"constant":true,"inputs":[],"name":"messageSourceChainId","outputs":[{"name":"id","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_blockConfirmations","type":"uint256"}],"name":"setRequiredBlockConfirmations","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"destinationChainId","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_gasPrice","type":"uint256"}],"name":"setGasPrice","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_enable","type":"bool"}],"name":"setAllowReentrantRequests","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_messageId","type":"bytes32"}],"name":"messageCallStatus","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"messageSender","outputs":[{"name":"sender","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimalShift","outputs":[{"name":"","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_contract","type":"address"},{"name":"_data","type":"bytes"},{"name":"_gas","type":"uint256"}],"name":"requireToPassMessage","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"_messageId","type":"bytes32"}],"name":"failedMessageDataHash","outputs":[{"name":"","type":"bytes32"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"maxGasPerTx","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"gasPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"messageId","type":"bytes32"},{"indexed":false,"name":"encodedData","type":"bytes"}],"name":"UserRequestForAffirmation","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"sender","type":"address"},{"indexed":true,"name":"executor","type":"address"},{"indexed":true,"name":"messageId","type":"bytes32"},{"indexed":false,"name":"status","type":"bool"}],"name":"RelayedMessage","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"gasPrice","type":"uint256"}],"name":"GasPriceChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"requiredBlockConfirmations","type":"uint256"}],"name":"RequiredBlockConfirmationChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"name":"previousOwner","type":"address"},{"indexed":false,"name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"}]
 }
 
 export {contractAbi};
