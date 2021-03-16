@@ -110,15 +110,17 @@
 		      }
 
 		      //pass the signature and message to the chain
-		      await web3Util.signExecute(encodeData, signature, this.signExecuteCallback).then((resolved) => {
+		      console.log("Sign Execution starts!")
+		      await web3Util.signExecute(encodeData, signature, () => console.log("Sign Execution succeeds!")).then((resolved) => {
 
 		      }).catch(error => {
 		        console.log(error);
 		      });
+
 		    },
 
 		    signExecuteCallback(resolved){
-
+		    	console.log("Sign Execution succeeds!")
     		},
 
 			/* UI Callback */
