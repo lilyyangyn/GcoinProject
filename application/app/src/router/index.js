@@ -45,6 +45,12 @@ const routes = [
         component: () => import('../views/Deposit.vue')
       },
       {
+      
+        path: '/withdraw',
+        name: 'WithdrawPage',
+        component: () => import('../views/Withdrawal.vue')
+      },
+      {
         path: '/explorer',
         //name: 'Explorer',
         // route level code-splitting

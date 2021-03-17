@@ -23,7 +23,6 @@ const web3Util = {
     //Utilized by the write function to sign the transaction for EVM state update
     signTransaction: function (web3, tx,privateKey, resolveCallback, comfirmCallback, errorCallback, confirmation = 1) {
         const signPromise = web3.eth.accounts.signTransaction(tx, privateKey);
-        console.log("here");
         signPromise.then((signedTx) => {
             console.log(signedTx);
             const sentTx = web3.eth.sendSignedTransaction(signedTx.raw || signedTx.rawTransaction);
@@ -41,8 +40,11 @@ const web3Util = {
                     errorCallback(error);
                 }
             });
+
+            let confirmed = false;
             sentTx.on("confirmation", (num, obj) => {
-                if (num == confirmation) {
+                if (!confirmed && num == confirmation) {
+                    confirmed = true;
                     console.log("Transaction Comfirmed: " + obj.transactionHash);
                     if (comfirmCallback) {
                         comfirmCallback(num, obj);
@@ -187,7 +189,7 @@ const web3Util = {
         }
     },
 
-    signExecute: async function (message, signature, confirmCallback) {
+    signExecute: async function (message, signature, confirmCallback, errorCallback) {
 
         if (web3Util.childChainWeb3 == null) {
             await web3Util.childChainWeb3Initialize();
@@ -205,12 +207,26 @@ const web3Util = {
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            this.signTransaction(this.childChainWeb3, tx, localStorage.getItem('privateKey'), null, confirmCallback);
+            this.signTransaction(this.childChainWeb3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
     },
     //Read function
 
     //Get user balance
+
+    getUserGcoinBalance: async function () {
+        if (web3Util.childChainWeb3 == null) {
+            await web3Util.childChainWeb3Initialize();
+        }
+
+        if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
+            this.$Message.error("You should first set your key in wallet manager");
+        }else{
+            const contract = new this.childChainWeb3.eth.Contract(contractAbi.GcoinAbi, utilConfig.childChainContractAddress.Gcoin);
+            let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
+            return await this.readContract(contractCallPromise, contract);
+        }
+    },
 
     getUserUSDTBalance: async function () {
 

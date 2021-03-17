@@ -1,16 +1,21 @@
-import GcoinArtifact from "../../../../childchain/build/contracts/Gcoin.json";
+import {contractAbi} from "@/scripts/web3Util/contractAbi";
+import {utilConfig} from "@/scripts/web3Util/config";
+import {web3Util} from "@/scripts/web3Util/web3Util";
 
 const Gcoin = {
 	web3: null,
 	meta: null,
-	contractAddr: utilConfig.homeChainContractAddress.Gcoin, 
+	contractAddr: utilConfig.childChainContractAddress.Gcoin, 
 
-	start: async function(web3) {	
+	start: async function() {	
 		if (this.web3 != null && this.meta != null) {
 			return;
 		}
 				
-		this.web3 = web3;
+		if (web3Util.childChainWeb3 == null) {
+          	await web3Util.homeChainWeb3Initialize();
+      	}
+		this.web3 = web3Util.childChainWeb3;
 
 		try {
 			// get contract instance
@@ -27,6 +32,8 @@ const Gcoin = {
 	},
 
 	transfer: async function(to, value, comfirmCallback, errorCallback) {
+		await this.start();
+
 		const tx = {
 			to: this.contractAddr,
 			gas: 100000,
@@ -38,11 +45,13 @@ const Gcoin = {
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), resolveCallback, errorCallback);
+            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, comfirmCallback, errorCallback);
         }
 	},
 
 	approve: async function(spender, value, comfirmCallback, errorCallback) {
+		await this.start();
+
 		const tx = {
 			to: this.contractAddr,
 			gas: 100000,
@@ -54,11 +63,13 @@ const Gcoin = {
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You should first set your key in wallet manager");
         }else{
-            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), resolveCallback);
+            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, comfirmCallback, errorCallback);
         }
 	},
 
-	allowance: async function(spender, callback) {
+	refreshAllowance: async function(spender, callback) {
+		await this.start();
+
 		let owner = localStorage.getItem('address');
 		if (owner == null || owner == "") {
 			this.$Message.error("You should first set your account in wallet manager");
@@ -66,10 +77,12 @@ const Gcoin = {
 		}
 
 		const { allowance } = this.meta.methods;
-		allowance(owner, spender).call(callback);
+		await allowance(owner, spender).call(callback);
 	},
 
-	balance: async function(callback) {
+	refreshBalance: async function(callback) {
+		await this.start();
+
 		let owner = localStorage.getItem('address');
 		if (owner == null || owner == "") {
 			this.$Message.error("You should first set your account in wallet manager");
@@ -77,7 +90,7 @@ const Gcoin = {
 		}
 
 		const { balanceOf } = this.meta.methods;
-		balanceOf(owner).call(callback);
+		await balanceOf(owner).call(callback);
 	},
 }
 

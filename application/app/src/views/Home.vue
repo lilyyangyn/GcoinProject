@@ -14,7 +14,8 @@
             <!--              <Icon type="logo-bitcoin" />-->
             <!--              <hr size="8" width="90%">-->
             <Steps :current="4" size="small">
-              <Step content="1,000,000" icon="logo-bitcoin" title="Gcoin"></Step>
+              <Step icon="logo-bitcoin" title="Gcoin"
+                    v-bind:content="coinBalance.GcoinBalance"></Step>
               <Step icon="logo-bitcoin" title="Exchcoin[F]"
                     v-bind:content="coinBalance.childChainExchgCoinBalance"></Step>
               <Step icon="logo-bitcoin" title="Exchcoin[H]"
@@ -104,6 +105,11 @@
                 Deposit
               </MenuItem>
 
+              <MenuItem name="Withdraw" to="/withdraw">
+                <Icon type="md-log-out"/>
+                Withdraw
+              </MenuItem>
+
               <MenuItem name="Explorer" to="/explorer">
                 <Icon type="ios-keypad"/>
                 Explorer
@@ -144,6 +150,7 @@ export default {
     return {
       numeral: require('numeral'),
       coinBalance: {
+        GcoinBalance: '',
         USDTBalance: '',
         homeChainExchgCoinBalance: '',
         childChainExchgCoinBalance: ''
@@ -155,6 +162,14 @@ export default {
       logout();
       this.$router.push({path: '/login'});
       this.$Message.success('Logout success!');
+    },
+
+    GcoinBalanceUpdate() {
+      web3Util.getUserGcoinBalance().then((resolved) => {
+        let balance = this.numeral(parseInt(resolved)).format('0,0');
+        this.coinBalance.GcoinBalance = balance;
+        console.log("ran Gcoin update");
+      });
     },
     USDTBalanceUpdate() {
       web3Util.getUserUSDTBalance().then((resolved) => {
@@ -177,13 +192,9 @@ export default {
     },
   },
   mounted() {
-    // let numeral = require('numeral');
-    if (localStorage.getItem('address') != null && localStorage.getItem('address') != "") {
-      this.USDTBalanceUpdate();
-      this.parentChainExchgCoinUpdate();
-      this.childChainExchgCoinUpdate();
-    }
-
+    vm.$on('GcoinBalanceUpdate', () => {
+      this.GcoinBalanceUpdate();
+    });
     vm.$on('USDTBalanceUpdate', () => {
       // console.log('USDTBalanceUpdate Event');
       this.USDTBalanceUpdate();
@@ -195,13 +206,20 @@ export default {
       this.childChainExchgCoinUpdate();
     });
     vm.$on('allBalanceUpdate', () => {
+      this.coinBalance.GcoinBalance = ""
       this.coinBalance.USDTBalance = "";
       this.coinBalance.childChainExchgCoinBalance = "";
       this.coinBalance.homeChainExchgCoinBalance = "";
+      this.GcoinBalanceUpdate();
       this.USDTBalanceUpdate();
       this.parentChainExchgCoinUpdate();
       this.childChainExchgCoinUpdate();
     });
+
+    // let numeral = require('numeral');
+    if (localStorage.getItem('address') != null && localStorage.getItem('address') != "") {
+      vm.$emit('allBalanceUpdate');
+    }
   }
 }
 </script>

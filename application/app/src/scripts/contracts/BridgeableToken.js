@@ -2,22 +2,22 @@ import {contractAbi} from "@/scripts/web3Util/contractAbi";
 import {utilConfig} from "@/scripts/web3Util/config";
 import {web3Util} from "@/scripts/web3Util/web3Util"
 
-const BridgeableToken_Home = {
+const BridgeableToken_Child = {
 	web3: null,
 
-	contractAddr: utilConfig.homeChainContractAddress.Bridgeable_Token,
-	bridgeMediator: utilConfig.homeChainContractAddress.Bridge_ERC677_Extension_Mediator,
-	exchangeContractAddr: utilConfig.homeChainContractAddress.USDT_Exchcoin_Exchange,
+	contractAddr: utilConfig.childChainContractAddress.Bridgeable_Token,
+	bridgeMediator: utilConfig.childChainContractAddress.Bridge_ERC677_Extension_Mediator,
+	exchangeContractAddr: utilConfig.childChainContractAddress.Gcoin_Exchcoin_Exchange,
 
 	start: async function() {	
 		if (this.web3 != null && this.meta != null) {
 			return;
 		}	
 
-		if (web3Util.parentChainWeb3 == null) {
-          await web3Util.homeChainWeb3Initialize();
+		if (web3Util.childChainWeb3 == null) {
+          await web3Util.childChainWeb3Initialize();
       	}
-		this.web3 = web3Util.parentChainWeb3;
+		this.web3 = web3Util.childChainWeb3;
 
 		try {
 			this.meta = new this.web3.eth.Contract(
@@ -25,13 +25,13 @@ const BridgeableToken_Home = {
 				this.contractAddr
 				);
 			
-			console.log("Connected to contract 'BridgeableToken_Home' successfully.");
+			console.log("Connected to contract 'BridgeableToken_Child' successfully.");
 		} catch (error) {
-			console.error("Could not connect to contract 'BridgeableToken_Home'.");
+			console.error("Could not connect to contract 'BridgeableToken_Child'.");
 		}
 	},
 
-	transferToChildChain: async function(value, resolvedCallback, confirmCallback, errorCallback) {
+	transferToHomechain: async function(value, resolvedCallback, confirmCallback, errorCallback) {
 		await this.start();
 
 		const tx = {
@@ -69,7 +69,7 @@ const BridgeableToken_Home = {
 
 }
 
-export { BridgeableToken_Home }
+export { BridgeableToken_Child }
 
 
 

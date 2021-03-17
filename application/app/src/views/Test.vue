@@ -14,6 +14,9 @@
     <button @click="onClickHandle10()">click10</button>
 
     <button @click="onClickHandle8()">click8</button>
+    <button @click="onClickHandle11()">click11</button>
+    <button @click="onClickHandle11()">click12</button>
+    <button @click="onClickHandle11()">click13</button>
 
   </div>
 </template>
@@ -27,6 +30,7 @@ import {vm} from "@/main";
 import {USDTS} from "@/scripts/homechain/USDTS"
 import {USDTExchcoinExchange} from "@/scripts/homechain/USDTExchcoinExchange"
 import {BridgeableToken} from "@/scripts/homechain/BridgeableToken"
+import { Gcoin } from '@/scripts/contracts/gcoin';
 
 export default {
   // props:{updateFunction: {type: Function}},
@@ -151,6 +155,19 @@ export default {
 
     async onClickHandle8() {
       BridgeableToken.transferToChildChain(1, (err, res) => console.log(err));
+    },
+
+    onClickHandle11() {
+      Gcoin.refreshBalance((err, res) => console.log(res));
+      // Gcoin.refreshAllowance((err, res) => console.log(res));
+    },
+
+    onClickHandle12() {
+      Gcoin.transfer('0xC0443D2fb94db3C94eFAcbF9aF02afB84079D05c', 1);
+    },
+
+    onClickHandle13() {
+      Gcoin.approve('0xC0443D2fb94db3C94eFAcbF9aF02afB84079D05c', 1);
     },
 
   }
