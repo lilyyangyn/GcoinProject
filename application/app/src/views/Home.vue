@@ -124,6 +124,10 @@
               <Icon type="logo-buffer"/>
               Wallet Manager
             </MenuItem>
+            <MenuItem name="gameDemo" to="/GameDemo">
+              <Icon type="md-aperture" />
+              Game Demo
+            </MenuItem>
           </Menu>
 
         </Sider>
