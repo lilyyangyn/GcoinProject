@@ -14,7 +14,7 @@
 	import { BridgeableToken_Home } from '@/scripts/homechain/BridgeableToken';
 	import { BridgeableToken_Child } from '@/scripts/contracts/BridgeableToken'
 	import { GcoinExchcoinExchange } from '@/scripts/contracts/GcoinExchcoinExchange'
-	import { Gcoin } from '@/scripts/contracts/Gcoin'
+	import { Gcoin } from '@/scripts/contracts/gcoin'
 	import {vm} from "@/main";
 
 	export default {
