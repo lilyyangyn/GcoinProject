@@ -13,7 +13,7 @@
 			</Alert>
 		</div>
 		<div v-else>
-			<Card class="transaction">
+			<Card class="transaction" v-if="transaction">
 				<List border>
 			<ListItem>
 				<div class="detail-item">hash: </div>
@@ -43,10 +43,15 @@
 				<div class="detail-item">gasUsed: </div>
 				{{transaction.gasUsed}}
 			</ListItem>
-			<ListItem>
-				<div class="detail-item" style="word-break: break-all;">input: </div>
+			
+				<Collapse simple style="width: 100%;">
+				<Panel><Strong>input: </Strong>
+				<div slot="content"  style="WORD-WRAP: break-word;TABLE-LAYOUT: fixed;word-break:break-all">
 				{{transaction.input}}
-			</ListItem>
+				</div>
+				</Panel>
+				</Collapse>
+			
 			
 			<ListItem>
 				<Button @click="getDetailed(transaction)">show more</Button>

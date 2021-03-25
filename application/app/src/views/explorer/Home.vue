@@ -33,8 +33,8 @@
 			
 			</div>
 			</Panel>
-					<div v-if="showBlocks" class="table blocks">
-			<div class="table-header">
+					<div v-if="showBlocks" class="table blocks" style="border-style: solid; border-color: grey">
+			<div class="table-header" >
 				<div class="table-row">
 					<div class="table-column">Block</div>
 					<div class="table-column">Age</div>
@@ -45,7 +45,7 @@
 					
 				</div>
 			</div>
-			<List>
+			<List style="padding-left: 10px; margin-bottom: 5px;">
 				<ListItem class="table-row" v-for="block in blocks" :key="block.height">
 					<a class="table-column" v-text="block.height" @click="getInfo(block.height)"> </a>
 					<div class="table-column" v-text="block.timestamp"></div>

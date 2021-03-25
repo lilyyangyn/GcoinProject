@@ -12,7 +12,7 @@
 			</Alert>
 		</div>
 		<div v-else>
-			<Card class="block">
+			<Card class="block" v-if="block">
 				<List border>
 			<ListItem>
 				<div class="detail-item">Height: </div> 
