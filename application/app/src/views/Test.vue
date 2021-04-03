@@ -18,6 +18,7 @@
     <button @click="onClickHandle11()">click12</button>
     <button @click="onClickHandle11()">click13</button>
     <button @click="onClickHandle14()">click14</button>
+    <button @click="onClickHandle15()">click15</button>
 
   </div>
 </template>
@@ -175,6 +176,10 @@ export default {
       web3Util.childChainWeb3.eth.getTransaction('0x9dae89fdf190d9ab2a48826f6a4d794764ab5c283019ac19d7702469f7be266d').then(resolve => {
         console.log(resolve.from);
       });
+    },
+    onClickHandle15() {
+      Gcoin.start();
+      Gcoin.transfer();
     },
 
   }

@@ -13,7 +13,7 @@ const Gcoin = {
 		}
 				
 		if (web3Util.childChainWeb3 == null) {
-          	await web3Util.homeChainWeb3Initialize();
+          	await web3Util.childChainWeb3Initialize();
       	}
 		this.web3 = web3Util.childChainWeb3;
 
@@ -37,7 +37,7 @@ const Gcoin = {
 		const tx = {
 			to: this.contractAddr,
 			gas: 100000,
-			gasPrice: 10000000000,
+			gasPrice: 100000000000,
 			value: 0,
 			data: this.meta.methods.transfer(to, value).encodeABI()
 		};

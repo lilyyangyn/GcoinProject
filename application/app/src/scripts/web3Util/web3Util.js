@@ -112,7 +112,7 @@ const web3Util = {
         return this.childChainWeb3.eth.getBalance(address);
     },
 
-    //Write Function
+    /*Write Function*/
     getUSDTFromFaucet: async function (receiver, resolveCallback) {
 
         if (web3Util.parentChainWeb3 == null) {
@@ -210,7 +210,8 @@ const web3Util = {
             this.signTransaction(this.childChainWeb3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
     },
-    //Read function
+
+    /*Read Function*/
 
     //Get user balance
 
