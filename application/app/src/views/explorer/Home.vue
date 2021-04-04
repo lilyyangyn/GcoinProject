@@ -33,7 +33,7 @@
 			
 			</div>
 			</Panel>
-					<div v-if="showBlocks" class="table blocks" style="border-style: solid; border-color: grey">
+					<div v-if="showBlocks" class="table blocks" >
 			<div class="table-header" >
 				<div class="table-row">
 					<div class="table-column">Block</div>
@@ -230,5 +230,9 @@ label {
 
 input {
   margin-right: 4%;
+}
+
+.blockHome{
+  margin-bottom: 2%;
 }
 </style>

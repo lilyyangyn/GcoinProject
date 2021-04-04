@@ -1,6 +1,31 @@
 <template>
-	<div class="cross-chain-deposit">
-		<h1>This is the cross chain withdraw page</h1>
+	<div >
+		<h1 style="text-align: center">Withdraw</h1>
+    <Tabs type="card" class="card-container">
+      <TabPane label="USD">
+        <Card style="width:100%">
+          <Form  label-position="left" :label-width="70" class="form-container">
+            <FormItem label="Amount">
+              <Input  placeholder="amount"></Input>
+            </FormItem>
+            <FormItem label="Address">
+              <Input  placeholder="amount"></Input>
+            </FormItem>
+            <FormItem label="Payment">
+              <Select  placeholder="Select Your Payment Method">
+                <Option value="0">EPS</Option>
+                <Option value="1">UnionPay</Option>
+              </Select>
+            </FormItem>
+          </Form>
+<!--          <span class="charging-amount-container">-->
+<!--              <p class="charging-amount">USD Charging:</p>-->
+<!--              <p class="charging-amount"></p>-->
+<!--            </span>-->
+        </Card>
+        <Button type="success" class="confirm-btn">Confirm</Button>
+      </TabPane>
+    </Tabs>
 		<button @click="transferToHomeChain()">click8</button>
 		<button @click="register()">register</button>
 		<button @click="bridgeableTokenTransfer()">crosschain</button>
@@ -200,3 +225,44 @@
 		},
 	}
 </script>
+
+<style>
+/*.page-container {*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
+
+.card-container {
+  margin: auto;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.charging-amount-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.charging-amount {
+  font-weight: bold;
+  font-size: 15px;
+  /*margin: 2%;*/
+  width: 25%;
+}
+
+.confirm-btn {
+  /*margin: 2%;*/
+  /*position: relative;*/
+  /*left: 25%;*/
+  float: right;
+  width: 25%;
+  height: 40px;
+  margin-top: 2%;
+  margin-right: 2%;
+}
+
+
+</style>

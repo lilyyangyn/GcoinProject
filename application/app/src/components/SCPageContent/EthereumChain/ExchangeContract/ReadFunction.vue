@@ -4,7 +4,7 @@
     <Panel name="exchcoinContractFunction">
       Exchcoin_Contract
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="exchcoinLedgerFunction">
@@ -12,13 +12,13 @@
       <div slot="content">
         <label>address</label>
         <input type="text"></input>
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="USDTContractFunction">
       USDT_Contract
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     
@@ -27,19 +27,19 @@
       <div slot="content">
         <label>address</label>
         <input type="text"></input>
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="pltfFeeRateFunction">
       Pltf_Fee_Rate
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="dpltfOwnerFunction">
       Pltf_Owner
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
   </Collapse>

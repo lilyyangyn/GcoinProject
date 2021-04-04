@@ -3,7 +3,7 @@
     <Layout :style="{height: '90%'}">
       <Header id="nav">
         <Menu mode="horizontal">
-          <div class="layout-logo"></div>
+          <div ><img src="@/assets/Gcoin.png" class="layout-logo"> </div>
 
           <MenuItem name="Logout" style="float: right" to="/" @click.native="toLogout()">
             <Icon type="md-home"/>
@@ -100,10 +100,10 @@
                 Faucet
               </MenuItem>
 
-              <MenuItem name="Deposit" to="/deposit">
-                <Icon type="md-log-out"/>
-                Deposit
-              </MenuItem>
+<!--              <MenuItem name="Deposit" to="/deposit">-->
+<!--                <Icon type="md-log-out"/>-->
+<!--                Deposit-->
+<!--              </MenuItem>-->
 
               <MenuItem name="Withdraw" to="/withdraw">
                 <Icon type="md-log-out"/>

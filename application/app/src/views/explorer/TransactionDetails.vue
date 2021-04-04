@@ -1,7 +1,7 @@
 <template>
 	<div class="transaction">
-		<h1>Transaction</h1>
-		<Tabs type="card" style="width: 85%;">
+		<h1 style="text-align: center">Transaction</h1>
+		<Tabs type="card" style="width: 85%;margin: 0 auto;">
 
 
 		<div v-if="error">
@@ -12,8 +12,8 @@
 				</span>
 			</Alert>
 		</div>
-		<div v-else>
-			<Card class="transaction" v-if="transaction">
+		<div v-else style="margin: 0 auto;">
+			<Card class="transaction" v-if="transaction" style="margin-bottom: 2%">
 				<List border>
 			<ListItem>
 				<div class="detail-item">hash: </div>

@@ -15,7 +15,7 @@
       <div slot="content">
         <label>bridgeContract</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="transferFromFunction">
@@ -27,7 +27,7 @@
         <input type="text"></input>
         <label>amount</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="increaseAllowanceFunction">
@@ -37,7 +37,7 @@
         <input type="text"></input>
         <label>addedValue</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="transferAndCallFunction">
@@ -59,7 +59,7 @@
         <input type="text"></input>
         <label>amount</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="burnFunction">
@@ -67,7 +67,7 @@
       <div slot="content">
         <label>value</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="decreaseApprovalFunction">
@@ -77,7 +77,7 @@
         <input type="text"></input>
         <label>subtractedValue</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="claimTokensFunction">
@@ -87,19 +87,19 @@
         <input type="text"></input>
         <label>to</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="renounceOwnershipFunction">
       Renounce_Ownership
       <div slot="content">
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="finishMintingFunction">
       Finish_Minting
       <div slot="content">
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="permitFunction">
@@ -121,7 +121,7 @@
         <input type="text"></input>
         <label>s</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="decreaseAllowanceFunction">
@@ -131,7 +131,7 @@
         <input type="text"></input>
         <label>subtractedValue</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="transferFunction">
@@ -141,7 +141,7 @@
         <input type="text"></input>
         <label>value</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="pushFunction">
@@ -151,7 +151,7 @@
         <input type="text"></input>
         <label>amount</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="moveFunction">
@@ -163,7 +163,7 @@
         <input type="text"></input>
         <label>amount</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="increaseApprovalFunction">
@@ -173,7 +173,7 @@
         <input type="text"></input>
         <label>addedValue</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="pullFunction">
@@ -183,7 +183,7 @@
         <input type="text"></input>
         <label>amount</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
     <Panel name="transferOwnershipFunction">
@@ -191,7 +191,7 @@
       <div slot="content">
         <label>newOwner</label>
         <input type="text"></input>
-        <Button type="success">write</Button>
+        <Button type="success" disabled>write</Button>
       </div>
     </Panel>
   </Collapse>

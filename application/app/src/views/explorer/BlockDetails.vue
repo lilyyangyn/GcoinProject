@@ -1,7 +1,8 @@
 <template>
-	<div class="block">
-		<h1 v-if="block">Block: {{block.height}}</h1>
-		<Tabs type="card" style="width: 85%;">
+	<div class="block" >
+		<h1 v-if="block" style="text-align: center">Block: {{block.height}}</h1>
+		<Tabs type="card" style="width: 85%;margin: 0 auto;">
+
 
 		<div v-if="error">
 			<Alert type="error" show-icon>
@@ -11,7 +12,7 @@
 				</span>
 			</Alert>
 		</div>
-		<div v-else>
+		<div v-else style="margin: 0 auto;">
 			<Card class="block" v-if="block">
 				<List border>
 			<ListItem>
@@ -102,6 +103,10 @@
 .detail-item {
 	font-weight: 700!important;
 	display: inline-block;
+}
+.block{
+	margin-bottom: 2%
+
 }
 
 </style>

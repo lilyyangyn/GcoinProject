@@ -4,44 +4,44 @@
     <Panel name="mingtingFinishedFunction">
       Mingting_Finished
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="nameFunction">
       Name
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="totalSupplyFunction">
       Total_Supply
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     
     <Panel name="permitTypehashFunction">
       PERMIT_TYPEHASH
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="decimalsFunction">
       Decimals
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="domainSeparatorFunction">
       DOMAIN_SEPARATOR
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="versionFunction">
       Version
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="balanceOfFunction">
@@ -49,7 +49,7 @@
       <div slot="content">
         <label>owner</label>
         <input type="text"></input>
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="isBridgeFunction">
@@ -57,7 +57,7 @@
       <div slot="content">
         <label>address</label>
         <input type="text"></input>
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="noucesFunction">
@@ -65,31 +65,31 @@
       <div slot="content">
         <label>input</label>
         <input type="text"></input>
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="getTokenInterfacesVersionFunction">
       Get_Token_Interfaces_Version
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="ownerFunction">
       Owner
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="symbolFunction">
       Symbol
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="bridgeContractFunction">
       Bridge_Contract
       <div slot="content">
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="allowanceFunction">
@@ -99,7 +99,7 @@
         <input type="text"></input>
         <label>spender</label>
         <input type="text"></input>
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
     <Panel name="expirationsFunction">
@@ -109,7 +109,7 @@
         <input type="text"></input>
         <!-- <label>spender</label> -->
         <input type="text"></input>
-        <Button type="success">read</Button>
+        <Button type="success" disabled>read</Button>
       </div>
     </Panel>
   </Collapse>
