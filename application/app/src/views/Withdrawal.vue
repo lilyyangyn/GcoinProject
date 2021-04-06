@@ -2,33 +2,33 @@
 	<div >
 		<h1 style="text-align: center">Withdraw</h1>
     <Tabs type="card" class="card-container">
-      <TabPane label="USD">
+      <TabPane label="withdraw">
         <Card style="width:100%">
           <Form  label-position="left" :label-width="70" class="form-container">
             <FormItem label="Amount">
-              <Input  placeholder="amount"></Input>
+              <Input  placeholder="amount" v-model="depositValue"></Input>
             </FormItem>
-            <FormItem label="Address">
-              <Input  placeholder="amount"></Input>
-            </FormItem>
-            <FormItem label="Payment">
-              <Select  placeholder="Select Your Payment Method">
-                <Option value="0">EPS</Option>
-                <Option value="1">UnionPay</Option>
-              </Select>
-            </FormItem>
+<!--            <FormItem label="Address">-->
+<!--              <Input  placeholder="amount"></Input>-->
+<!--            </FormItem>-->
+<!--            <FormItem label="Payment">-->
+<!--              <Select  placeholder="Select Your Payment Method">-->
+<!--                <Option value="0">EPS</Option>-->
+<!--                <Option value="1">UnionPay</Option>-->
+<!--              </Select>-->
+<!--            </FormItem>-->
           </Form>
 <!--          <span class="charging-amount-container">-->
 <!--              <p class="charging-amount">USD Charging:</p>-->
 <!--              <p class="charging-amount"></p>-->
 <!--            </span>-->
         </Card>
-        <Button type="success" class="confirm-btn">Confirm</Button>
+        <Button type="success" class="confirm-btn" @click="approveUSDTExchange()">Confirm</Button>
       </TabPane>
     </Tabs>
-		<button @click="transferToHomeChain()">click8</button>
-		<button @click="register()">register</button>
-		<button @click="bridgeableTokenTransfer()">crosschain</button>
+<!--		<button @click="transferToHomeChain()">click8</button>-->
+<!--		<button @click="register()">register</button>-->
+<!--		<button @click="bridgeableTokenTransfer()">crosschain</button>-->
 	</div>
 </template>
 
@@ -46,7 +46,7 @@
 		name: 'CrossChainWithdraw',
 		data() {
 			return {
-				depositValue: 1,
+				depositValue: 0,
 			}
 		},
 		methods: {

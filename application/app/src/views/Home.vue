@@ -29,7 +29,7 @@
       </Header>
       <Layout>
         <Sider id="sider" :style="{background: '#fff'}">
-          <Menu style="height: 100%" theme="light" width="auto">
+          <Menu style="height: 100%" theme="light" width="auto" accordion>
             <!--            <MenuItem name="Home" to="/">-->
             <!--              <Icon type="md-home"/>-->
             <!--              Home-->

@@ -25,11 +25,11 @@
         </Card>
         <Button type="success" class="confirm-btn">Confirm</Button>
       </TabPane>
-      <TabPane label="Stable Coin">
+      <TabPane label="Deposit">
         <Card style="width:100%">
-          <Form :model="formStableCoinBuyGcoin" label-position="left" :label-width="70" class="form-container">
+          <Form label-position="left" :label-width="70" class="form-container">
             <FormItem label="Amount">
-              <Input v-model="formStableCoinBuyGcoin.amount" placeholder="amount"></Input>
+              <Input v-model="depositValue" placeholder="amount"></Input>
             </FormItem>
 <!--            <FormItem label="Address">-->
 <!--              <Input v-model="formStableCoinBuyGcoin.address" placeholder="address"></Input>-->
@@ -37,7 +37,7 @@
           </Form>
           <span class="charging-amount-container">
               <p class="charging-amount">Stable Coin Charging:</p>
-              <p class="charging-amount">$ {{formStableCoinBuyGcoin.amount}}</p>
+              <p class="charging-amount">$ {{depositValue}}</p>
             </span>
         </Card>
         <Button type="success" class="confirm-btn" @click="transferToChildChain()">Confirm</Button>
@@ -64,10 +64,7 @@ export default {
         address:'',
         paymentMethod:''
       },
-      formStableCoinBuyGcoin :{
-        amount:'',
-        address:''
-      },
+
       depositValue: 1,
 
     }
