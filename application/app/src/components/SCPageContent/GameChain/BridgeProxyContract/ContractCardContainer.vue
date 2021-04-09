@@ -14,7 +14,7 @@
           </div>
           <div>
             <label>Blockchain Chain Network:</label>
-            Goerli
+            EGES
           </div>
         </div>
       </Panel>
