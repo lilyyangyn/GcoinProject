@@ -106,5 +106,13 @@
 </style>
 <script>
 
+export default {
+  name: "App", 
+  mounted() {
+    this.$Message.config({
+      duration: 5,
+    })
+  }
+}
 
 </script>

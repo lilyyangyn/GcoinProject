@@ -172,14 +172,14 @@ export default {
       web3Util.getUserGcoinBalance().then((resolved) => {
         let balance = this.numeral(parseInt(resolved)).format('0,0');
         this.coinBalance.GcoinBalance = balance;
-        console.log("ran Gcoin update");
+        // console.log("ran Gcoin update");
       });
     },
     USDTBalanceUpdate() {
       web3Util.getUserUSDTBalance().then((resolved) => {
         let balance = this.numeral(parseInt(resolved)).format('0,0');
         this.coinBalance.USDTBalance = balance;
-        console.log("ran USDT update");
+        // console.log("ran USDT update");
       });
     },
     parentChainExchgCoinUpdate() {
