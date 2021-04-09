@@ -1,6 +1,7 @@
 import {contractAbi} from "@/scripts/web3Util/contractAbi";
 import {utilConfig} from "@/scripts/web3Util/config";
 import {web3Util} from "@/scripts/web3Util/web3Util";
+import {Message} from 'view-design';
 
 const Gcoin = {
 	web3: null,
@@ -43,7 +44,7 @@ const Gcoin = {
 		};
 
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            Message.error("You should first set your key in wallet manager");
         }else{
             web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, comfirmCallback, errorCallback);
         }
@@ -61,7 +62,7 @@ const Gcoin = {
 		};
 
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            Message.error("You should first set your key in wallet manager");
         }else{
             web3Util.signTransaction(this.web3, tx, localStorage.getItem('priv ateKey'), null, comfirmCallback, errorCallback);
         }
@@ -72,7 +73,7 @@ const Gcoin = {
 
 		let owner = localStorage.getItem('address');
 		if (owner == null || owner == "") {
-			this.$Message.error("You should first set your account in wallet manager");
+			Message.error("You should first set your account in wallet manager");
 			return;
 		}
 
@@ -85,7 +86,7 @@ const Gcoin = {
 
 		let owner = localStorage.getItem('address');
 		if (owner == null || owner == "") {
-			this.$Message.error("You should first set your account in wallet manager");
+			Message.error("You should first set your account in wallet manager");
 			return;
 		}
 
