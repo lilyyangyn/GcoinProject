@@ -29,7 +29,7 @@
         <Card style="width:100%">
           <Form label-position="left" :label-width="70" class="form-container">
             <FormItem label="Amount">
-              <Input v-model="depositValue" placeholder="amount"></Input>
+              <Input v-model="initDepositVal" placeholder="amount" ></Input>
             </FormItem>
 <!--            <FormItem label="Address">-->
 <!--              <Input v-model="formStableCoinBuyGcoin.address" placeholder="address"></Input>-->
@@ -40,7 +40,7 @@
               <p class="charging-amount">$ {{depositValue}}</p>
             </span>
         </Card>
-        <Button type="success" class="confirm-btn" @click="transferToChildChain()">Confirm</Button>
+        <Button type="success" class="confirm-btn" @click="transferToChildChain()" :disabled="notAllow">Confirm</Button>
       </TabPane>
     </Tabs>
   </div>
@@ -67,13 +67,16 @@ export default {
         address:'',
         paymentMethod:''
       },
-
-      depositValue: 1,
+      initDepositVal: 0,
+      notAllow: false,
+      depositValue: 0,
 
     }
   },
   methods: {
     async transferToChildChain() {
+        this.depositValue=this.initDepositVal;
+        this.notAllow=true;
         let self = this;
 
         // USDT approval
@@ -84,6 +87,7 @@ export default {
           } else {
             console.error(error);
             console.log(result);
+            self.notAllow=false;
           }
           
           self.refreshUSDTAllowanceCallback(error, result);
@@ -98,6 +102,7 @@ export default {
           }, (error) => {
             console.error(error);
             self.$Message.error("Fail to Allow The Platform to Spend Your USDT");
+            self.notAllow=false;
           });
         } else {
           this.exchcoinExchange();
@@ -116,6 +121,7 @@ export default {
         }, (error) => {
           console.error(error);
           self.$Message.error("Fail to Reserve Exchcoin");
+          self.notAllow=false;
         });
       },
 
@@ -129,6 +135,7 @@ export default {
         }, (error) => {
           console.error(error);
           self.$Message.error("Fail to Start Crosschain Transfer");
+          self.notAllow=false;
         });
       },
 
@@ -139,10 +146,12 @@ export default {
               this.getSignatureAndExecute(resolved);
             } else {
               this.$Message.error("Childchain Address Insufficient Funds");
+              this.notAllow=false;
             }
           })
         } else {
           this.$Message.error("You Should First Set Your Key In Wallet Manager");
+          this.notAllow=false;
         }
       },
 
@@ -167,6 +176,7 @@ export default {
             console.log("signature: " + signature);
           }).catch(error => {
             console.log(error);
+            this.notAllow=false;
           });
         }
 
@@ -180,6 +190,7 @@ export default {
         }, (error) => {
           console.error(error);
           self.$Message.error("Fail to Sign Execution");
+          self.notAllow=false;
         });
 
       },
@@ -189,11 +200,13 @@ export default {
         let self = this;
         BridgeableToken_Child.approve(this.depositValue, () => {
           self.$Message.success("Approve-Gcoin-exchange Succeeds!");
-        console.log("Approve-Gcoin-exchange succeeds!");
-        self.gcoinExchange()
+          console.log("Approve-Gcoin-exchange succeeds!");
+          self.gcoinExchange();
+
         }, (error) => {
           console.error(error);
           self.$Message.error("Fail to Approve Gcoin-exchange");
+          self.notAllow=false;
         });
       },
 
@@ -205,9 +218,11 @@ export default {
         console.log("Gcoin-exchange succeeds!");
         vm.$emit('childChainExchgCoinBalanceUpdate');
         vm.$emit('GcoinBalanceUpdate');
+        self.notAllow=false;
       }, (error) => {
         console.error(error);
         self.$Message.error("Fail to Reserve Gcoin");
+        self.notAllow=false;
       });
     },
 
@@ -229,6 +244,7 @@ export default {
 
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             this.$Message.error("You Should First Set Your Key In Wallet Manager");
+            this.notAllow=false;
         }else{
             web3Util.signTransaction(web3Util.childChainWeb3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
@@ -243,6 +259,7 @@ export default {
         console.log("USDTAllowance: "+result)
       } else {
         this.$Message.error("Fail to Get USDT Allowance.");
+        this.notAllow=false;
       }
     },
   }
