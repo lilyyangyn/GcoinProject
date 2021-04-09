@@ -89,6 +89,10 @@ export default {
       }
     },
     setKeySubmit(){
+      if (this.privateKeyInput.length != 32) {
+        this.$Message.error("Private key must be 32 bytes long");
+        return;
+      }
       web3Util.privateKeyToPublicKey(this.privateKeyInput).then((resolve)=>{
         localStorage.setItem('address', resolve.address);
         localStorage.setItem('privateKey',resolve.privateKey);
