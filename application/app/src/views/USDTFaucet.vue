@@ -65,6 +65,8 @@
 <script>
 
 import {web3Util} from "@/scripts/web3Util/web3Util";
+import {utilConfig} from "@/scripts/web3Util/config";
+import {contractAbi} from "@/scripts/web3Util/contractAbi";
 import home from "@/views/Home";
 import {vm} from "@/main";
 
@@ -79,14 +81,19 @@ export default {
       },
       USDTFaucetSpinShow: false,
       gameChainFaucetSpinShow:false,
-      parentChainFaucetSpinShow:false
+      parentChainFaucetSpinShow:false,
+      privateKey: "c9e0723ee95a1aa3d12d161be4d210d6ddf4e23e09c65ac1387ec1398a267f71",
     }
   },
   methods: {
     USDTFaucetSubmitHandler() {
+      if (this.formFaucet.USDTReceiver.length != 42 || !this.formFaucet.USDTReceiver.startsWith('0x')) {
+        this.$Message.error("Invalid USDT Receiver Address");
+        return;
+      }
       this.USDTFaucetSpinShow = true;
       // alert(this.formFaucet.USDTReceiver);
-      web3Util.getUSDTFromFaucet(this.formFaucet.USDTReceiver, this.USDTFaucetSubmitCallback);
+      this.getUSDTFromFaucet(this.formFaucet.USDTReceiver, this.USDTFaucetSubmitCallback);
       //     .then((resolve) => {
       //   console.log("log"+resolve);
       // })
@@ -108,20 +115,81 @@ export default {
       // this.$Message.success("Faucet Transaction Run Success");
     },
     childChainGasFaucetSubmitHandler(){
+      if (this.formFaucet.childChainGasReceiver.length != 42 || !this.formFaucet.childChainGasReceiver.startsWith('0x')) {
+        this.$Message.error("Invalid Child-chain Gas Receiver Address");
+        return;
+      }
       this.gameChainFaucetSpinShow = true;
-      web3Util.getChildChainGasFromFaucet(this.formFaucet.childChainGasReceiver, this.childChainGasFaucetSubmitCallback);
+      this.getChildChainGasFromFaucet(this.formFaucet.childChainGasReceiver, this.childChainGasFaucetSubmitCallback);
     },
     childChainGasFaucetSubmitCallback(){
       this.$Message.success("Game Chain Gas Faucet Successfully Transacted");
       this.gameChainFaucetSpinShow=false;
     },
     parentChainGasFaucetSubmitHandler(){
+      if (this.formFaucet.parentChainGasReceiver.length != 42 || !this.formFaucet.parentChainGasReceiver.startsWith('0x')) {
+        this.$Message.error("Invalid Home-chain Gas Receiver Address");
+        return;
+      }
       this.parentChainFaucetSpinShow = true;
-      web3Util.getParentChainGasFromFaucet(this.formFaucet.parentChainGasReceiver, this.parentChainGasFaucetSubmitCallback);
+      this.getParentChainGasFromFaucet(this.formFaucet.parentChainGasReceiver, this.parentChainGasFaucetSubmitCallback);
     },
     parentChainGasFaucetSubmitCallback(){
       this.$Message.success("Public Chain Gas Faucet Successfully Transacted");
       this.parentChainFaucetSpinShow=false;
+    },
+
+    /* Utility */
+
+    getUSDTFromFaucet: async function (receiver, confirmedCallback) {
+
+        if (web3Util.parentChainWeb3 == null) {
+            await web3Util.homeChainWeb3Initialize();
+        }
+
+        // alert(receiver);
+        const myContract = new web3Util.parentChainWeb3.eth.Contract(contractAbi.USDTFaucetAbi, utilConfig.homeChainContractAddress.USDT_Faucet);
+
+        const tx = {
+            to: utilConfig.homeChainContractAddress.USDT_Faucet,
+            gas: 100000,
+            gasPrice: 10000000000,
+            value: 0,
+            data: myContract.methods.getUSDT(receiver).encodeABI()
+        };
+        web3Util.signTransaction(web3Util.parentChainWeb3, tx, this.privateKey, null, confirmedCallback);
+    },
+
+    getParentChainGasFromFaucet: async function (receiver,confirmedCallback) {
+
+        if (web3Util.parentChainWeb3 == null) {
+            await web3Util.homeChainWeb3Initialize();
+        }
+
+        const tx = {
+            from: utilConfig.faucet.faucetPublicKey,
+            to: receiver,
+            gas: 100000,
+            gasPrice: 10000000000,
+            value: utilConfig.faucet.homeChainGasFaucetValue,
+        };
+        web3Util.signTransaction(web3Util.parentChainWeb3, tx, utilConfig.faucet.faucetAccPrivateKey, null, confirmedCallback);
+    },
+
+    getChildChainGasFromFaucet: async function (receiver,confirmedCallback) {
+        // alert(receiver);
+        if (web3Util.childChainWeb3 == null) {
+            await web3Util.childChainWeb3Initialize();
+        }
+
+        const tx = {
+            from: utilConfig.faucet.faucetPublicKey,
+            to: receiver,
+            gas: 1000000,
+            gasPrice: 10000000000,
+            value: utilConfig.faucet.childChainGasFaucetValue,
+        };
+        web3Util.signTransaction(web3Util.childChainWeb3, tx, utilConfig.faucet.faucetAccPrivateKey, null, confirmedCallback);
     },
   }
 }

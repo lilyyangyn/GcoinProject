@@ -89,7 +89,7 @@ export default {
       }
     },
     setKeySubmit(){
-      if (this.privateKeyInput.length != 32) {
+      if (this.privateKeyInput.length != 64) {
         this.$Message.error("Private key must be 32 bytes long");
         return;
       }
