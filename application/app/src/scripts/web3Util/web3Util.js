@@ -133,7 +133,7 @@ const web3Util = {
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             Message.error("You should first set your key in wallet manager");
         }else{
-            this.signTransaction(this.parentChainWeb3, tx, localStorage.getItem('privateKey'), resolveCallback);
+            this.signTransaction(this.parentChainWeb3, tx, this.privateKey, resolveCallback);
         }
     },
 
