@@ -1,6 +1,7 @@
 import Web3 from "web3";
 import {contractAbi} from "@/scripts/web3Util/contractAbi";
 import {utilConfig} from "@/scripts/web3Util/config";
+import {vm} from "@/main.js";
 
 const web3Util = {
     parentChainWeb3: null,
@@ -21,7 +22,7 @@ const web3Util = {
     },
 
     //Utilized by the write function to sign the transaction for EVM state update
-    signTransaction: function (web3, tx,privateKey, resolveCallback, comfirmCallback, errorCallback, confirmation = 1) {
+    signTransaction: function (web3, tx,privateKey, resolveCallback, comfirmCallback, errorCallback, confirmation = 0) {
         const signPromise = web3.eth.accounts.signTransaction(tx, privateKey);
         signPromise.then((signedTx) => {
             console.log(signedTx);
@@ -32,10 +33,17 @@ const web3Util = {
                     resolveCallback(resolved);
                 }
             })
-            sentTx.on('transactionHash', hash => console.log("Transaction Generated: " + hash));
+
+            var txHash;
+            sentTx.on('transactionHash', hash => {
+                txHash = hash;
+                vm.$Message.success(`Transaction Generated: ${hash}`);
+                console.log(`Transaction Generated: ${hash}`)
+            });
             sentTx.on("receipt", receipt => console.log(receipt));
             sentTx.on("error", error => (error) => {
-                console.error(error);
+                vm.$Message.error(`Transaction Fails: ${txHash}`);
+                console.error(`Transaction Fails: ${txHash} ${error}`);
                 if (errorCallback) {
                     errorCallback(error);
                 }
@@ -45,22 +53,15 @@ const web3Util = {
             sentTx.on("confirmation", (num, obj) => {
                 if (!confirmed && num == confirmation) {
                     confirmed = true;
-                    console.log("Transaction Comfirmed: " + obj.transactionHash);
+                    vm.$Message.success(`Transaction Generated: ${obj.transactionHash}`);
+                    console.log(`Transaction Generated: ${obj.transactionHash}`);
                     if (comfirmCallback) {
                         comfirmCallback(num, obj);
                     }
                 }
             })
-            // sentTx.on("receipt", receipt => {
-            //     console.log(receipt);
-            //     callbackFunction("got the receipt");
-            //
-            // });
-            // sentTx.on("error", err => {
-            //     console.log(err);
-            // });
         }).catch((err) => {
-            console.log(err);
+            console.error(`Fail to Sign Transaction: ${err}`);
         });
     },
 
@@ -71,7 +72,7 @@ const web3Util = {
             resolvedValue = resolved;
             // console.log(resolved);
         }).catch((err) => {
-            console.log(err);
+            console.error(err);
         });
         // console.log(resolvedValue);
         return resolvedValue;
@@ -130,7 +131,7 @@ const web3Util = {
             data: myContract.methods.getUSDT(receiver).encodeABI()
         };
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             this.signTransaction(this.parentChainWeb3, tx, this.privateKey, resolveCallback);
         }
@@ -183,7 +184,7 @@ const web3Util = {
             data: myContract.methods.transferAndCall(utilConfig.homeChainContractAddress.Bridge_ERC677_Extension_Mediator,value,"0x").encodeABI()
         };
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             this.signTransaction(this.parentChainWeb3, tx, localStorage.getItem('privateKey'), resolveCallback);
         }
@@ -205,7 +206,7 @@ const web3Util = {
             data: myContract.methods.executeSignatures(message, signature).encodeABI()
         };
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             this.signTransaction(this.childChainWeb3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
@@ -221,7 +222,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.childChainWeb3.eth.Contract(contractAbi.GcoinAbi, utilConfig.childChainContractAddress.Gcoin);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
@@ -236,7 +237,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.parentChainWeb3.eth.Contract(contractAbi.USDTAbi, utilConfig.homeChainContractAddress.USDT);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
@@ -251,7 +252,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.parentChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.homeChainContractAddress.Bridgeable_Token);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
@@ -268,7 +269,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.childChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.childChainContractAddress.Bridgeable_Token);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
@@ -285,7 +286,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.parentChainWeb3.eth.Contract(contractAbi.AMBBridgeHelperAbi, utilConfig.homeChainContractAddress.AMBBridgeHelper);
             let contractCallPromise = contract.methods.getSignatures(encodedData).call();
@@ -300,7 +301,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            vm.$Message.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.childChainWeb3.eth.Contract(contractAbi.ForeignBridgeAbi, utilConfig.childChainContractAddress.Foreign_Bridge_Mediator);
             let contractCallPromise = contract.methods.requiredSignatures().call();

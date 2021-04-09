@@ -49,37 +49,37 @@
 
 <script>
 import { Gcoin } from '@/scripts/contracts/gcoin.js';
-  export default {
-    name: "ReadFunction",
-    data(){
-      return{
-        spender: "",
+export default {
+  name: "ReadFunction",
+  data(){
+    return{
+      spender: "",
+    }
+  },
+
+  methods: {
+
+    allowanceCallback(error, result){
+      if(error){
+        console.log(error);
+      }else {
+        document.getElementById("Allowance").innerHTML = result;
       }
     },
+    ballanceCallback(error, result){
+      if(error){
+        console.log(error);
+      }else{
+        document.getElementById("Balance").innerHTML=result;
+      }
 
-    methods: {
-
-      allowanceCallback(error, result){
-        if(error){
-          console.log(error);
-        }else {
-          document.getElementById("Allowance").innerHTML = result;
-        }
-      },
-      ballanceCallback(error, result){
-        if(error){
-          console.log(error);
-        }else{
-          document.getElementById("Balance").innerHTML=result;
-        }
-
-      },
-      refreshBalance(){
-        Gcoin.refreshBalance(this.ballanceCallback);
-      },
-      refreshAllowance(){
-        Gcoin.refreshAllowance(this.spender, this.allowanceCallback);
-      },
+    },
+    refreshBalance(){
+      Gcoin.refreshBalance(this.ballanceCallback);
+    },
+    refreshAllowance(){
+      Gcoin.refreshAllowance(this.spender, this.allowanceCallback);
+    },
 
   }
 }
