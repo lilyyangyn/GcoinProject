@@ -7,9 +7,9 @@
           <FormItem label="Game Name">
             <Input v-model="formGameLaunch.gameName" placeholder="game name"></Input>
           </FormItem>
-          <FormItem label="Issuer ID">
-            <Input v-model="formGameLaunch.issuerID" placeholder="Gaming company ID"></Input>
-          </FormItem>
+<!--          <FormItem label="Issuer ID">-->
+<!--            <Input v-model="formGameLaunch.issuerID" placeholder="Gaming company ID"></Input>-->
+<!--          </FormItem>-->
           <FormItem label="Trailer Youtube URL">
             <Input v-model="formGameLaunch.trailerURL" placeholder="Trailer Youtube URL"></Input>
           </FormItem>
@@ -62,7 +62,7 @@ export default {
         gameName :'',
         trailerURL: '',
         gameDescription:'',
-        issuerID:'',
+        issuerID:'1',
         gameCategory:'',
       },
       file:null,
