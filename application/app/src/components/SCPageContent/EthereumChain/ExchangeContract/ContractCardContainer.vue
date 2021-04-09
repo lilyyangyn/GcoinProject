@@ -6,7 +6,7 @@
         <div slot="content">
           <div>
             <label>Contract Address:</label>
-            0xb9Ed6B7c16E4300BB8793daDD632dc39eD2Db119
+            0x1650089d337dB2312d47983A62cf3735b838e8d3
           </div>
           <div>
             <label>Transaction hash:</label>
@@ -14,7 +14,7 @@
           </div>
           <div>
             <label>Blockchain Chain Network:</label>
-            Ropsten
+            Sokol
           </div>
         </div>
       </Panel>

@@ -6,7 +6,7 @@
         <div slot="content">
           <div>
             <label>Contract Address:</label>
-            -
+            0x920fC75Ed48EDA7E5DfcFf7a8bBe806b4E1527e9
           </div>
           <div>
             <label>Transaction hash:</label>
@@ -14,7 +14,7 @@
           </div>
           <div>
             <label>Blockchain Chain Network:</label>
-            Goerli
+            EGES
           </div>
         </div>
       </Panel>
