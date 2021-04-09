@@ -14,7 +14,7 @@
           </div>
           <div>
             <label>Blockchain Chain Network:</label>
-            Ropsten
+            Sokol
           </div>
         </div>
       </Panel>
