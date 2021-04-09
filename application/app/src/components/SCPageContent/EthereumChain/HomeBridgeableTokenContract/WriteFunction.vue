@@ -3,17 +3,17 @@
     <Panel name="approveFunction">
       Approve
       <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
+<!--        <label>to</label>-->
+<!--        <input type="text"></input>-->
         <label>value</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
+        <input type="text" v-model="approve"></input>
+        <Button type="success" @click="approveFunction()">write</Button>
       </div>
     </Panel>
     <Panel name="setBridgeContractFunction">
       Set_Bridge_Contract
       <div slot="content">
-        <label>bridgeContract</label>
+        <label>bridgeContsract</label>
         <input type="text"></input>
         <Button type="success" disabled>write</Button>
       </div>
@@ -43,13 +43,13 @@
     <Panel name="transferAndCallFunction">
       Transfer_And_Call
       <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
+<!--        <label>to</label>-->
+<!--        <input type="text"></input>-->
         <label>value</label>
-        <input type="text"></input>
-        <label>data</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
+        <input type="text" v-model="transferAndCall"></input>
+<!--        <label>data</label>-->
+<!--        <input type="text"></input>-->
+        <Button type="success" @click="transferAndCallFunction()">write</Button>
       </div>
     </Panel>
     <Panel name="mintFunction">
@@ -198,8 +198,30 @@
 </template>
 
 <script>
+import { BridgeableToken_Home } from '@/scripts/homechain/BridgeableToken.js';
+
 export default {
-  name: "WriteFunction"
+  name: "WriteFunction",
+  data(){
+    return{
+      approve: 0,
+      transferAndCall: 0,
+    }
+  },
+  methods: {
+    successCallBack(){
+      console.log("success");
+    },
+    errorCallBack(error){
+      console.log(error);
+    },
+    approveFunction(){
+      BridgeableToken_Home.approve(this.approve, this.successCallBack,this.errorCallBack);
+    },
+    transferAndCallFunction(){
+      BridgeableToken_Home.transferToChildChain(this.transferAndCall, null, this.successCallBack, this.errorCallBack);
+    }
+  }
 }
 </script>
 

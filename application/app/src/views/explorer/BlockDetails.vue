@@ -29,7 +29,7 @@
 			</ListItem> -->
 			
 				<Collapse simple style="width: 100%;">
-				<Panel><Strong>Transactions:</Strong> {{block.transactions.length}}
+				<Panel hide-arrow style="padding-left: 8px;"><Strong>Transactions:</Strong> {{block.transactions.length}}
 				<div slot="content" v-for="txn in block.transactions" :key="txn.hash">
 				<a @click="getTransaction(txn)">{{txn}}</a>
 				</div>

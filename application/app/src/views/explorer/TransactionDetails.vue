@@ -45,7 +45,7 @@
 			</ListItem>
 			
 				<Collapse simple style="width: 100%;">
-				<Panel><Strong>input: </Strong>
+				<Panel hide-arrow style="padding-left: 8px;"><Strong>input: </Strong>
 				<div slot="content"  style="WORD-WRAP: break-word;TABLE-LAYOUT: fixed;word-break:break-all">
 				{{transaction.input}}
 				</div>

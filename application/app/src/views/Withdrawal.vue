@@ -23,7 +23,7 @@
 <!--              <p class="charging-amount"></p>-->
 <!--            </span>-->
         </Card>
-        <Button type="success" class="confirm-btn" @click="approveUSDTExchange()">Confirm</Button>
+        <Button type="success" class="confirm-btn" @click="transferToHomeChain()">Confirm</Button>
       </TabPane>
     </Tabs>
 <!--		<button @click="transferToHomeChain()">click8</button>-->

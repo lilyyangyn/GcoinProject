@@ -4,11 +4,11 @@
     <Panel name="approveFunction">
       Approve
       <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
+        <!--        <label>to</label>-->
+        <!--        <input type="text"></input>-->
         <label>value</label>
-        <input type="text"></input>
-        <Button type="success">write</Button>
+        <input type="text" v-model="approve"></input>
+        <Button type="success" @click="approveFunction()">write</Button>
       </div>
     </Panel>
     <Panel name="setBridgeContractFunction">
@@ -44,12 +44,13 @@
     <Panel name="transferAndCallFunction">
       Transfer_And_Call
       <div slot="content">
-        <label>to</label>
-        <input type="text"></input>
+        <!--        <label>to</label>-->
+        <!--        <input type="text"></input>-->
         <label>value</label>
-        <input type="text"></input>
-        <label>data</label>
-        <input type="text"></input>
+        <input type="text" v-model="transferAndCall"></input>
+        <!--        <label>data</label>-->
+        <!--        <input type="text"></input>-->
+        <Button type="success" @click="transferAndCallFunction()">write</Button>
       </div>
     </Panel>
     <Panel name="mintFunction">
@@ -199,15 +200,28 @@
 
 <script>
 import { BridgeableToken_Child } from '@/scripts/contracts/BridgeableToken.js';
+
 export default {
   name: "WriteFunction",
-
+  data(){
+    return{
+      approve: 0,
+      transferAndCall: 0,
+    }
+  },
   methods: {
-
-    created(){
-      this.bridgeableToken = BridgeableToken_Child;
+    successCallBack(){
+      console.log("success");
     },
-
+    errorCallBack(error){
+      console.log(error);
+    },
+    approveFunction(){
+      BridgeableToken_Child.approve(this.approve, this.successCallBack,this.errorCallBack);
+    },
+    transferAndCallFunction(){
+      BridgeableToken_Child.transferToChildChain(this.transferAndCall, null, this.successCallBack, this.errorCallBack);
+    }
   }
 }
 </script>

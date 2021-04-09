@@ -3,19 +3,21 @@
     <Panel name="allowanceFunction">
       Allowance
       <div slot="content">
-        <label>owner</label>
-        <input type="text"></input>
+<!--        <label>owner</label>-->
+<!--        <input type="text"></input>-->
         <label>spender</label>
-        <input type="text"></input>
-        <Button type="success" @click="gcoin.refreshAllowance(callbackRefreshAllowence)">read</Button>
+        <input type="text" v-model="spender"></input>
+        <p id="Allowance"></p>
+        <Button type="success" @click="refreshAllowance()">read</Button>
       </div>
     </Panel>
     <Panel name="balanceOf">
       Balance_Of
       <div slot="content">
-        <label>owner</label>
-        <input type="text"></input>
-        <Button type="success" @click="gcoin.refreshBalance(callbackRefreshBalance)">read</Button>
+<!--        <label>owner</label>-->
+<!--        <input type="text"></input>-->
+        <p id="Balance"><p>
+        <Button type="success" @click="refreshBalance()">read</Button>
       </div>
     </Panel>
     <Panel name="decimalsFunction">
@@ -49,12 +51,35 @@
 import { Gcoin } from '@/scripts/contracts/gcoin.js';
   export default {
     name: "ReadFunction",
+    data(){
+      return{
+        spender: "",
+      }
+    },
 
     methods: {
 
-    created(){
-      this.gcoin = Gcoin;
-    },
+      allowanceCallback(error, result){
+        if(error){
+          console.log(error);
+        }else {
+          document.getElementById("Allowance").innerHTML = result;
+        }
+      },
+      ballanceCallback(error, result){
+        if(error){
+          console.log(error);
+        }else{
+          document.getElementById("Balance").innerHTML=result;
+        }
+
+      },
+      refreshBalance(){
+        Gcoin.refreshBalance(this.ballanceCallback);
+      },
+      refreshAllowance(){
+        Gcoin.refreshAllowance(this.spender, this.allowanceCallback);
+      },
 
   }
 }
