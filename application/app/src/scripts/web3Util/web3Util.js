@@ -37,13 +37,13 @@ const web3Util = {
             var txHash;
             sentTx.on('transactionHash', hash => {
                 txHash = hash;
-                Message.loading(`Transaction Generated: ${hash}`);
+                // Message.loading(`Transaction Generated: ${hash}`);
                 console.log(`Transaction Generated: ${hash}`)
             });
             sentTx.on("receipt", receipt => console.log(receipt));
             sentTx.on("error", error => (error) => {
-                Message.error(`Transaction Fails: ${txHash}`);
-                console.error(`Transaction Fails: ${txHash} ${error}`);
+                // Message.error(`Transaction Fails: ${txHash}`);
+                // console.error(`Transaction Fails: ${txHash} ${error}`);
                 if (errorCallback) {
                     errorCallback(error);
                 }
@@ -53,7 +53,7 @@ const web3Util = {
             sentTx.on("confirmation", (num, obj) => {
                 if (!confirmed && num == confirmation) {
                     confirmed = true;
-                    Message.success(`Transaction Confirmed: ${obj.transactionHash}`);
+                    // Message.success(`Transaction Confirmed: ${obj.transactionHash}`);
                     console.log(`Transaction Confirmed: ${obj.transactionHash}`);
                     if (comfirmCallback) {
                         comfirmCallback(num, obj);
@@ -120,7 +120,7 @@ const web3Util = {
             await web3Util.homeChainWeb3Initialize();
         }
 
-        alert(receiver);
+        // alert(receiver);
         const myContract = new this.parentChainWeb3.eth.Contract(contractAbi.USDTFaucetAbi, utilConfig.homeChainContractAddress.USDT_Faucet);
 
         const tx = {
@@ -154,7 +154,7 @@ const web3Util = {
     },
 
     getChildChainGasFromFaucet: async function (receiver,resolveCallback) {
-        alert(receiver);
+        // alert(receiver);
         if (web3Util.childChainWeb3 == null) {
             await web3Util.childChainWeb3Initialize();
         }
