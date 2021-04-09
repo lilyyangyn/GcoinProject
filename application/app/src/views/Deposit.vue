@@ -61,9 +61,8 @@
 				USDTExchcoinExchange.USDTToExchcoin(this.depositValue, () => {
 					self.$Message.success("Exchcoin-exchange succeeds!");
 					console.log("Exchcoin-exchange succeeds!");
-					USDTExchcoinExchange.refreshUSDTBalance(self.refreshUSDTBalanceCallback);
-					USDTExchcoinExchange.refreshSCUSDTLedgerBalance(self.refreshSCUSDTLedgerBalanceCallback);
-					USDTExchcoinExchange.refreshExchcoinBalance(self.refreshHomechainExchcoinBalanceCallback);
+					vm.$emit('USDTBalanceUpdate');
+					vm.$emit('parentChainExchgCoinBalanceUpdate');
 					self.bridgeableTokenTransfer();
 				}, (error) => {
 					console.error(error);
@@ -77,7 +76,7 @@
 				BridgeableToken_Home.transferToChildChain(this.depositValue, this.getSignatureAndExecute, () => {
 					self.$Message.success("Start crosschain deposit!");
 					console.log("Start crosschain deposit!");
-					USDTExchcoinExchange.refreshExchcoinBalance(self.refreshHomechainExchcoinBalanceCallback);	
+					vm.$emit('parentChainExchgCoinBalanceUpdate');
 				}, (error) => {
 					console.error(error);
 					self.$Message.error("Fail to start crosschain transfer.\nPlease try again or do the transfer explicitly.");
@@ -113,7 +112,7 @@
 		      let self = this;
 		      await web3Util.signExecute(encodeData, signature, () => {
 		      	console.log("Sign Execution succeeds!");
-		      	GcoinExchcoinExchange.refreshExchcoinBalance(self.refreshChildchainExchcoinBalanceCallback);
+		      	vm.$emit('childChainExchgCoinBalanceUpdate');
 		      	self.approveGcoinExchange();
 		      }, (error) => {
 		      	console.error(error);
@@ -141,8 +140,8 @@
 				GcoinExchcoinExchange.exchcoinToGcoin(this.depositValue, () => {
 					self.$Message.success("Gcoin-exchange succeeds!");
 					console.log("Gcoin-exchange succeeds!");
-					GcoinExchcoinExchange.refreshExchcoinBalance(self.refreshChildchainExchcoinBalanceCallback)
-					GcoinExchcoinExchange.refreshGcoinBalance(self.refreshGcoinBalanceCallback);
+					vm.$emit('childChainExchgCoinBalanceUpdate');
+					vm.$emit('GcoinBalanceUpdate');
 				}, (error) => {
 					console.error(error);
 					self.$Message.error("Fail to reserve Gcoin.\nPlease try again or do the reservation explicitly.");
@@ -158,60 +157,6 @@
 					console.log("USDTAllowance: "+result)
 				} else {
 					this.$Message.error("Fail to get USDT allowance.");
-				}
-			},
-
-			refreshUSDTBalanceCallback(error, result) {
-				if (!error) {
-					// const USDTBalanceElement = document.getElementById("usdt-balance");
-					// USDTBalanceElement.innerHTML = result;
-					vm.$emit('USDTBalanceUpdate');
-					console.log("USDTBalance: "+result)
-				} else {
-					this.$Message.error("Fail to get USDT balance.");
-				}
-			},
-
-			refreshHomechainExchcoinBalanceCallback(error, result) {
-				if (!error) {
-					// const ExchcoinBalanceElement = document.getElementById("exchcoin-balance");
-					// ExchcoinBalanceElement.innerHTML = result;
-					vm.$emit('parentChainExchgCoinBalanceUpdate')
-					console.log("HomeExchcoinBalance: "+result)
-				} else {
-					this.$Message.error("Fail to get Exchcoin balance.");
-				}
-			},
-
-			refreshChildchainExchcoinBalanceCallback(error, result) {
-				if (!error) {
-					// const ExchcoinBalanceElement = document.getElementById("exchcoin-balance");
-					// ExchcoinBalanceElement.innerHTML = result;
-					vm.$emit('childChainExchgCoinBalanceUpdate');
-					console.log("ChildExchcoinBalance: "+result);
-				} else {
-					this.$Message.error("Fail to get Exchcoin balance.");
-				}
-			},
-
-			refreshSCUSDTLedgerBalanceCallback(error, result) {
-				if (!error) {
-					// const USDTLedgerBalanceElement = document.getElementById("usdt-ledger");
-					// USDTLedgerBalanceElement.innerHTML = result;
-					console.log("USDTLedgerBalance: "+result)
-				} else {
-					this.$Message.error("Fail to get USDT ledger balance in exchange balance.");
-				}
-			},
-
-			refreshGcoinBalanceCallback(error, result) {
-				if (!error) {
-					// const USDTBalanceElement = document.getElementById("usdt-balance");
-					// USDTBalanceElement.innerHTML = result;
-					vm.$emit('GcoinBalanceUpdate');
-					console.log("GcoinBalance: "+result);
-				} else {
-					this.$Message.error("Fail to get Gcoin balance.");
 				}
 			},
 

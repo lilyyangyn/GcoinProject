@@ -11,12 +11,12 @@
         <br>
         <div class="row">
           <label>Game Chain Gas Amount: </label>
-          {{this.childGasBalance}}
+          {{this.childGasBalance}} ethers
         </div>
         <br>
         <div class="row">
           <label>Public Chain Ether: </label>
-          {{this.homeGasBalance}}
+          {{this.homeGasBalance}} ethers
         </div>
         <br>
       </Card>
@@ -89,7 +89,7 @@ export default {
       }
     },
     setKeySubmit(){
-      if (this.privateKeyInput.length != 32) {
+      if (this.privateKeyInput.length != 64) {
         this.$Message.error("Private key must be 32 bytes long");
         return;
       }
