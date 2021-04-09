@@ -16,7 +16,7 @@
       <div slot="content">
 <!--        <label>owner</label>-->
 <!--        <input type="text"></input>-->
-        <p id="Balance"><p>
+        <p id="Balance"></p>
         <Button type="success" @click="refreshBalance()">read</Button>
       </div>
     </Panel>
