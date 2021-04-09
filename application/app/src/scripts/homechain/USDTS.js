@@ -1,6 +1,7 @@
 import {contractAbi} from "@/scripts/web3Util/contractAbi";
 import {utilConfig} from "@/scripts/web3Util/config";
-import {web3Util} from "@/scripts/web3Util/web3Util"
+import {web3Util} from "@/scripts/web3Util/web3Util";
+import {Message} from 'view-design';
 
 const USDTS = {
 	web3: null,
@@ -48,7 +49,7 @@ const USDTS = {
 		};
 
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
+            Message.error("You should first set your key in wallet manager");
         } else {
             await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
@@ -59,7 +60,7 @@ const USDTS = {
 
 		let sponsor = localStorage.getItem('address');
 		if (sponsor == null || sponsor == "") {
-			this.$Message.error("You should first set your account in wallet manager");
+			Message.error("You should first set your account in wallet manager");
 			return;
 		}
 
@@ -72,7 +73,7 @@ const USDTS = {
 
 		let owner = localStorage.getItem('address');
 		if (owner == null || owner == "") {
-			this.$Message.error("You should first set your account in wallet manager");
+			Message.error("You should first set your account in wallet manager");
 			return;
 		}
 
