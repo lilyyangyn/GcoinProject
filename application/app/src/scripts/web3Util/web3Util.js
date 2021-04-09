@@ -222,7 +222,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
+            // console.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.childChainWeb3.eth.Contract(contractAbi.GcoinAbi, utilConfig.childChainContractAddress.Gcoin);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
@@ -237,7 +237,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
+            // console.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.parentChainWeb3.eth.Contract(contractAbi.USDTAbi, utilConfig.homeChainContractAddress.USDT);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
@@ -252,7 +252,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
+            // console.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.parentChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.homeChainContractAddress.Bridgeable_Token);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
@@ -269,7 +269,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
+            // console.error("You should first set your key in wallet manager");
         }else{
             const contract = new this.childChainWeb3.eth.Contract(contractAbi.bridgeTokenAbi, utilConfig.childChainContractAddress.Bridgeable_Token);
             let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();

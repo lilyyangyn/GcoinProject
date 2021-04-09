@@ -221,9 +221,7 @@ export default {
     });
 
     // let numeral = require('numeral');
-    if (localStorage.getItem('address') != null && localStorage.getItem('address') != "") {
-      vm.$emit('allBalanceUpdate');
-    }
+    vm.$emit('allBalanceUpdate');
   }
 }
 </script>
