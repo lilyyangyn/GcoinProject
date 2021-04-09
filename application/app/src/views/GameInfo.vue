@@ -11,7 +11,7 @@
           </TabPane>
           <TabPane label="Trailer">
             <Card>
-              <iframe width="560" height="315" :src="gameInfo.trailerUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="520" height="315" :src="gameInfo.trailerUrl" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </Card>
           </TabPane>
         </Tabs>
