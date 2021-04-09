@@ -11,12 +11,12 @@
         <br>
         <div class="row">
           <label>Game Chain Gas Amount: </label>
-          {{this.childGasBalance}}
+          {{this.childGasBalance}} ethers
         </div>
         <br>
         <div class="row">
           <label>Public Chain Ether: </label>
-          {{this.homeGasBalance}}
+          {{this.homeGasBalance}} ethers
         </div>
         <br>
       </Card>

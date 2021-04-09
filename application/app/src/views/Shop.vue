@@ -92,12 +92,12 @@ export default {
         if (currentAllowance < this.depositValue) {
           console.log("Approval starts!");
           await USDTS.approve(this.depositValue, () => {
-              self.$Message.success("Approval succeeds!")
+              self.$Message.success("Approval Succeeds!")
               console.log("Approval succeeds!");
               self.exchcoinExchange();
           }, (error) => {
             console.error(error);
-            self.$Message.error("Fail to allow the platform to spend your USDT. \nPlease try again or do the allowance explicitly.");
+            self.$Message.error("Fail to Allow The Platform to Spend Your USDT");
           });
         } else {
           this.exchcoinExchange();
@@ -108,28 +108,42 @@ export default {
         console.log("Exchcoin-exchange starts!");
         let self = this;
         USDTExchcoinExchange.USDTToExchcoin(this.depositValue, () => {
-          self.$Message.success("Exchcoin-exchange succeeds!");
+          self.$Message.success("Exchcoin-exchange Succeeds!");
           console.log("Exchcoin-exchange succeeds!");
           vm.$emit('USDTBalanceUpdate');
           vm.$emit('parentChainExchgCoinBalanceUpdate');
           self.bridgeableTokenTransfer();
         }, (error) => {
           console.error(error);
-          self.$Message.error("Fail to reserve Exchcoin.\nPlease try again or do the reservation explicitly.");
+          self.$Message.error("Fail to Reserve Exchcoin");
         });
       },
 
       bridgeableTokenTransfer() {
         let self = this;
         console.log("Crosschain-trial starts!");
-        BridgeableToken_Home.transferToChildChain(this.depositValue, this.getSignatureAndExecute, () => {
-          self.$Message.success("Start crosschain deposit!");
+        BridgeableToken_Home.transferToChildChain(this.depositValue, this.checkGasAndStartChildchainAction, () => {
+          self.$Message.success("Start Crosschain Depositing!");
           console.log("Start crosschain deposit!");
           vm.$emit('parentChainExchgCoinBalanceUpdate');
         }, (error) => {
           console.error(error);
-          self.$Message.error("Fail to start crosschain transfer.\nPlease try again or do the transfer explicitly.");
+          self.$Message.error("Fail to Start Crosschain Transfer");
         });
+      },
+
+      checkGasAndStartChildchainAction(resolved) {
+        if (localStorage.getItem('address')!=null && localStorage.getItem('address')!=""){
+          web3Util.checkChildChainBalance(localStorage.getItem('address')).then((gas) => {
+            if (gas >= 100000000000000000) {
+              this.getSignatureAndExecute(resolved);
+            } else {
+              this.$Message.error("Childchain Address Insufficient Funds");
+            }
+          })
+        } else {
+          this.$Message.error("You Should First Set Your Key In Wallet Manager");
+        }
       },
 
       async getSignatureAndExecute(resolved){
@@ -165,7 +179,7 @@ export default {
           self.approveGcoinExchange();
         }, (error) => {
           console.error(error);
-          self.$Message.error("Fail to sign execution");
+          self.$Message.error("Fail to Sign Execution");
         });
 
       },
@@ -174,12 +188,12 @@ export default {
         console.log("Approve-Gcoin-exchange starts");
         let self = this;
         BridgeableToken_Child.approve(this.depositValue, () => {
-          self.$Message.success("Approve-Gcoin-exchange succeeds!");
+          self.$Message.success("Approve-Gcoin-exchange Succeeds!");
         console.log("Approve-Gcoin-exchange succeeds!");
         self.gcoinExchange()
         }, (error) => {
           console.error(error);
-          self.$Message.error("Fail to approve Gcoin-exchange. \n Please try again or do the approval explicitly");
+          self.$Message.error("Fail to Approve Gcoin-exchange");
         });
       },
 
@@ -187,13 +201,13 @@ export default {
         console.log("Gcoin-exchange starts!");
       let self = this;
       GcoinExchcoinExchange.exchcoinToGcoin(this.depositValue, () => {
-        self.$Message.success("Gcoin-exchange succeeds!");
+        self.$Message.success("Gcoin-exchange Succeeds!");
         console.log("Gcoin-exchange succeeds!");
         vm.$emit('childChainExchgCoinBalanceUpdate');
         vm.$emit('GcoinBalanceUpdate');
       }, (error) => {
         console.error(error);
-        self.$Message.error("Fail to reserve Gcoin.\nPlease try again or do the reservation explicitly.");
+        self.$Message.error("Fail to Reserve Gcoin");
       });
     },
 
@@ -214,7 +228,7 @@ export default {
         };
 
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
+            this.$Message.error("You Should First Set Your Key In Wallet Manager");
         }else{
             web3Util.signTransaction(web3Util.childChainWeb3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
         }
@@ -228,7 +242,7 @@ export default {
         // USDTAllowanceElement.innerHTML = result;
         console.log("USDTAllowance: "+result)
       } else {
-        this.$Message.error("Fail to get USDT allowance.");
+        this.$Message.error("Fail to Get USDT Allowance.");
       }
     },
   }

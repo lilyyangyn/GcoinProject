@@ -184,7 +184,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
+            Message.error("You Should First Set Your Key In Wallet Manager");
         }else{
             const contract = new this.parentChainWeb3.eth.Contract(contractAbi.AMBBridgeHelperAbi, utilConfig.homeChainContractAddress.AMBBridgeHelper);
             let contractCallPromise = contract.methods.getSignatures(encodedData).call();
@@ -199,7 +199,7 @@ const web3Util = {
         }
 
         if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
+            Message.error("You Should First Set Your Key In Wallet Manager");
         }else{
             const contract = new this.childChainWeb3.eth.Contract(contractAbi.ForeignBridgeAbi, utilConfig.childChainContractAddress.Foreign_Bridge_Mediator);
             let contractCallPromise = contract.methods.requiredSignatures().call();
