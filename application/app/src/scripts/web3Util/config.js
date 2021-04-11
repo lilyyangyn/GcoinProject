@@ -21,8 +21,8 @@ const utilConfig = {
     faucet:{
         faucetPublicKey:"0xBBdab9F0788C25763A461A16F8e8b8d01Ef2D6C8",
         faucetAccPrivateKey:"5163306b4585562200c1102805c215b42fb3fc2863c55c9fe0d0a2bbf18d7f93",
-        childChainGasFaucetValue:100000000000000000,
-        homeChainGasFaucetValue:100000000000000000
+        childChainGasFaucetValue:150000000000000000,
+        homeChainGasFaucetValue:150000000000000000
     }
 }
 

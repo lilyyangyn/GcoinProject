@@ -63,6 +63,11 @@
                 Game Launch
               </MenuItem>
 
+              <MenuItem name="CompanyRegister" to="/company/register">
+                <Icon type="md-contact" />
+                Register
+              </MenuItem>
+
             </Submenu>
 
             <Submenu name="Blockchain_Service">
