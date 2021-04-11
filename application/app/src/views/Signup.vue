@@ -7,7 +7,7 @@
           <Input type="text" v-model="formSignup.username"></Input>
         </FormItem>
         <FormItem label="Password" prop="password">
-          <Input type="text" v-model="formSignup.password"></Input>
+          <Input type="password" v-model="formSignup.password" password></Input>
         </FormItem>
         <FormItem label="Public Key" prop="publickey">
           <Input type="text" v-model="formSignup.publickey"></Input>
