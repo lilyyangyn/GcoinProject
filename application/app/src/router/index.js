@@ -96,6 +96,12 @@ const routes = [
                 meta: {requireAuth: true}
             },
             {
+                path: '/company/register',
+                name: 'CompanyRegister',
+                component: () => import('../views/CompanyRegister.vue'),
+                meta: {requireAuth: true}
+            },
+            {
                 path: '/smartcontract/ethereum',
                 name: 'EthereumSmartContract',
                 component: () => import('../views/EthereumSmartContract.vue'),

@@ -139,6 +139,7 @@ export default {
               this.getSignatureAndExecute(resolved);
             } else {
               this.$Message.error("Childchain Address Insufficient Funds");
+              console.log(gas)
             }
           })
         } else {
