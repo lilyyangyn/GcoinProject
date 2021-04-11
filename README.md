@@ -34,6 +34,10 @@ Move to `fontend` folder
 ```
 cd frontend
 ```
+Check node version. If not a valid version, install it
+```
+nvm install 10.14.0
+```
 Install related package
 ```
 npm install
