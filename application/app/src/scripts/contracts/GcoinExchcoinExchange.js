@@ -83,6 +83,19 @@ const GcoinExchcoinExchange = {
         }
 	},
 
+	checkSelfRegister: async function(callback) {
+		await this.start();
+
+		let owner = localStorage.getItem('address');
+		if (owner == null || owner == "") {
+			this.$Message.error("You should first set your account in wallet manager");
+			return;
+		}
+
+		const { companyList } = this.meta.methods;
+		await companyList(owner).call({from: owner}, callback);
+	},
+
 	refreshGcoinBalance: async function(callback) {
 		await this.start();
 
