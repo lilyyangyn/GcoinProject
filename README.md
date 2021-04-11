@@ -7,7 +7,7 @@ This is a final year project from HKU CS student. We implement a gaming assets e
 
 ## Tools List
 #### Smart Contract
-[Solidty]((https://soliditylang.org/)) - v0.7.4
+[Solidty](https://soliditylang.org/) - v0.7.4
 
 [Truffle](https://trufflesuite.com/) - v5.1.16
 
@@ -39,5 +39,11 @@ Run Electron
 npm run electron:serve
 ```
 
+## Backend Installation
+
 ## Hint
-Please make sure the home- and child-chain are on when testing
+Please make sure the home- and child-chain are on when testing.
+
+See details of chains and deployed smart contracts at: https://github.com/NicholsonTsang/GcoinProject/blob/gcoin/frontend/src/scripts/web3Util/config.js
+
+See contracts ABI at: https://github.com/NicholsonTsang/GcoinProject/blob/gcoin/frontend/src/scripts/web3Util/contractAbi.js
