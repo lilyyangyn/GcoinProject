@@ -2,7 +2,7 @@
   <div >
     <h1 style="text-align: center">Company Register</h1>
     <Tabs type="card" class="card-container">
-      <TabPane label="Company Account Registration">
+      <TabPane label="Registration">
         <Card style="width:100%">
           <Form  label-position="left" :label-width="70" class="form-container">
             <FormItem label="Address">
