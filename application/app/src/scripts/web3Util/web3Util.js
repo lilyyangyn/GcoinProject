@@ -34,22 +34,18 @@ const web3Util = {
             })
 
             var txHash;
+            let confirmed = false;
             sentTx.on('transactionHash', hash => {
                 txHash = hash;
                 // Message.loading(`Transaction Generated: ${hash}`);
                 console.log(`Transaction Generated: ${hash}`)
-            });
-            sentTx.on("receipt", receipt => console.log(receipt));
-            sentTx.on("error", error => (error) => {
+            }).on("receipt", receipt => console.log(receipt)).on("error", error => (error) => {
                 // Message.error(`Transaction Fails: ${txHash}`);
                 // console.error(`Transaction Fails: ${txHash} ${error}`);
                 if (errorCallback) {
                     errorCallback(error);
                 }
-            });
-
-            let confirmed = false;
-            sentTx.on("confirmation", (num, obj) => {
+            }).on("confirmation", (num, obj) => {
                 if (!confirmed && num == confirmation) {
                     confirmed = true;
                     // Message.success(`Transaction Confirmed: ${obj.transactionHash}`);
