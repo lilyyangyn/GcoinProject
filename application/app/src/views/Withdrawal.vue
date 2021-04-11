@@ -100,9 +100,11 @@
 							self.startTransferToHomeChain();
 						} else {
 							this.$Message.error("You are not permitted to withdraw. Sorry");
+							this.notAllow=false;
 						}
 					} else {
 						console.error(error);
+            this.notAllow=false;
 					}
 				})
 			},
