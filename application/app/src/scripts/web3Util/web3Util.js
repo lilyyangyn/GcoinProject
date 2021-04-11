@@ -188,6 +188,24 @@ const web3Util = {
         }
     },
 
+    checkIsCompanyAddress: async function (address) {
+
+        if (web3Util.childChainWeb3 == null) {
+            await web3Util.childChainWeb3Initialize();
+        }
+
+        if (address == "" || address == null){
+            this.$Message.error("address should be enter")
+        }else{
+            const contract = new this.childChainWeb3.eth.Contract(contractAbi.GcoinExchcoinExchangeAbi, utilConfig.childChainContractAddress.Gcoin_Exchcoin_Exchange);
+            // let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
+            let contractCallPromise = contract.methods.companyList(address).call();
+            return await this.readContract(contractCallPromise, contract);
+        }
+
+
+    },
+
     //test: later Delete
     test: async function(){
         if (web3Util.childChainWeb3 == null) {

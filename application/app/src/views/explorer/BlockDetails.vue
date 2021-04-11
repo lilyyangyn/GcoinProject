@@ -16,7 +16,7 @@
 			<Card class="block" v-if="block">
 				<List border>
 			<ListItem>
-				<div class="detail-item">Height:</div>
+				<div class="detail-item">Height: </div>
 				{{block.height}}
 			</ListItem>
 			<ListItem>
