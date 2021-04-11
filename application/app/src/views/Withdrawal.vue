@@ -70,6 +70,22 @@
 			async transferToHomeChain() {
 				let self = this;
 
+				await GcoinExchcoinExchange.checkSelfRegister((err, res) => {
+					if (!err) {
+						if (res) {
+							self.startTransferToHomeChain();
+						} else {
+							this.$Message.error("You are not permitted to withdraw. Sorry");
+						}
+					} else {
+						console.error(error);
+					}
+				})
+			},
+
+			async startTransferToHomeChain() {
+				let self = this;
+
 				// USDT approval
 				let currentAllowance = 0;
 				await Gcoin.refreshAllowance(GcoinExchcoinExchange.contractAddr, function(error, result) {
@@ -77,7 +93,6 @@
 						currentAllowance = result;
 					} else {
 						console.error(error);
-						console.log(result);
 					}
 					
 					self.refreshGcoinAllowanceCallback(error, result);
