@@ -30,7 +30,7 @@ const web3Util = {
             return;
         }
 
-        this.signTransaction(web3, tx, localStorage.getItem('privateKey'), null, comfirmCallback, errorCallback);
+        this.signTransaction(web3, tx, localStorage.getItem('privateKey'), resolveCallback, comfirmCallback, errorCallback);
     },
 
     signTransaction: function (web3, tx,privateKey, resolveCallback, comfirmCallback, errorCallback, confirmation = 0) {

@@ -105,6 +105,22 @@ export default {
         this.notAllow=true;
         let self = this;
 
+        // USDT balance chek
+        let currentBalance = 0;
+        await USDTS.refreshBalance(function(error, result) {
+          if (!error) {
+            currentBalance = result;
+          } else {
+            console.error(error);
+            self.notAllow=false;
+          }
+        })
+        if (currentBalance < this.depositValue) {
+          this.$Message.error("USDT Not Enough!");
+          this.$emit('USDTBalanceUpdate');
+          return;
+        }
+
         // USDT approval
         let currentAllowance = 0;
         await USDTS.refreshAllowance(function(error, result) {
@@ -112,7 +128,6 @@ export default {
             currentAllowance = result;
           } else {
             console.error(error);
-            console.log(result);
             self.notAllow=false;
           }
           
@@ -143,7 +158,7 @@ export default {
           console.log("Exchcoin-exchange succeeds!");
           vm.$emit('USDTBalanceUpdate');
           vm.$emit('parentChainExchgCoinBalanceUpdate');
-          self.bridgeableTokenTransfer();
+          self.checkGasAndStartChildchainAction();
         }, (error) => {
           console.error(error);
           self.$Message.error("Fail to Reserve Exchcoin");
@@ -154,7 +169,7 @@ export default {
       bridgeableTokenTransfer() {
         let self = this;
         console.log("Crosschain-trial starts!");
-        BridgeableToken_Home.transferToChildChain(this.depositValue, this.checkGasAndStartChildchainAction, () => {
+        BridgeableToken_Home.transferToChildChain(this.depositValue, this.getSignatureAndExecute, () => {
           self.$Message.success("Start Crosschain Depositing!");
           console.log("Start crosschain deposit!");
           vm.$emit('parentChainExchgCoinBalanceUpdate');
@@ -165,16 +180,14 @@ export default {
         });
       },
 
-      checkGasAndStartChildchainAction(resolved) {
+      checkGasAndStartChildchainAction() {
         if (localStorage.getItem('address')!=null && localStorage.getItem('address')!=""){
           web3Util.checkChildChainBalance(localStorage.getItem('address')).then((gas) => {
             if (gas >= 100000000000000000) {
-              this.getSignatureAndExecute(resolved);
+              this.bridgeableTokenTransfer();
             } else {
               this.$Message.error("Childchain Address Insufficient Funds");
-
               this.notAllow=false;
-
             }
           })
         } else {
@@ -213,6 +226,7 @@ export default {
         let self = this;
         await this.signExecute(encodeData, signature, () => {
           console.log("Sign Execution succeeds!");
+          self.$Message.success("Sign Execution succeeds");
           vm.$emit('childChainExchgCoinBalanceUpdate');
           self.approveGcoinExchange();
         }, (error) => {
@@ -270,7 +284,7 @@ export default {
             data: myContract.methods.executeSignatures(message, signature).encodeABI()
         };
 
-        web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+        web3Util.signTransactionWithLocalKey(web3Util.childChainWeb3, tx, null, confirmCallback, errorCallback);
     },
 
     /* UI Callback */
