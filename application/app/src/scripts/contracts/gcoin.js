@@ -64,7 +64,7 @@ const Gcoin = {
 		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             Message.error("You should first set your key in wallet manager");
         }else{
-            web3Util.signTransaction(this.web3, tx, localStorage.getItem('priv ateKey'), null, comfirmCallback, errorCallback);
+            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, comfirmCallback, errorCallback);
         }
 	},
 

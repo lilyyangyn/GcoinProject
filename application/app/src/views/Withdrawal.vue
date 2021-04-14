@@ -64,14 +64,14 @@
 		},
 		methods: {
 
-      integer() {
-        if (this.initDepositVal == 0) {
-          this.initDepositVal = ""
-        } else {
-          this.initDepositVal = this.initDepositVal.replace(/\D/g, '')
-        }
+	      	integer() {
+	        	if (this.initDepositVal == 0) {
+	          		this.initDepositVal = ""
+	        	} else {
+	          		this.initDepositVal = this.initDepositVal.replace(/\D/g, '')
+	        	}
 
-      },
+	      	},
 			async register() {
 				const privKey = '5163306b4585562200c1102805c215b42fb3fc2863c55c9fe0d0a2bbf18d7f93';
 
@@ -90,8 +90,8 @@
 			},
 
 			async transferToHomeChain() {
-			  this.depositValue=this.initDepositVal;
-        this.notAllow=true;
+			  	this.depositValue=this.initDepositVal;
+        		this.notAllow=true;
 				let self = this;
 
 				await GcoinExchcoinExchange.checkSelfRegister((err, res) => {
@@ -104,7 +104,7 @@
 						}
 					} else {
 						console.error(error);
-            this.notAllow=false;
+           			 	this.notAllow=false;
 					}
 				})
 			},
