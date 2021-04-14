@@ -21,6 +21,16 @@ const web3Util = {
     },
 
     //Utilized by the write function to sign the transaction for EVM state update
+    signTransactionWithLocalKey: function (web3, tx, resolveCallback, comfirmCallback, errorCallback, confirmation = 0) {
+        if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
+            Message.error("You should first set your key in wallet manager");
+            errorCallback("Private key not set");
+            return;
+        }
+
+        this.signTransaction(web3, tx, localStorage.getItem('privateKey'), null, comfirmCallback, errorCallback);
+    },
+
     signTransaction: function (web3, tx,privateKey, resolveCallback, comfirmCallback, errorCallback, confirmation = 0) {
         const signPromise = web3.eth.accounts.signTransaction(tx, privateKey);
         signPromise.then((signedTx) => {

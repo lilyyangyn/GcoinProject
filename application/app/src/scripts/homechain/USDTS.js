@@ -48,11 +48,7 @@ const USDTS = {
 			data: this.meta.methods.approve(this.exchangeContractAddr, value).encodeABI(),
 		};
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
-        } else {
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
 	},
 
 	refreshAllowance: async function(callback) {

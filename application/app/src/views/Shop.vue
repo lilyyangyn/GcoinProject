@@ -270,12 +270,7 @@ export default {
             data: myContract.methods.executeSignatures(message, signature).encodeABI()
         };
 
-        if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You Should First Set Your Key In Wallet Manager");
-            this.notAllow=false;
-        }else{
-            web3Util.signTransaction(web3Util.childChainWeb3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+        web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
     },
 
     /* UI Callback */
