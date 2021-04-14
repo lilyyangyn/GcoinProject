@@ -42,7 +42,7 @@ const BridgeableToken_Child = {
 			data: this.meta.methods.transferAndCall(this.bridgeMediator, value, '0x').encodeABI()
 		};
 		
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, resolvedCallback, confirmCallback, errorCallback);
 	},
 
 	approve: async function(value, confirmCallback, errorCallback) {
@@ -56,7 +56,7 @@ const BridgeableToken_Child = {
 			data: this.meta.methods.approve(this.exchangeContractAddr, value).encodeABI()
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	}
 
 }

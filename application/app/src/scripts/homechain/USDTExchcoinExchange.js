@@ -41,7 +41,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.exchcoinToUSDT(value).encodeABI()
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	exchcoinToUSDTCoinDeliver: async function(confirmCallback, errorCallback) {
@@ -55,7 +55,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.exchcoinToUSDTCoinDeliver().encodeABI()
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	USDTToExchcoin: async function(value, confirmCallback, errorCallback) {
@@ -69,7 +69,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.USDTToExchcoin(value).encodeABI()
 		}
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	USDTtoExchcoinCoinDeliver: async function(confirmCallback, errorCallback) {
@@ -83,7 +83,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.USDTtoExchcoinCoinDeliver().encodeABI()
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	transferPltfOwnership: async function(newOwner, confirmCallback, errorCallback) {
@@ -97,7 +97,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.transferPltfOwnership(newOwner).encodeABI()
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	refreshUSDTBalance: async function(callback) {

@@ -24,7 +24,9 @@ const web3Util = {
     signTransactionWithLocalKey: function (web3, tx, resolveCallback, comfirmCallback, errorCallback, confirmation = 0) {
         if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
             Message.error("You should first set your key in wallet manager");
-            errorCallback("Private key not set");
+            if (errorCallback) {
+                errorCallback("Private key not set");
+            }
             return;
         }
 

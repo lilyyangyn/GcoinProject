@@ -40,7 +40,7 @@ const GcoinExchcoinExchange = {
 			data: this.meta.methods.exchcoinToGcoin(value).encodeABI()
 		}
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	GcoinToExchcoin: async function(value, confirmCallback, errorCallback) {
@@ -54,10 +54,10 @@ const GcoinExchcoinExchange = {
 			data: this.meta.methods.GcoinToExchcoin(value).encodeABI()
 		}
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
-	registerCompany: async function(companyAddr, register) {
+	registerCompany: async function(companyAddr, register, confirmCallback, errorCallback) {
 		await this.start();
 
 		const tx = {
@@ -68,7 +68,7 @@ const GcoinExchcoinExchange = {
 			data: this.meta.methods.registerCompany(companyAddr, register).encodeABI()
 		}
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	checkSelfRegister: async function(callback) {

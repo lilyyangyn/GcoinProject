@@ -32,7 +32,7 @@ const Gcoin = {
 		}
 	},
 
-	transfer: async function(to, value, comfirmCallback, errorCallback) {
+	transfer: async function(to, value, confirmCallback, errorCallback) {
 		await this.start();
 
 		const tx = {
@@ -43,10 +43,10 @@ const Gcoin = {
 			data: this.meta.methods.transfer(to, value).encodeABI()
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
-	approve: async function(spender, value, comfirmCallback, errorCallback) {
+	approve: async function(spender, value, confirmCallback, errorCallback) {
 		await this.start();
 
 		const tx = {
@@ -57,7 +57,7 @@ const Gcoin = {
 			data: this.meta.methods.approve(spender, value).encodeABI()
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	refreshAllowance: async function(spender, callback) {

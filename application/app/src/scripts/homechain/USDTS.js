@@ -48,7 +48,7 @@ const USDTS = {
 			data: this.meta.methods.approve(this.exchangeContractAddr, value).encodeABI(),
 		};
 
-		web3Util.signTransactionWithLocalKey(this.web3, tx, null, comfirmCallback, errorCallback);
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	refreshAllowance: async function(callback) {
