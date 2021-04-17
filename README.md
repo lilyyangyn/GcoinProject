@@ -26,7 +26,9 @@ Electron - xxx
 
 ### Backend
 AWS Ubuntu 18.04.5 LTS default java version setting
+
 openjdk version "11.0.10" 2021-01-19
+
 OpenJDK Runtime Environment (build 11.0.10+9-Ubuntu-0ubuntu1.18.04)
 
 ## Frontend Installation
