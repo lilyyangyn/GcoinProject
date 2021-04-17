@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcoin.platform.dao.NodeDOMapper">
+  <resultMap id="BaseResultMap" type="com.gcoin.platform.dataobject.NodeDO">
+    <id column="blockchain_node_id" jdbcType="INTEGER" property="blockchainNodeId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="enode_address" jdbcType="VARCHAR" property="enodeAddress" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blockchain_node_id, company_id, enode_address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from blockchain_node
+    where blockchain_node_id = #{blockchainNodeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from blockchain_node
+    where blockchain_node_id = #{blockchainNodeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gcoin.platform.dataobject.NodeDO">
+    insert into blockchain_node (blockchain_node_id, company_id, enode_address
+      )
+    values (#{blockchainNodeId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{enodeAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gcoin.platform.dataobject.NodeDO">
+    insert into blockchain_node
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blockchainNodeId != null">
+        blockchain_node_id,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="enodeAddress != null">
+        enode_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blockchainNodeId != null">
+        #{blockchainNodeId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="enodeAddress != null">
+        #{enodeAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gcoin.platform.dataobject.NodeDO">
+    update blockchain_node
+    <set>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="enodeAddress != null">
+        enode_address = #{enodeAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where blockchain_node_id = #{blockchainNodeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gcoin.platform.dataobject.NodeDO">
+    update blockchain_node
+    set company_id = #{companyId,jdbcType=INTEGER},
+      enode_address = #{enodeAddress,jdbcType=VARCHAR}
+    where blockchain_node_id = #{blockchainNodeId,jdbcType=INTEGER}
+  </update>
+</mapper>

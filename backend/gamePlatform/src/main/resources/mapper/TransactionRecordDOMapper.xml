@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gcoin.platform.dao.TransactionRecordDOMapper">
+  <resultMap id="BaseResultMap" type="com.gcoin.platform.dataobject.TransactionRecordDO">
+    <id column="transaction_id" jdbcType="INTEGER" property="transactionId" />
+    <result column="player_id" jdbcType="INTEGER" property="playerId" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="transaction_hash" jdbcType="VARCHAR" property="transactionHash" />
+    <result column="sender" jdbcType="VARCHAR" property="sender" />
+    <result column="reciever" jdbcType="VARCHAR" property="reciever" />
+    <result column="transaction_time" jdbcType="TIME" property="transactionTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    transaction_id, player_id, game_id, transaction_hash, sender, reciever, transaction_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_record
+    where transaction_id = #{transactionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from transaction_record
+    where transaction_id = #{transactionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gcoin.platform.dataobject.TransactionRecordDO">
+    insert into transaction_record (transaction_id, player_id, game_id, 
+      transaction_hash, sender, reciever, 
+      transaction_time)
+    values (#{transactionId,jdbcType=INTEGER}, #{playerId,jdbcType=INTEGER}, #{gameId,jdbcType=INTEGER}, 
+      #{transactionHash,jdbcType=VARCHAR}, #{sender,jdbcType=VARCHAR}, #{reciever,jdbcType=VARCHAR}, 
+      #{transactionTime,jdbcType=TIME})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gcoin.platform.dataobject.TransactionRecordDO">
+    insert into transaction_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="transactionId != null">
+        transaction_id,
+      </if>
+      <if test="playerId != null">
+        player_id,
+      </if>
+      <if test="gameId != null">
+        game_id,
+      </if>
+      <if test="transactionHash != null">
+        transaction_hash,
+      </if>
+      <if test="sender != null">
+        sender,
+      </if>
+      <if test="reciever != null">
+        reciever,
+      </if>
+      <if test="transactionTime != null">
+        transaction_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="transactionId != null">
+        #{transactionId,jdbcType=INTEGER},
+      </if>
+      <if test="playerId != null">
+        #{playerId,jdbcType=INTEGER},
+      </if>
+      <if test="gameId != null">
+        #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionHash != null">
+        #{transactionHash,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null">
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="reciever != null">
+        #{reciever,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionTime != null">
+        #{transactionTime,jdbcType=TIME},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gcoin.platform.dataobject.TransactionRecordDO">
+    update transaction_record
+    <set>
+      <if test="playerId != null">
+        player_id = #{playerId,jdbcType=INTEGER},
+      </if>
+      <if test="gameId != null">
+        game_id = #{gameId,jdbcType=INTEGER},
+      </if>
+      <if test="transactionHash != null">
+        transaction_hash = #{transactionHash,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null">
+        sender = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="reciever != null">
+        reciever = #{reciever,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionTime != null">
+        transaction_time = #{transactionTime,jdbcType=TIME},
+      </if>
+    </set>
+    where transaction_id = #{transactionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gcoin.platform.dataobject.TransactionRecordDO">
+    update transaction_record
+    set player_id = #{playerId,jdbcType=INTEGER},
+      game_id = #{gameId,jdbcType=INTEGER},
+      transaction_hash = #{transactionHash,jdbcType=VARCHAR},
+      sender = #{sender,jdbcType=VARCHAR},
+      reciever = #{reciever,jdbcType=VARCHAR},
+      transaction_time = #{transactionTime,jdbcType=TIME}
+    where transaction_id = #{transactionId,jdbcType=INTEGER}
+  </update>
+</mapper>
