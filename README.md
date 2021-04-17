@@ -25,9 +25,9 @@ This is a final year project from HKU CS student. We implement a gaming assets e
 Electron - xxx
 
 ### Backend
-[Java](https://www.java.com/en/) - xxx
-
-Java Web - xxx
+AWS Ubuntu 18.04.5 LTS default java version setting
+openjdk version "11.0.10" 2021-01-19
+OpenJDK Runtime Environment (build 11.0.10+9-Ubuntu-0ubuntu1.18.04)
 
 ## Frontend Installation
 Move to `fontend` folder
