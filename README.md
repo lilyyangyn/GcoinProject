@@ -24,12 +24,15 @@ This is a final year project from HKU CS student. We implement a gaming assets e
 
 Electron - xxx
 
-### Backend
-AWS Ubuntu 18.04.5 LTS default java version setting
+### Platform Backend
+JRE - AWS Ubuntu 18.04.5 LTS default java version setting
 
-openjdk version "11.0.10" 2021-01-19
+(openjdk version "11.0.10" 2021-01-19)
 
-OpenJDK Runtime Environment (build 11.0.10+9-Ubuntu-0ubuntu1.18.04)
+(OpenJDK Runtime Environment (build 11.0.10+9-Ubuntu-0ubuntu1.18.04))
+
+### Order Backend
+[node](https://www.npmjs.com/) - v14
 
 ## Frontend Installation
 Move to `fontend` folder
