@@ -16,7 +16,7 @@
 			<Card class="block" v-if="block">
 				<List border>
 			<ListItem>
-				<div class="detail-item">Height: </div> 
+				<div class="detail-item">Height: </div>
 				{{block.height}}
 			</ListItem>
 			<ListItem>
@@ -29,7 +29,7 @@
 			</ListItem> -->
 			
 				<Collapse simple style="width: 100%;">
-				<Panel hide-arrow style="padding-left: 8px;"><Strong>Transactions:</Strong> {{block.transactions.length}}
+				<Panel style="padding-left: 8px;"><Strong>Transactions:</Strong> {{block.transactions.length}}
 				<div slot="content" v-for="txn in block.transactions" :key="txn.hash">
 				<a @click="getTransaction(txn)">{{txn}}</a>
 				</div>
@@ -103,6 +103,7 @@
 .detail-item {
 	font-weight: 700!important;
 	display: inline-block;
+  padding-right: 4px;
 }
 .block{
 	margin-bottom: 2%

@@ -6,7 +6,7 @@
         <Card style="width:100%">
           <Form  label-position="left" :label-width="70" class="form-container">
             <FormItem label="Amount">
-              <Input  placeholder="amount" v-model="depositValue"></Input>
+              <Input  placeholder="amount" v-model="initDepositVal" @on-keyup="integer()"></Input>
             </FormItem>
 <!--            <FormItem label="Address">-->
 <!--              <Input  placeholder="amount"></Input>-->
@@ -22,8 +22,19 @@
 <!--              <p class="charging-amount">USD Charging:</p>-->
 <!--              <p class="charging-amount"></p>-->
 <!--            </span>-->
+          <span class="charging-amount-container">
+              <p class="charging-amount">Stable Coin Charging:</p>
+              <p class="charging-amount">$ {{depositValue}}</p>
+            </span>
         </Card>
-        <Button type="success" class="confirm-btn" @click="transferToHomeChain()">Confirm</Button>
+        <Button  v-if="notAllow" class="confirm-btn">
+          <Spin class="spin">
+            <Icon type="ios-loading" size=25 style="animation: ani-demo-spin 1s linear infinite;"></Icon>
+          </Spin>
+        </Button>
+        <Button v-else type="success" class="confirm-btn" @click="transferToHomeChain()">Confirm
+        </Button>
+<!--        <Button type="success" class="confirm-btn" @click="transferToHomeChain()" :disabled="notAllow">Confirm</Button>-->
       </TabPane>
     </Tabs>
 <!--		<button @click="transferToHomeChain()">click8</button>-->
@@ -46,10 +57,21 @@
 		name: 'CrossChainWithdraw',
 		data() {
 			return {
+        initDepositVal: 1,
 				depositValue: 0,
+        notAllow: false,
 			}
 		},
 		methods: {
+
+	      	integer() {
+	        	if (this.initDepositVal == 0) {
+	          		this.initDepositVal = ""
+	        	} else {
+	          		this.initDepositVal = this.initDepositVal.replace(/\D/g, '')
+	        	}
+
+	      	},
 			async register() {
 				const privKey = '5163306b4585562200c1102805c215b42fb3fc2863c55c9fe0d0a2bbf18d7f93';
 
@@ -68,6 +90,26 @@
 			},
 
 			async transferToHomeChain() {
+			  	this.depositValue=this.initDepositVal;
+        		this.notAllow=true;
+				let self = this;
+
+				await GcoinExchcoinExchange.checkSelfRegister((err, res) => {
+					if (!err) {
+						if (res) {
+							self.startTransferToHomeChain();
+						} else {
+							this.$Message.error("You are not permitted to withdraw. Sorry");
+							this.notAllow=false;
+						}
+					} else {
+						console.error(error);
+           			 	this.notAllow=false;
+					}
+				})
+			},
+
+			async startTransferToHomeChain() {
 				let self = this;
 
 				// USDT approval
@@ -77,7 +119,7 @@
 						currentAllowance = result;
 					} else {
 						console.error(error);
-						console.log(result);
+            			self.notAllow=false;
 					}
 					
 					self.refreshGcoinAllowanceCallback(error, result);
@@ -92,6 +134,7 @@
 					}, (error) => {
 						console.error(error);
 						self.$Message.error("Fail to allow the platform to spend your Gcoin. \nPlease try again or do the allowance explicitly.");
+            self.notAllow=false;
 					});
 				} else {
 					this.exchcoinExchange();
@@ -110,6 +153,7 @@
 				}, (error) => {
 					console.error(error);
 					self.$Message.error("Fail to reserve Exchcoin.\nPlease check whether you are allowed to do this. \nPlease try again or do the reservation explicitly.");
+          self.notAllow=false;
 				});
 			},
 
@@ -125,6 +169,7 @@
 				}, (error) => {
 					console.error(error);
 					self.$Message.error("Fail to start crosschain transfer.\nPlease try again or do the transfer explicitly.");
+          self.notAllow=false;
 				});
 			},
 
@@ -138,6 +183,7 @@
 		    	}, (error) => {
 		    		console.error(error);
 		    		self.$Message.error("Fail to approve Gcoin-exchange. \n Please try again or do the approval explicitly");
+            self.notAllow=false;
 		    	});
 		    },
 
@@ -148,10 +194,12 @@
 					console.log("USDT-exchange succeeds!");
 					self.$Message.success("USDT-exchange succeeds!");
 					vm.$emit('parentChainExchgCoinBalanceUpdate');
-					vm.$emit('USDTBalanceUpdate')
+					vm.$emit('USDTBalanceUpdate');
+          self.notAllow=false;
 				}, (error) => {
 					console.error(error);
 					self.$Message.error("Fail to reserve USDT.\nPlease try again or do the reservation explicitly.");
+          self.notAllow=false;
 				});
     		},
 

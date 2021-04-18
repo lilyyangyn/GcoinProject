@@ -41,11 +41,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.exchcoinToUSDT(value).encodeABI()
 		};
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        }else{
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	exchcoinToUSDTCoinDeliver: async function(confirmCallback, errorCallback) {
@@ -59,28 +55,21 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.exchcoinToUSDTCoinDeliver().encodeABI()
 		};
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        }else{
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	USDTToExchcoin: async function(value, confirmCallback, errorCallback) {
 		await this.start();
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        }else{
-        	const tx = {
+		const tx = {
 			to: this.contractAddr,
 			gas: 1000000,
 			gasPrice: 10000000000,
 			value: 0,
 			data: this.meta.methods.USDTToExchcoin(value).encodeABI()
-		};
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		}
+
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	USDTtoExchcoinCoinDeliver: async function(confirmCallback, errorCallback) {
@@ -94,11 +83,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.USDTtoExchcoinCoinDeliver().encodeABI()
 		};
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        }else{
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	transferPltfOwnership: async function(newOwner, confirmCallback, errorCallback) {
@@ -112,11 +97,7 @@ const USDTExchcoinExchange = {
 			data: this.meta.methods.transferPltfOwnership(newOwner).encodeABI()
 		};
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        }else{
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	refreshUSDTBalance: async function(callback) {

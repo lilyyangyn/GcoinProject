@@ -40,11 +40,7 @@ const GcoinExchcoinExchange = {
 			data: this.meta.methods.exchcoinToGcoin(value).encodeABI()
 		}
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        } else {
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	GcoinToExchcoin: async function(value, confirmCallback, errorCallback) {
@@ -58,14 +54,10 @@ const GcoinExchcoinExchange = {
 			data: this.meta.methods.GcoinToExchcoin(value).encodeABI()
 		}
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        } else {
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
-	registerCompany: async function(companyAddr, register) {
+	registerCompany: async function(companyAddr, register, confirmCallback, errorCallback) {
 		await this.start();
 
 		const tx = {
@@ -76,11 +68,20 @@ const GcoinExchcoinExchange = {
 			data: this.meta.methods.registerCompany(companyAddr, register).encodeABI()
 		}
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            this.$Message.error("You should first set your key in wallet manager");
-        } else {
-            await web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, confirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
+	},
+
+	checkSelfRegister: async function(callback) {
+		await this.start();
+
+		let owner = localStorage.getItem('address');
+		if (owner == null || owner == "") {
+			this.$Message.error("You should first set your account in wallet manager");
+			return;
+		}
+
+		const { companyList } = this.meta.methods;
+		await companyList(owner).call({from: owner}, callback);
 	},
 
 	refreshGcoinBalance: async function(callback) {

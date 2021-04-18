@@ -32,7 +32,7 @@ const Gcoin = {
 		}
 	},
 
-	transfer: async function(to, value, comfirmCallback, errorCallback) {
+	transfer: async function(to, value, confirmCallback, errorCallback) {
 		await this.start();
 
 		const tx = {
@@ -43,14 +43,10 @@ const Gcoin = {
 			data: this.meta.methods.transfer(to, value).encodeABI()
 		};
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
-        }else{
-            web3Util.signTransaction(this.web3, tx, localStorage.getItem('privateKey'), null, comfirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
-	approve: async function(spender, value, comfirmCallback, errorCallback) {
+	approve: async function(spender, value, confirmCallback, errorCallback) {
 		await this.start();
 
 		const tx = {
@@ -61,11 +57,7 @@ const Gcoin = {
 			data: this.meta.methods.approve(spender, value).encodeABI()
 		};
 
-		if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You should first set your key in wallet manager");
-        }else{
-            web3Util.signTransaction(this.web3, tx, localStorage.getItem('priv ateKey'), null, comfirmCallback, errorCallback);
-        }
+		web3Util.signTransactionWithLocalKey(this.web3, tx, null, confirmCallback, errorCallback);
 	},
 
 	refreshAllowance: async function(spender, callback) {

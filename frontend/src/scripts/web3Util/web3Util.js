@@ -21,6 +21,18 @@ const web3Util = {
     },
 
     //Utilized by the write function to sign the transaction for EVM state update
+    signTransactionWithLocalKey: function (web3, tx, resolveCallback, comfirmCallback, errorCallback, confirmation = 0) {
+        if (localStorage.getItem('privateKey') == "" || localStorage.getItem('privateKey') == null){
+            Message.error("You should first set your key in wallet manager");
+            if (errorCallback) {
+                errorCallback("Private key not set");
+            }
+            return;
+        }
+
+        this.signTransaction(web3, tx, localStorage.getItem('privateKey'), resolveCallback, comfirmCallback, errorCallback);
+    },
+
     signTransaction: function (web3, tx,privateKey, resolveCallback, comfirmCallback, errorCallback, confirmation = 0) {
         const signPromise = web3.eth.accounts.signTransaction(tx, privateKey);
         signPromise.then((signedTx) => {
@@ -34,22 +46,18 @@ const web3Util = {
             })
 
             var txHash;
+            let confirmed = false;
             sentTx.on('transactionHash', hash => {
                 txHash = hash;
                 // Message.loading(`Transaction Generated: ${hash}`);
                 console.log(`Transaction Generated: ${hash}`)
-            });
-            sentTx.on("receipt", receipt => console.log(receipt));
-            sentTx.on("error", error => (error) => {
+            }).on("receipt", receipt => console.log(receipt)).on("error", error => (error) => {
                 // Message.error(`Transaction Fails: ${txHash}`);
                 // console.error(`Transaction Fails: ${txHash} ${error}`);
                 if (errorCallback) {
                     errorCallback(error);
                 }
-            });
-
-            let confirmed = false;
-            sentTx.on("confirmation", (num, obj) => {
+            }).on("confirmation", (num, obj) => {
                 if (!confirmed && num == confirmation) {
                     confirmed = true;
                     // Message.success(`Transaction Confirmed: ${obj.transactionHash}`);
@@ -192,19 +200,22 @@ const web3Util = {
         }
     },
 
-    //test: later Delete
-    test: async function(){
+    checkIsCompanyAddress: async function (address) {
+
         if (web3Util.childChainWeb3 == null) {
             await web3Util.childChainWeb3Initialize();
         }
 
-        if (localStorage.getItem('address') == "" || localStorage.getItem('privateKey') == null){
-            Message.error("You Should First Set Your Key In Wallet Manager");
+        if (address == "" || address == null){
+            this.$Message.error("address should be enter")
         }else{
-            const contract = new this.childChainWeb3.eth.Contract(contractAbi.ForeignBridgeAbi, utilConfig.childChainContractAddress.Foreign_Bridge_Mediator);
-            let contractCallPromise = contract.methods.requiredSignatures().call();
+            const contract = new this.childChainWeb3.eth.Contract(contractAbi.GcoinExchcoinExchangeAbi, utilConfig.childChainContractAddress.Gcoin_Exchcoin_Exchange);
+            // let contractCallPromise = contract.methods.balanceOf(localStorage.getItem('address')).call();
+            let contractCallPromise = contract.methods.companyList(address).call();
             return await this.readContract(contractCallPromise, contract);
         }
+
+
     },
 
 

@@ -7,7 +7,7 @@
           <Input v-model="username"></Input>
         </FormItem>
         <FormItem label="Password">
-          <Input v-model="password"></Input>
+          <Input v-model="password" type="password" password></Input>
         </FormItem>
       </Form>
 

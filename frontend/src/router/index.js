@@ -22,15 +22,6 @@ const routes = [
         meta: {requireAuth: true},
         children: [
             // {
-            //   path: '/nodeRegister',
-            //   name: 'NodeRegister',
-            //   // route level code-splitting
-            //   // this generates a separate chunk (about.[hash].js) for this route
-            //   // which is lazy-loaded when the route is visited.
-            //   component: () => import('../views/NodeRegister.vue'),
-            //   meta: {requireAuth: true}
-            // },
-            // {
             //   path: '/transfer',
             //   name: 'Transfer',
             //   // route level code-splitting
@@ -96,6 +87,12 @@ const routes = [
                 meta: {requireAuth: true}
             },
             {
+                path: '/company/register',
+                name: 'CompanyRegister',
+                component: () => import('../views/CompanyRegister.vue'),
+                meta: {requireAuth: true}
+            },
+            {
                 path: '/smartcontract/ethereum',
                 name: 'EthereumSmartContract',
                 component: () => import('../views/EthereumSmartContract.vue'),
@@ -129,12 +126,6 @@ const routes = [
                 path: '/wallet/manager',
                 name: 'WalletManager',
                 component: () => import('../views/WalletManager.vue'),
-                meta: {requireAuth: true}
-            },
-            {
-                path: '/test',
-                name: 'Test',
-                component: () => import('../views/Test.vue'),
                 meta: {requireAuth: true}
             },
             {

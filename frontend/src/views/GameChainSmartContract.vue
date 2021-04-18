@@ -18,9 +18,6 @@
 <!--      <TabPane label="Transfer">-->
 <!--        <Trans />-->
 <!--      </TabPane>-->
-<!--      <TabPane label="Node Register">-->
-<!--        <Regist />-->
-<!--      </TabPane>-->
 <!--      <TabPane label="Another Smart Contract">-->
 
 <!--      </TabPane>-->
@@ -30,7 +27,6 @@
 
 <script>
 import Trans from "./Transfer.vue";
-import Regist from "./NodeRegister.vue";
 import GCContractCardContainer from "../components/SCPageContent/GameChain/GcoinContract/ContractCardContainer";
 import FBTCContractCardContainer from "../components/SCPageContent/GameChain/ForeignBridgeableTokenContract/ContractCardContainer";
 import BridgeStorageProxyContractCardContainer from "../components/SCPageContent/GameChain/BridgeProxyContract/ContractCardContainer";
@@ -44,7 +40,6 @@ export default {
     BridgeStorageProxyContractCardContainer,
     BridgeContractCardContainer,
     Trans,
-    Regist,
   },
 }
 </script>

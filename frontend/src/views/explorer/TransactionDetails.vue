@@ -1,7 +1,7 @@
 <template>
 	<div class="transaction">
 		<h1 style="text-align: center">Transaction</h1>
-		<Tabs type="card" style="width: 85%;margin: 0 auto;">
+		<Tabs type="card" style="width: 60%; margin: 0 auto;">
 
 
 		<div v-if="error">
@@ -16,7 +16,7 @@
 			<Card class="transaction" v-if="transaction" style="margin-bottom: 2%">
 				<List border>
 			<ListItem>
-				<div class="detail-item">hash: </div>
+				<div class="detail-item">hash:&emsp;</div>
 				{{transaction.hash}}
 			</ListItem> 
 			<ListItem>
@@ -43,9 +43,13 @@
 				<div class="detail-item">gasUsed: </div>
 				{{transaction.gasUsed}}
 			</ListItem>
+<!--      <ListItem>-->
+<!--        <div class="detail-item" style="WORD-WRAP: break-word;TABLE-LAYOUT: fixed;word-break:break-all">input: </div>-->
+<!--        {{transaction.input}}-->
+<!--      </ListItem>-->
 			
 				<Collapse simple style="width: 100%;">
-				<Panel hide-arrow style="padding-left: 8px;"><Strong>input: </Strong>
+				<Panel style="padding-left: 8px;"><Strong>input: </Strong>
 				<div slot="content"  style="WORD-WRAP: break-word;TABLE-LAYOUT: fixed;word-break:break-all">
 				{{transaction.input}}
 				</div>
@@ -59,7 +63,7 @@
 			<div v-if="detailed">
 					<ListItem>
 						<div class="detail-item">transactionFee: </div>
-						{{transaction._transactionFee}}
+						{{transaction.transactionFee}}
 					</ListItem>
 					<ListItem>
 						<div class="detail-item">timestamp: </div>

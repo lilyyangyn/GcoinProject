@@ -17,9 +17,6 @@
 <!--      <TabPane label="Transfer">-->
 <!--        <Trans />-->
 <!--      </TabPane>-->
-<!--      <TabPane label="Node Register">-->
-<!--        <Regist />-->
-<!--      </TabPane>-->
 <!--      <TabPane label="Another Smart Contract">-->
 
 <!--      </TabPane>-->
@@ -29,7 +26,6 @@
 
 <script>
 import Trans from "./Transfer.vue";
-import Regist from "./NodeRegister.vue";
 import HBTCContractCardContainer from "../components/SCPageContent/EthereumChain/HomeBridgeableTokenContract/ContractCardContainer";
 import ExchangeContractCardContainer from "../components/SCPageContent/EthereumChain/ExchangeContract/ContractCardContainer";
 import BridgeContractCardContainer from "../components/SCPageContent/EthereumChain/BridgeContract/ContractCardContainer";
@@ -43,7 +39,6 @@ export default {
     BridgeContractCardContainer,
     BridgeStorageProxyContractCardContainer,
     Trans,
-    Regist,
   },
 }
 </script>
