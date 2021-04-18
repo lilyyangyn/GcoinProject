@@ -15,6 +15,14 @@
     from crypto_key_set
     where cryto_key_set_id = #{crytoKeySetId,jdbcType=INTEGER}
   </select>
+<!--  self write sql-->
+  <select id="selectByPublicKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from crypto_key_set
+    where public_key = #{publicKey,jdbcType=VARCHAR}
+  </select>
+<!--  -->
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from crypto_key_set
     where cryto_key_set_id = #{crytoKeySetId,jdbcType=INTEGER}

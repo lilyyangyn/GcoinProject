@@ -1,7 +1,11 @@
 package com.gcoin.platform.dao;
 
 import com.gcoin.platform.dataobject.GameDo;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface GameDoMapper {
     int deleteByPrimaryKey(Integer gameId);
 
@@ -14,4 +18,7 @@ public interface GameDoMapper {
     int updateByPrimaryKeySelective(GameDo record);
 
     int updateByPrimaryKey(GameDo record);
+
+    //self write interface
+    List<GameDo> listGame();
 }

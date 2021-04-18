@@ -8,9 +8,11 @@
     <result column="game_description" jdbcType="VARCHAR" property="gameDescription" />
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="trailer_url" jdbcType="VARCHAR" property="trailerUrl" />
+    <result column="thumbnail_path" jdbcType="VARCHAR" property="thumbnailPath" />
   </resultMap>
   <sql id="Base_Column_List">
-    game_id, company_id, issue_date, game_description, category, name
+    game_id, company_id, issue_date, game_description, category, name, trailer_url, thumbnail_path
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,11 +26,11 @@
   </delete>
   <insert id="insert" parameterType="com.gcoin.platform.dataobject.GameDo">
     insert into game (game_id, company_id, issue_date, 
-      game_description, category, name
-      )
+      game_description, category, name, 
+      trailer_url, thumbnail_path)
     values (#{gameId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{issueDate,jdbcType=DATE}, 
-      #{gameDescription,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
-      )
+      #{gameDescription,jdbcType=VARCHAR}, #{category,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{trailerUrl,jdbcType=VARCHAR}, #{thumbnailPath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gcoin.platform.dataobject.GameDo">
     insert into game
@@ -51,6 +53,12 @@
       <if test="name != null">
         name,
       </if>
+      <if test="trailerUrl != null">
+        trailer_url,
+      </if>
+      <if test="thumbnailPath != null">
+        thumbnail_path,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="gameId != null">
@@ -70,6 +78,12 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="trailerUrl != null">
+        #{trailerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailPath != null">
+        #{thumbnailPath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -91,6 +105,12 @@
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="trailerUrl != null">
+        trailer_url = #{trailerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailPath != null">
+        thumbnail_path = #{thumbnailPath,jdbcType=VARCHAR},
+      </if>
     </set>
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
@@ -100,7 +120,17 @@
       issue_date = #{issueDate,jdbcType=DATE},
       game_description = #{gameDescription,jdbcType=VARCHAR},
       category = #{category,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR}
+      name = #{name,jdbcType=VARCHAR},
+      trailer_url = #{trailerUrl,jdbcType=VARCHAR},
+      thumbnail_path = #{thumbnailPath,jdbcType=VARCHAR}
     where game_id = #{gameId,jdbcType=INTEGER}
   </update>
+
+<!--  Self write SQL-->
+  <select id="listGame" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from game order by game_id DESC
+  </select>
+<!--  -->
 </mapper>

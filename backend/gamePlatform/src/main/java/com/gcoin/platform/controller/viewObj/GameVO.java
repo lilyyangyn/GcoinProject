@@ -1,11 +1,8 @@
-package com.gcoin.platform.dataobject;
-
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+package com.gcoin.platform.controller.viewObj;
 
 import java.util.Date;
 
-public class GameDo {
+public class GameVO {
     private Integer gameId;
 
     private Integer companyId;
@@ -21,6 +18,8 @@ public class GameDo {
     private String trailerUrl;
 
     private String thumbnailPath;
+
+    private String thumbnailBase64Str;
 
     public Integer getGameId() {
         return gameId;
@@ -84,5 +83,13 @@ public class GameDo {
 
     public void setThumbnailPath(String thumbnailPath) {
         this.thumbnailPath = thumbnailPath == null ? null : thumbnailPath.trim();
+    }
+
+    public String getThumbnailBase64Str() {
+        return thumbnailBase64Str;
+    }
+
+    public void setThumbnailBase64Str(String thumbnailBase64Str) {
+        this.thumbnailBase64Str = thumbnailBase64Str == null ? null : thumbnailBase64Str.trim();
     }
 }

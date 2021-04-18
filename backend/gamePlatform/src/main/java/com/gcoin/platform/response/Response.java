@@ -8,7 +8,8 @@ import lombok.Getter;
 public class Response {
 
     public static final int SUCCESS = 0;
-    public static final int FAIL = 1;
+    public static final int RELOGIN = 1;
+    public static final int FAIL = 2;
 
     @Getter
     private int code;

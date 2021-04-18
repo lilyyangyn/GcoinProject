@@ -7,6 +7,7 @@ public enum EmBusinessError implements CommonError {
     USER_NOT_LOGIN(20003,"Havn't Login"),
     USERNAME_USED(20004,"Username already existed"),
     INVALID_USR_PW_PATTERN(2005,"Please check your username and password's pattern matching the criteria"),
+    CRYPTOKEY_USED(2006,"Crypto key already existed"),
     ;
 
     private int errCode;
