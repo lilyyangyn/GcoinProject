@@ -6,7 +6,7 @@
 			
 	<Card class="blockHome">
 		<Collapse style="width: 100%">
-			<Panel name="getBlock">Get_Block
+			<Panel name="getBlock">Get Block
 			<div slot="content">
 				<label>bid/height</label>
 			<input type="text" id="bid" v-model="bid">
@@ -15,7 +15,7 @@
 			
 			</div>
 			</Panel>
-			<Panel name="getTransaction">Get_Transaction
+			<Panel name="getTransaction">Get Transaction
 			<div slot="content">
 				<label>transaction hash</label>
 			<input type="text" id="thash" v-model = "thash">
@@ -24,7 +24,7 @@
 			
 			</div>
 			</Panel>
-			<Panel name="getLatestNTransactions">Get_Latest_N_Transactions
+			<Panel name="getLatestNTransactions">Get Latest N Blocks
 			<div slot="content">
 				<label>number</label>
 			<input type="text" id="n" v-model = "n">

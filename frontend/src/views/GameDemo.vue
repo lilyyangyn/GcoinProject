@@ -102,6 +102,7 @@ export default {
         this.logMessages.push({message: "Sword is delivered to player's bag"});
         //finished buy sword process
         this.buySpinShow = false;
+        this.$Message.success("Sword is delivered to your bag");
       } else if (code == 2) {
         this.$Message.error(msg);
       }
