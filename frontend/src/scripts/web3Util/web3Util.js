@@ -78,8 +78,6 @@ const web3Util = {
         await contractCallPromise.then((resolved) => {
             resolvedValue = resolved;
             // console.log(resolved);
-        }).catch((err) => {
-            console.error(err);
         });
         // console.log(resolvedValue);
         return resolvedValue;

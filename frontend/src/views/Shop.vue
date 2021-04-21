@@ -208,19 +208,24 @@ export default {
 
         //get signature
         let signature = null;
+        let counter = 0;
         while(signature == null){
-          console.log("while looping up");
+          // console.log("while looping up");
           // periodically asking for signature by sleeping the thread
           await new Promise(resolve => setTimeout(resolve, 15000));
-          console.log("finish sleep");
+          // console.log("finish sleep");
           await web3Util.getSignature(encodeData).then((resolved) => {
             console.log("resolved: " + encodeData);
             signature = resolved;
             console.log("signature: " + signature);
-          }).catch(error => {
-            console.log(error);
+          }).catch(error => {});
+          if (counter < 10) {
+            counter++;
+          } else {
             this.notAllow=false;
-          });
+            this.$Message.error("Fail to get child-chain signature.");
+            return;
+          }
         }
 
         //pass the signature and message to the chain
