@@ -96,7 +96,8 @@ export default {
       if (this.initDepositVal == 0) {
         this.initDepositVal = ""
       } else {
-        this.initDepositVal = this.initDepositVal.replace(/\D/g, '')
+        this.initDepositVal = this.initDepositVal.replace(/\D/g, '');
+        this.initDepositVal = parseInt(this.initDepositVal);
       }
 
     },
@@ -118,6 +119,7 @@ export default {
         if (currentBalance < this.depositValue) {
           this.$Message.error("USDT Not Enough!");
           this.$emit('USDTBalanceUpdate');
+          self.notAllow=false;
           return;
         }
 
