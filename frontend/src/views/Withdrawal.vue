@@ -69,6 +69,8 @@
 	          		this.initDepositVal = ""
 	        	} else {
 	          		this.initDepositVal = this.initDepositVal.replace(/\D/g, '')
+	          		this.initDepositVal = parseInt(this.initDepositVal);
+
 	        	}
 
 	      	},
