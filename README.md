@@ -1,5 +1,5 @@
 # HKU CS FYP - Gcoin Gaming Platform
-This is a final year project from HKU CS student. We implement a gaming assets exchange platform based on a blockchain.
+This is a final year project from HKU CS students. We implement a game distribution platform with the in-game payment system built with blockchain.
 ## Table of Contents
 - [Tools List](#tools-list)
   - [Smart Contracts](#smart-contracts)
